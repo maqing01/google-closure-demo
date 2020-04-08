@@ -1,0 +1,139 @@
+@def TOOLBAR_HEIGHT 60px;
+
+@def WUI_TOOLBAR_BACKGROUND_FONT_SIZE 16px;
+@def WUI_TOOLBAR_BACKGROUND_NO_GRADIENT_BG blue;
+@def WUI_TOOLBAR_BACKGROUND_SHADOW_TEXT_COLOR #fff;
+@def WUI_TOOLBAR_BACKGROUND_TEXT_COLOR #182647;
+
+.CSS_WUI_TOOLBAR {
+  height: TOOLBAR_HEIGHT;
+  padding: 0 3px;
+  position: relative;
+  text-align: center;
+
+  /* This preserves the width of toolbars when absolutely positioned. */
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  /**
+   * This disables 'hold to copy' in Mobile Safari by default for the toolbar
+   * and everything it contains. This can be overridden with
+   * '-webkit-user-select: [text|auto]'.
+   */
+  -webkit-user-select: none;
+}
+
+.CSS_WUI_TOOLBAR_BACKGROUND {
+  /*background: #2384d1;*/
+  /*background: #f0f0f0;*/
+  background: white;
+  background-repeat: repeat-x;
+  border-bottom: 1px solid #cbcbcb;
+}
+
+.omw-editor-toolbar .CSS_WUI_TOOLBAR_BACKGROUND {
+  /*border-bottom: 0px;*/
+}
+
+.CSS_WUI_TOOLBAR_BACKGROUND_NO_GRADIENT {
+  background: WUI_TOOLBAR_BACKGROUND_NO_GRADIENT_BG;
+}
+
+.CSS_WUI_TOOLBAR_BACKGROUND,
+.CSS_WUI_TOOLBAR_BACKGROUND_NO_GRADIENT,
+.CSS_WUI_TOOLBAR_BACKGROUND_TRANSPARENT {
+  /*color: #333;*/
+  font-size: WUI_TOOLBAR_BACKGROUND_FONT_SIZE;
+}
+
+.CSS_WUI_TOOLBAR_SHADOW {
+  background: repeat-x;
+  background-size: 1px 4px;
+  /**
+   * The toolbar shadow is inside the div that the buttons are in. This allows
+   * the logic for hiding the toolbar to work properly. By setting
+   * the bottom directly we avoid a glitch with webkit where it incorrectly
+   * calculates the positions with auto. See b/5483180.
+   */
+  /*bottom: -4px;*/
+  /*height: 4px;*/
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+
+.CSS_WUI_TOOLBAR_SHADOW_UP {
+  background: repeat-x;
+  background-size: 1px 4px;
+  height: 4px;
+  /* The left and right margins reverse the padding in parent container. */
+  margin: 0 -3px -4px -3px;
+  position: relative;
+  top: -4px;
+}
+
+.CSS_WUI_TOOLBAR_LEFT,
+.CSS_WUI_TOOLBAR_RIGHT,
+.CSS_WUI_TOOLBAR_MIDDLE {
+  bottom: 0;
+  position: absolute;
+  top: 0;
+}
+
+.CSS_WUI_TOOLBAR_LEFT,
+.CSS_WUI_TOOLBAR_RIGHT {
+  /** Vertically aligns buttons in toolbar. */
+  /*padding-top: 6px;*/
+}
+
+.CSS_WUI_TOOLBAR_MIDDLE {
+  line-height: 60px;
+  /** This stops spacer from pushing elements out of toolbar. */
+  white-space: nowrap;
+  overflow: auto;
+  /*overflow: visible;*/
+  /*display: none;*/
+}
+
+
+.CSS_WUI_TOOLBAR_MIDDLE {
+  padding: 0 24px;
+}
+
+.CSS_WUI_TOOLBAR_LEFT {
+  left: 3px;
+}
+
+.CSS_WUI_TOOLBAR_RIGHT {
+  right: 0px;
+  /*top: 10px;*/
+}
+
+
+.CSS_WUI_TOOLBAR_RIGHT > .CSS_WUI_BUTTON {
+  padding-right: 5px;
+}
+
+.CSS_WUI_TOOLBAR_RIGHT > .CSS_WUI_BUTTON_LABEL {
+  color: #333;
+}
+
+.CSS_WUI_TOOLBAR_RIGHT > .CSS_WUI_BUTTON,
+.CSS_WUI_TOOLBAR_MIDDLE > .CSS_WUI_BUTTON {
+  display: inline-block;
+}
+
+/*  Unify this with CSS_WUI_CENTER_BOX. */
+.CSS_WUI_TOOLBAR_MIDDLE_BOX {
+  /* Styles required to correctly render a pill button in the center div. */
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+}
+
+.CSS_WUI_TOOLBAR_SPACER {
+  display: inline-block;
+  /* This element was being positioned under its container and blocking. */
+  /* Setting height to 0 is a work-around for this. */
+  height: 0;
+}

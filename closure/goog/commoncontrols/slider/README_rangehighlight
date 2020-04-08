@@ -1,0 +1,50 @@
+Copyright 2011 Google Inc.
+All Rights Reserved.
+
+These are instructions for changing the active range highlight image in the
+JFK two-thumb slider.
+Author: ehwang@google.com (Eric Hwang)
+
+
+The image is kept as a SVG (vector image) to make it easier to update colors.
+The process is:
+1) Update SVG
+2) Generate PNG
+3) Compress PNG
+4a) Put PNG into gstatic   <OR>
+4b) Generate base64 encoding of PNG for use in CSS
+
+
+First, edit the SVG file with the new colors and generate a PNG. Inkscape
+will do fine (it's free, open-source, available on Linux/OSX/Windows).
+If you happen to already have Illustrator and prefer that, it will work too.
+
+Inkscape instructions:
+1) Open the SVG file in Inkscape.
+2) Press Ctrl+Shift+F to open the Fill and Stroke pane (you can also find it
+    under the Object menu).
+3) Click on the rectangle and change its fill to the desired background color.
+4) Click on the lines and change their stroke to the desired line color.
+    They're grouped, so they'll all change together.
+5) Save the SVG, or Save As if it's a new independent theme.
+6) Press Ctrl+Shift+E to open the Export Bitmap dialog (or find it under
+    the File menu).
+7) Click on the Page option, and make sure the width and height are
+    what you expect.
+8) Double-check the file name (it should be a png), then click Export.
+
+To compress the png, run this command on the generated file
+(see https://wiki.corp.google.com/twiki/bin/view/Main/PngCrush for details):
+  /home/build/google3/caribou/util/pngcrusher.sh myimage.png
+
+
+For putting the PNG on gstatic:
+- See http://goto.google.com/kennedyeng/technical-documentation/icon-repository
+- The PNG is at google3/googledata/html/external_content/gstatic/ui/v1/slider/.
+    Be sure to update the GSS file if you're using a different filename.
+
+
+Or, to generate the base64 encoding of the PNG to use in a CSS data url:
+  base64 --wrap=0 myimage.png
+And copy the generated base64 string into the correct place in the GSS file:
+  url(data:image/png;base64,_____);

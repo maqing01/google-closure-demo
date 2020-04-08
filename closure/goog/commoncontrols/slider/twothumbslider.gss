@@ -1,0 +1,172 @@
+/**
+ * Copyright 2011 Google Inc. All Rights Reserved.
+ *
+ * Styles for the two-thumb JFK slider.
+ *
+ * @author ehwang@google.com (Eric Hwang)
+ */
+
+
+
+
+
+@if (!DISABLE_KENNEDY) {
+
+@def JFK_TWOTHUMBSLIDER_SCALE_SIZE                    6px;
+@def JFK_TWOTHUMBSLIDER_SCALE_BORDER_RADIUS           3px; /* half of size */
+/* scaleOffset = (thumbSize + 2 * thumbBorder - scaleSize) / 2 */
+@def JFK_TWOTHUMBSLIDER_SCALE_OFFSET                  6px;
+@def JFK_TWOTHUMBSLIDER_SCALE_COLOR                   #e5e5e5;
+@def JFK_TWOTHUMBSLIDER_THUMB_BG_COLOR                #999;
+@def JFK_TWOTHUMBSLIDER_THUMB_BORDER_COLOR            #999;
+@def JFK_TWOTHUMBSLIDER_RANGEHIGHLIGHT_COLOR          #c6c6c6;
+@def JFK_TWOTHUMBSLIDER_THUMB_HOVER_COLOR             #fff;
+@def JFK_TWOTHUMBSLIDER_THUMB_ACTIVE_COLOR            #535252;
+@def JFK_TWOTHUMBSLIDER_RANGEHIGHLIGHT_HOVER_COLOR    #535252;
+/* See javascript/jfk/slider/README_rangehighlight for updating this. */
+@def JFK_TWOTHUMBSLIDER_RANGEHIGHLIGHT_ACTIVE_BG_IMG
+    url("");
+
+.jfk-twothumbslider {
+  position: relative;
+  outline: 0;
+}
+
+.goog-twothumbslider-horizontal {
+  height: JFK_SLIDER_SIZE;
+}
+
+.goog-twothumbslider-vertical {
+  width: JFK_SLIDER_SIZE;
+}
+
+
+
+.goog-twothumbslider-horizontal .goog-twothumbslider-value-thumb,
+.goog-twothumbslider-horizontal .goog-twothumbslider-extent-thumb {
+  position: absolute;
+  height: 0;
+  width: JFK_SLIDER_THUMB_SIZE;
+}
+
+.goog-twothumbslider-vertical .goog-twothumbslider-value-thumb,
+.goog-twothumbslider-vertical .goog-twothumbslider-extent-thumb {
+  position: absolute;
+  height: JFK_SLIDER_THUMB_SIZE;
+  width: 0;
+}
+
+.jfk-slider-thumbimpl {
+  background-color: JFK_TWOTHUMBSLIDER_THUMB_BG_COLOR;
+  border: 1px solid JFK_TWOTHUMBSLIDER_THUMB_BORDER_COLOR;
+
+  @mixin transition(JFK_SLIDER_THUMB_TRANSITION);
+}
+
+/* Hover state, and keep hover styles when dragging, too. */
+.jfk-twothumbslider:hover .jfk-slider-thumbimpl,
+.jfk-twothumbslider.goog-slider-dragging .jfk-slider-thumbimpl {
+  background-color: JFK_TWOTHUMBSLIDER_THUMB_HOVER_COLOR;
+}
+
+/* Thumb that's actively being dragged */
+.jfk-twothumbslider.goog-slider-dragging .goog-slider-thumb-dragging
+    .jfk-slider-thumbimpl {
+  background-color: JFK_TWOTHUMBSLIDER_THUMB_ACTIVE_COLOR;
+  border-color: JFK_TWOTHUMBSLIDER_THUMB_ACTIVE_COLOR;
+}
+
+.goog-twothumbslider-horizontal .jfk-slider-thumbimpl {
+  height: JFK_SLIDER_THUMB_SIZE;
+  width: JFK_SLIDER_THUMB_SIZE_HALF;
+}
+
+/* left thumb */
+.goog-twothumbslider-horizontal .goog-twothumbslider-value-thumb
+    .jfk-slider-thumbimpl {
+
+  @mixin border_radius(
+      JFK_SLIDER_THUMB_SIZE_HALF 0 0 JFK_SLIDER_THUMB_SIZE_HALF);
+}
+
+/* right thumb */
+.goog-twothumbslider-horizontal .goog-twothumbslider-extent-thumb
+    .jfk-slider-thumbimpl {
+
+  @mixin border_radius(
+      0 JFK_SLIDER_THUMB_SIZE_HALF JFK_SLIDER_THUMB_SIZE_HALF 0);
+
+  margin-left: JFK_SLIDER_THUMB_SIZE_HALF;
+}
+
+.goog-twothumbslider-vertical .jfk-slider-thumbimpl {
+  height: JFK_SLIDER_THUMB_SIZE_HALF;
+  width: JFK_SLIDER_THUMB_SIZE;
+}
+
+/* bottom thumb */
+.goog-twothumbslider-vertical .goog-twothumbslider-value-thumb
+    .jfk-slider-thumbimpl {
+
+  margin-top: JFK_SLIDER_THUMB_SIZE_HALF;
+
+  @mixin border_radius(
+      0 0 JFK_SLIDER_THUMB_SIZE_HALF JFK_SLIDER_THUMB_SIZE_HALF);
+}
+
+/* top thumb */
+.goog-twothumbslider-vertical .goog-twothumbslider-extent-thumb
+    .jfk-slider-thumbimpl {
+
+  @mixin border_radius(
+      JFK_SLIDER_THUMB_SIZE_HALF JFK_SLIDER_THUMB_SIZE_HALF 0 0);
+}
+
+
+
+.jfk-slider-scale {
+  background-color: JFK_TWOTHUMBSLIDER_SCALE_COLOR;
+  position: absolute;
+
+  @mixin border_radius(JFK_TWOTHUMBSLIDER_SCALE_BORDER_RADIUS);
+}
+
+.goog-twothumbslider-horizontal .jfk-slider-scale {
+  height: JFK_TWOTHUMBSLIDER_SCALE_SIZE;
+  top: JFK_TWOTHUMBSLIDER_SCALE_OFFSET;
+  width: 100%;
+}
+
+.goog-twothumbslider-vertical .jfk-slider-scale {
+  height: 100%;
+  left: JFK_TWOTHUMBSLIDER_SCALE_OFFSET;
+  width: JFK_TWOTHUMBSLIDER_SCALE_SIZE;
+}
+
+.goog-twothumbslider-rangehighlight {
+  background-color: JFK_TWOTHUMBSLIDER_RANGEHIGHLIGHT_COLOR;
+  position: absolute;
+
+  @mixin transition(JFK_SLIDER_THUMB_TRANSITION);
+}
+
+.jfk-twothumbslider:hover .goog-twothumbslider-rangehighlight,
+.jfk-twothumbslider.goog-slider-dragging .goog-twothumbslider-rangehighlight {
+  background-color: JFK_TWOTHUMBSLIDER_RANGEHIGHLIGHT_HOVER_COLOR;
+}
+
+.jfk-twothumbslider.goog-slider-dragging .goog-twothumbslider-rangehighlight {
+  background-image: JFK_TWOTHUMBSLIDER_RANGEHIGHLIGHT_ACTIVE_BG_IMG;
+}
+
+.goog-twothumbslider-horizontal .goog-twothumbslider-rangehighlight {
+  height: JFK_TWOTHUMBSLIDER_SCALE_SIZE;
+  top: JFK_TWOTHUMBSLIDER_SCALE_OFFSET;
+}
+
+.goog-twothumbslider-vertical .goog-twothumbslider-rangehighlight {
+  left: JFK_TWOTHUMBSLIDER_SCALE_OFFSET;
+  width: JFK_TWOTHUMBSLIDER_SCALE_SIZE;
+}
+
+}  /* if (!DISABLE_KENNEDY) */

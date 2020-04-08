@@ -1,0 +1,397 @@
+/**
+ * Mixin for the CSS3 animations.
+ * Note: No version of IE requires the -ms- prefix. See "Remarks":
+ * http://msdn.microsoft.com/en-us/library/windows/apps/hh466300.aspx
+ * @param ANIMATION The animation CSS property shorthand.
+ */
+@defmixin animation(ANIMATION) {
+  /* @alternate */ -webkit-animation: ANIMATION;
+  /* @alternate */ -moz-animation: ANIMATION;
+  /* @alternate */ -o-animation: ANIMATION;
+  /* @alternate */ animation: ANIMATION;
+}
+
+
+/**
+ * Mixin for a CSS3 animation timing function.
+ * @param DELAY CSS animation delay in ms or s.
+ */
+@defmixin animation_delay(DELAY) {
+  /* @alternate */ -webkit-animation-delay: DELAY;
+  /* @alternate */ -moz-animation-delay: DELAY;
+  /* @alternate */ -o-animation-delay: DELAY;
+  /* @alternate */ animation-delay: DELAY;
+}
+
+
+/**
+ * Mixin for a CSS3 animation's direction.
+ * @param DIRECTION CSS animation direction keyword.
+ */
+@defmixin animation_direction(DIRECTION) {
+  /* @alternate */ -webkit-animation-direction: DIRECTION;
+  /* @alternate */ -moz-animation-direction: DIRECTION;
+  /* @alternate */ -o-animation-direction: DIRECTION;
+  /* @alternate */ animation-direction: DIRECTION;
+}
+
+
+/**
+ * Mixin for a CSS3 animation duration.
+ * @param DURATION The CSS animation-duration value, in ms or s.
+ */
+@defmixin animation_duration(DURATION) {
+  /* @alternate */ -webkit-animation-duration: DURATION;
+  /* @alternate */ -moz-animation-duration: DURATION;
+  /* @alternate */ -o-animation-duration: DURATION;
+  /* @alternate */ animation-duration: DURATION;
+}
+
+
+/**
+ * Mixin for a CSS3 animation fill mode.
+ * @param MODE animation-fill-mode as keyword.
+ */
+@defmixin animation_fill_mode(MODE) {
+  /* @alternate */ -webkit-animation-fill-mode: MODE;
+  /* @alternate */ animation-fill-mode: MODE;
+}
+
+
+/**
+ * Mixin for a CSS3 animation's iteration count.
+ * @param COUNT CSS animation iteration count as integer or 'infinite'.
+ */
+@defmixin animation_iteration_count(COUNT) {
+  /* @alternate */ -webkit-animation-iteration-count: COUNT;
+  /* @alternate */ -moz-animation-iteration-count: COUNT;
+  /* @alternate */ -o-animation-iteration-count: COUNT;
+  /* @alternate */ animation-iteration-count: COUNT;
+}
+
+
+/**
+ * Mixin for the CSS3 animation names.
+ * @param NAME The CSS animation-name property name.
+ */
+@defmixin animation_name(NAME) {
+  /* @alternate */ -webkit-animation-name: NAME;
+  /* @alternate */ -moz-animation-name: NAME;
+  /* @alternate */ -o-animation-name: NAME;
+  /* @alternate */ animation-name: NAME;
+}
+
+
+/**
+ * Mixin for a CSS3 animation timing function.
+ * @param FUNCTION CSS animation-timing-function as keyword or cubic-bezier.
+ */
+@defmixin animation_timing_function(FUNCTION) {
+  /* @alternate */ -webkit-animation-timing-function: FUNCTION;
+  /* @alternate */ -moz-animation-timing-function: FUNCTION;
+  /* @alternate */ -o-animation-timing-function: FUNCTION;
+  /* @alternate */ animation-timing-function: FUNCTION;
+}
+
+
+/**
+ * Mixin for background-size.
+ * Useful for high resolution (retina) displays.
+ * @param BG_SIZE Size specification ex. "20px 25px"
+ * Grammar [<length> | <percentage> | auto]{1, 2} | cover | contain
+ */
+@defmixin background_size(BG_SIZE) {
+  /* @alternate */ -webkit-background-size: BG_SIZE;
+  /* @alternate */ -moz-background-size: BG_SIZE;
+  /* @alternate */ -o-background-size: BG_SIZE;
+  /* @alternate */ background-size: BG_SIZE;
+}
+
+
+/**
+ * Mixin for CSS3 backface visibility.
+ * @param BACKFACE_VISIBILITY The backface-visibility CSS property value.
+ */
+@defmixin backface_visibility(BACKFACE_VISIBILITY) {
+  /* @alternate */ -webkit-backface-visibility: BACKFACE_VISIBILITY;
+  /* @alternate */ -moz-backface-visibility: BACKFACE_VISIBILITY;
+  /* @alternate */ -o-backface-visibility: BACKFACE_VISIBILITY;
+  /* @alternate */ backface-visibility: BACKFACE_VISIBILITY;
+}
+
+
+/**
+ * Mixin for border-radius.
+ * @param RADIUS The radius definition.
+ */
+@defmixin border_radius(RADIUS) {
+  /* @alternate */ -webkit-border-radius: RADIUS;
+  /* @alternate */ -moz-border-radius: RADIUS;
+  /* @alternate */ border-radius: RADIUS;
+}
+
+
+/**
+ * Mixin for border gradient, fallback to solid border-color.
+ * @param GRADIENT The gradient.
+ * @param FALLBACK_BORDER_COLOR Fallback solid color.
+ */
+@defmixin border_gradient(GRADIENT, FALLBACK_BORDER_COLOR) {
+  border: 1px solid FALLBACK_BORDER_COLOR;
+
+  /* @alternate */ -webkit-border-image: -webkit-gradient(GRADIENT) 1 100%;
+  /* @alternate */ -webkit-border-image:
+      -webkit-linear-gradient(GRADIENT) 1 100%;
+  /* @alternate */ -o-border-image: -o-linear-gradient(GRADIENT) 1 100%;
+  /* @alternate */ -moz-border-image: -moz-linear-gradient(GRADIENT) 1 100%;
+}
+
+
+/**
+ * Mixin for box-shadow.
+ * @param SHADOW The shadow definition.
+ */
+@defmixin box_shadow(SHADOW) {
+  /* @alternate */ -webkit-box-shadow: SHADOW;
+  /* @alternate */ -moz-box-shadow: SHADOW;
+  /* @alternate */ box-shadow: SHADOW;
+}
+
+
+/**
+ * Mixin for box-sizing.
+ * @param BOX_SIZING The box-sizing definition.
+ */
+@defmixin box_sizing(BOX_SIZING) {
+  /* @alternate */ -webkit-box-sizing: BOX_SIZING;
+  /* @alternate */ -moz-box-sizing: BOX_SIZING;
+  /* @alternate */ box-sizing: BOX_SIZING;
+}
+
+
+/**
+ * Mixin for image-set with standard resolution background-image fallback.
+ * @param BG_IMAGE_1X_URL The background image URL for standard resolution (1x).
+ * @param BG_IMAGE_2X_URL The background image URL for high-DPI resolution (2x).
+ */
+@defmixin image_set_with_fallback(BG_IMAGE_1X_URL, BG_IMAGE_2X_URL) {
+  background-image: BG_IMAGE_1X_URL;
+
+  /* @alternate *//* background-image: -webkit-image-set(*/
+      /*BG_IMAGE_1X_URL 1x,*/
+      /*BG_IMAGE_2X_URL 2x);*/
+}
+
+
+/**
+ * Mixin for linear gradient, fallback to solid background-color.
+ * Not safe to use with an angle or direction: use linear_gradient_angled
+ * instead.
+ * @param GRADIENT The gradient.
+ * @param FALLBACK_BG_COLOR Fallback solid color.
+ */
+@defmixin linear_gradient(GRADIENT, FALLBACK_BG_COLOR) {
+  background-color: FALLBACK_BG_COLOR;
+
+   /*@alternate*/
+background-image: -webkit-linear-gradient(GRADIENT);
+   /*@alternate */
+background-image: -moz-linear-gradient(GRADIENT);
+   /*@alternate */
+background-image: -ms-linear-gradient(GRADIENT);
+   /*@alternate */
+background-image: -o-linear-gradient(GRADIENT);
+   /*@alternate */
+background-image: linear-gradient(GRADIENT);
+}
+
+
+/**
+ * Mixin for linear gradient at an angle, fallback to solid background-color.
+ * Follows the "final syntax" W3C linear-gradient angle interpretation: 0deg is
+ * towards the north, 90deg towards the east. No support for named direction
+ * keywords such as "to top" or "bottom".
+ * @param ANGLE The numeric angle for the gradient, in degrees clockwise from
+ *     north and including the "deg" unit keyword.
+ * @param GRADIENT The remainder of the gradient.
+ * @param FALLBACK_BG_COLOR Fallback solid color.
+ */
+@defmixin linear_gradient_angled(ANGLE, GRADIENT, FALLBACK_BG_COLOR) {
+  background-color: FALLBACK_BG_COLOR;
+
+  /* @alternate */ background-image:
+      -webkit-linear-gradient(sub(90deg, ANGLE), GRADIENT);
+  /* @alternate */ background-image: linear-gradient(ANGLE, GRADIENT);
+}
+
+
+/**
+ * Mixin for CSS3 perspective.
+ * @param PERSPECTIVE The perspective CSS property value.
+ */
+@defmixin perspective(PERSPECTIVE) {
+  /* @alternate */ -webkit-perspective: PERSPECTIVE;
+  /* @alternate */ -moz-perspective: PERSPECTIVE;
+  /* @alternate */ perspective: PERSPECTIVE;
+}
+
+
+/**
+ * Mixin for CSS3 perspective-origin.
+ * @param PERSPECTIVE_ORIGIN The perspective-origin CSS property value.
+ */
+@defmixin perspective_origin(PERSPECTIVE_ORIGIN) {
+  /* @alternate */ -webkit-perspective-origin: PERSPECTIVE_ORIGIN;
+  /* @alternate */ -moz-perspective-origin: PERSPECTIVE_ORIGIN;
+  /* @alternate */ perspective-origin: PERSPECTIVE_ORIGIN;
+}
+
+
+/**
+ * Mixin for radial gradient, fallback to solid background-color.
+ * @param GRADIENT The gradient.
+ * @param FALLBACK_BG_COLOR Fallback solid color.
+ */
+@defmixin radial_gradient(GRADIENT, FALLBACK_BG_COLOR) {
+  background-color: FALLBACK_BG_COLOR;
+
+  /* @alternate */ background-image: -webkit-radial-gradient(GRADIENT);
+  /* @alternate */ background-image: -moz-radial-gradient(GRADIENT);
+  /* @alternate */ background-image: -o-radial-gradient(GRADIENT);
+  /* @alternate */ background-image: radial-gradient(GRADIENT);
+}
+
+
+/**
+ * Mixin for CSS3 transform.
+ * @param TRANSFORM The transform CSS property value.
+ */
+@defmixin transform(TRANSFORM) {
+  /* @alternate */ -webkit-transform: TRANSFORM;
+  /* @alternate */ -moz-transform: TRANSFORM;
+  /* @alternate */ -ms-transform: TRANSFORM;
+  /* @alternate */ -o-transform: TRANSFORM;
+  /* @alternate */ transform: TRANSFORM;
+}
+
+
+/**
+ * Mixin for CSS3 transform-origin.
+ * @param TRANSFORM_ORIGIN The transform-origin CSS property value.
+ */
+@defmixin transform_origin(TRANSFORM_ORIGIN) {
+  /* @alternate */ -webkit-transform-origin: TRANSFORM_ORIGIN;
+  /* @alternate */ -moz-transform-origin: TRANSFORM_ORIGIN;
+  /* @alternate */ -ms-transform-origin: TRANSFORM_ORIGIN;
+  /* @alternate */ -o-transform-origin: TRANSFORM_ORIGIN;
+  /* @alternate */ transform-origin: TRANSFORM_ORIGIN;
+}
+
+
+/**
+ * Mixin for CSS3 transform-style.
+ * @param TRANSFORM_STYLE The transform-style CSS property value.
+ */
+@defmixin transform_style(TRANSFORM_STYLE) {
+  /* @alternate */ -webkit-transform-style: TRANSFORM_STYLE;
+  /* @alternate */ -moz-transform-style: TRANSFORM_STYLE;
+  /* @alternate */ transform-style: TRANSFORM_STYLE;
+}
+
+
+/**
+ * Mixin for CSS3 transition.
+ * Note: No version of IE requires the -ms- prefix. See "Remarks":
+ * http://msdn.microsoft.com/en-us/library/windows/apps/hh466377.aspx
+ * @param TRANSITION The transition CSS property value.
+ */
+@defmixin transition(TRANSITION) {
+  /* @alternate */ -webkit-transition: TRANSITION;
+  /* @alternate */ -moz-transition: TRANSITION;
+  /* @alternate */ -o-transition: TRANSITION;
+  /* @alternate */ transition: TRANSITION;
+}
+
+
+/**
+ * Mixin for CSS3 transition-delay.
+ * Note: No version of IE requires the -ms- prefix. See "Remarks":
+ * http://msdn.microsoft.com/en-us/library/windows/apps/hh466377.aspx
+ * @param DELAY Time value indicating transition delay, e.g. 1s, 400ms.
+ */
+@defmixin transition_delay(DELAY) {
+  /* @alternate */ -webkit-transition-delay: DELAY;
+  /* @alternate */ -moz-transition-delay: DELAY;
+  /* @alternate */ -o-transition-delay: DELAY;
+  /* @alternate */ transition-delay: DELAY;
+}
+
+
+/**
+ * Mixin for CSS3 transition-duration.
+ * Note: No version of IE requires the -ms- prefix. See "Remarks":
+ * http://msdn.microsoft.com/en-us/library/windows/apps/hh466377.aspx
+ * @param DURATION The transition-duration CSS property value.
+ */
+@defmixin transition_duration(DURATION) {
+  /* @alternate */ -webkit-transition-duration: DURATION;
+  /* @alternate */ -moz-transition-duration: DURATION;
+  /* @alternate */ -o-transition-duration: DURATION;
+  /* @alternate */ transition-duration: DURATION;
+}
+
+
+/**
+ * Mixin for CSS3 transition-property.
+ * Note: No version of IE requires the -ms- prefix. See "Remarks":
+ * http://msdn.microsoft.com/en-us/library/windows/apps/hh466377.aspx
+ * @param PROPERTY The transition-property CSS property value.
+ */
+@defmixin transition_property(PROPERTY) {
+  /* @alternate */ -webkit-transition-property: PROPERTY;
+  /* @alternate */ -moz-transition-property: PROPERTY;
+  /* @alternate */ -o-transition-property: PROPERTY;
+  /* @alternate */ transition-property: PROPERTY;
+}
+
+
+/**
+ * Mixin for CSS3 transition-timing-function.
+ * Note: No version of IE requires the -ms- prefix. See "Remarks":
+ * http://msdn.microsoft.com/en-us/library/windows/apps/hh466377.aspx
+ * @param FUNCTION The transition-timing-function CSS property value.
+ */
+@defmixin transition_timing_function(FUNCTION) {
+  /* @alternate */ -webkit-transition-timing-function: FUNCTION;
+  /* @alternate */ -moz-transition-timing-function: FUNCTION;
+  /* @alternate */ -o-transition-timing-function: FUNCTION;
+  /* @alternate */ transition-timing-function: FUNCTION;
+}
+
+
+/**
+ * Mixin for user select.
+ * Note: "user_select" property (no vendor prefix) is not part of CSS3 spec
+ * yet and hence is not part of this mixin.
+ * @param USER_SELECT User select value.
+ */
+@defmixin user_select(USER_SELECT) {
+  /* @alternate */ -webkit-user-select: USER_SELECT;
+  /* @alternate */ -moz-user-select: USER_SELECT;
+  /* @alternate */ -ms-user-select: USER_SELECT;
+}
+
+
+/**
+ * Mixin for opacity with IE fallback. This (IE fallback) should
+ * typically be used only when usability is a concern.
+ * NOTE(chrishenry|kennedy-eng): Using this on an image will cause
+ * it to display badly in IE. Use it only when it is unusable without it.
+ * @param OPACITY The opacity value for non-IE browser, ranging from 0 to 1.0.
+ * @param IE_FALLBACK_VALUE IE's alpha filter's opacity value,
+ *     ranging from 0 to 100.
+ */
+@defmixin opacity_with_ie_fallback(OPACITY, IE_FALLBACK_VALUE) {
+  filter: alpha(opacity = IE_FALLBACK_VALUE);
+  opacity: OPACITY;
+}

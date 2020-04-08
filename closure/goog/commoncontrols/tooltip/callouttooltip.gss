@@ -1,0 +1,182 @@
+@if (!DISABLE_KENNEDY) {
+
+@def CONTROLS_CALLOUT_TOOLTIP_ARROW_HALFWIDTH                 6px;
+@def CONTROLS_CALLOUT_TOOLTIP_ARROW_HALFWIDTH_NEGATIVE        -6px;
+@def CONTROLS_CALLOUT_TOOLTIP_ARROW_OFFSET                    -7px;
+
+@def CONTROLS_CALLOUT_TOOLTIP_INNER_ARROW_HALFWIDTH           5px;
+@def CONTROLS_CALLOUT_TOOLTIP_INNER_ARROW_HALFWIDTH_NEGATIVE  -5px;
+@def CONTROLS_CALLOUT_TOOLTIP_INNER_ARROW_OFFSET              -6px;
+
+/*@def CONTROLS_CALLOUT_TOOLTIP_BG_COLOR                  #737373;*/
+@def CONTROLS_CALLOUT_TOOLTIP_BG_COLOR                  #333;
+@def CONTROLS_CALLOUT_TOOLTIP_BORDER_COLOR              #fff;
+@def CONTROLS_CALLOUT_TOOLTIP_FONT_SIZE                 11px;
+@def CONTROLS_CALLOUT_TOOLTIP_FONT_WEIGHT               bold;
+@def CONTROLS_CALLOUT_TOOLTIP_TEXT_COLOR                #fff;
+@def CONTROLS_CALLOUT_TOOLTIP_PADDING                   7px 9px;
+@def CONTROLS_CALLOUT_TOOLTIP_BORDER_RADIUS             2px;
+@def CONTROLS_CALLOUT_TOOLTIP_BOX_SHADOW                none;
+
+@def CONTROLS_CALLOUT_TOOLTIP_DURATION .20s;
+
+@def CONTROLS_CALLOUT_TRANSITION_HIDE opacity 0s linear;
+@def CONTROLS_CALLOUT_TRANSITION_SHOW opacity CONTROLS_CALLOUT_TOOLTIP_DURATION linear;
+
+
+.controls-tooltip {
+  @mixin border_radius(CONTROLS_CALLOUT_TOOLTIP_BORDER_RADIUS);
+  @mixin box_shadow(CONTROLS_CALLOUT_TOOLTIP_BOX_SHADOW);
+  @mixin transition(CONTROLS_CALLOUT_TRANSITION_SHOW);
+  background-color: CONTROLS_CALLOUT_TOOLTIP_BG_COLOR;
+  border: 1px solid CONTROLS_CALLOUT_TOOLTIP_BORDER_COLOR;
+  color: CONTROLS_CALLOUT_TOOLTIP_TEXT_COLOR;
+  /* The default text selection cursor looks bad since the tooltip text isn't selectable as it's dismissed on mousedown. */
+  cursor: default;
+  display: block;
+  font-size: CONTROLS_CALLOUT_TOOLTIP_FONT_SIZE;
+  font-weight: CONTROLS_CALLOUT_TOOLTIP_FONT_WEIGHT;
+
+  /*
+   * Due to bugs around sub-pixel positioning and calculations, the tooltip is
+   * sometimes pushed 1px too close to the rightmost edge of the viewport
+   * causing the text to wrap when it really shouldn't.  This often happens
+   * when browser zoom is used.  Offsetting the tooltip 1px to the left takes
+   * care of the rounding errors and is small enough to not be noticeable.
+   */
+  margin-left: -1px;
+
+  opacity: 1;
+  padding: CONTROLS_CALLOUT_TOOLTIP_PADDING;
+  position: absolute;
+  visibility: visible;
+  z-index: 10000;
+
+  /*
+   * Use break-word where available (currently WebKit-only) to break mid-word
+   * when the word exceeds available width.  Otherwise, we use break-all, which
+   * is still better than having really long content without whitespace extend
+   * outside the tooltip (which looks broken).
+   */
+  /* @alternate */ word-break: break-all;
+  /* @alternate */ word-break: break-word;
+}
+
+.controls-tooltip-hide {
+  @mixin transition(CONTROLS_CALLOUT_TRANSITION_HIDE);
+  opacity: 0;
+  /*
+   * CONTROLS disallows !important as a policy, but it's necessary here to override
+   * the left/top explicitly set on the element.  It is safe since it only
+   * applies to the tooltip when it's hidden.
+   *
+   * 20px to account for callout arrow.
+   */
+  /* @noflip */ left: 20px !important;
+  top: 20px !important;
+  visibility: hidden;
+}
+
+.controls-tooltip-data {
+  /* This is a tooltip content specified in a nested element. */
+  display: none;
+}
+
+.controls-tooltip-arrow {
+  /* http://b/4901642 - Ensures clicks on the mostly-transparent arrow go to the user's intended target underneath. */
+  pointer-events: none;
+  position: absolute;
+}
+
+.controls-tooltip-arrow .controls-tooltip-arrowimplbefore,
+.controls-tooltip-arrow .controls-tooltip-arrowimplafter {
+  content: '';
+  display: block;
+  height: 0;
+  position: absolute;
+  width: 0;
+}
+
+.controls-tooltip-arrow .controls-tooltip-arrowimplbefore {
+  border: CONTROLS_CALLOUT_TOOLTIP_ARROW_HALFWIDTH solid;
+}
+
+.controls-tooltip-arrow .controls-tooltip-arrowimplafter {
+  border: CONTROLS_CALLOUT_TOOLTIP_INNER_ARROW_HALFWIDTH solid;
+}
+
+.controls-tooltip-arrowdown {
+  bottom: 0;
+}
+
+.controls-tooltip-arrowup {
+  top: CONTROLS_CALLOUT_TOOLTIP_INNER_ARROW_OFFSET;
+}
+
+.controls-tooltip-arrowleft {
+  left: CONTROLS_CALLOUT_TOOLTIP_INNER_ARROW_OFFSET;
+}
+
+.controls-tooltip-arrowright {
+  right: 0;
+}
+
+.controls-tooltip-arrowdown .controls-tooltip-arrowimplbefore,
+.controls-tooltip-arrowup .controls-tooltip-arrowimplbefore {
+  border-color: CONTROLS_CALLOUT_TOOLTIP_BORDER_COLOR transparent;
+  left: CONTROLS_CALLOUT_TOOLTIP_ARROW_HALFWIDTH_NEGATIVE;
+}
+
+.controls-tooltip-arrowdown .controls-tooltip-arrowimplafter,
+.controls-tooltip-arrowup .controls-tooltip-arrowimplafter {
+  border-color: CONTROLS_CALLOUT_TOOLTIP_BG_COLOR transparent;
+  left: CONTROLS_CALLOUT_TOOLTIP_INNER_ARROW_HALFWIDTH_NEGATIVE;
+}
+
+.controls-tooltip-arrowdown .controls-tooltip-arrowimplbefore {
+  border-bottom-width: 0;
+}
+
+.controls-tooltip-arrowdown .controls-tooltip-arrowimplafter {
+  border-bottom-width: 0;
+}
+
+.controls-tooltip-arrowup .controls-tooltip-arrowimplbefore {
+  border-top-width: 0;
+}
+
+.controls-tooltip-arrowup .controls-tooltip-arrowimplafter {
+  border-top-width: 0;
+  top: 1px;
+}
+
+.controls-tooltip-arrowleft .controls-tooltip-arrowimplbefore,
+.controls-tooltip-arrowright .controls-tooltip-arrowimplbefore {
+  border-color: transparent CONTROLS_CALLOUT_TOOLTIP_BORDER_COLOR;
+  top: CONTROLS_CALLOUT_TOOLTIP_ARROW_HALFWIDTH_NEGATIVE;
+}
+
+.controls-tooltip-arrowleft .controls-tooltip-arrowimplafter,
+.controls-tooltip-arrowright .controls-tooltip-arrowimplafter {
+  border-color: transparent CONTROLS_CALLOUT_TOOLTIP_BG_COLOR;
+  top: CONTROLS_CALLOUT_TOOLTIP_INNER_ARROW_HALFWIDTH_NEGATIVE;
+}
+
+.controls-tooltip-arrowleft .controls-tooltip-arrowimplbefore {
+  border-left-width: 0;
+}
+
+.controls-tooltip-arrowleft .controls-tooltip-arrowimplafter {
+  border-left-width: 0;
+  left: 1px;
+}
+
+.controls-tooltip-arrowright .controls-tooltip-arrowimplbefore {
+  border-right-width: 0;
+}
+
+.controls-tooltip-arrowright .controls-tooltip-arrowimplafter {
+  border-right-width: 0;
+}
+
+}  /* if (!DISABLE_KENNEDY) */

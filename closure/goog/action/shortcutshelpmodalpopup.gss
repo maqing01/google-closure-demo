@@ -1,0 +1,160 @@
+@def SHORTCUT_HELP_TITLE_FONT_SIZE      12px;
+@def SHORTCUT_HELP_FONT_SIZE            13px;
+@def SHORTCUT_HELP_SMALL_FONT_SIZE      11px;
+@def SHORTCUT_HELP_MNEMONIC_FONT_FACE   "Courier New";
+
+@def SHORTCUT_HELP_TEXT_COLOR           #fff;
+@def SHORTCUT_HELP_BG_COLOR             #000;
+@def SHORTCUT_HELP_BORDER_COLOR         #999;
+@def SHORTCUT_HELP_TEXT_SHADOW_COLOR    SHORTCUT_HELP_BG_COLOR;
+@def SHORTCUT_HELP_LINK_COLOR           #dd0;
+@def SHORTCUT_HELP_MNEMONIC_TEXT_COLOR  #dd0;
+
+@def SHORTCUT_HELP_POPUP_ZINDEX         1002;
+
+@def SHORTCUT_HELP_PREF_DISABLED_BG_COLOR SHORTCUT_HELP_LINK_COLOR;
+@def SHORTCUT_HELP_PREF_DISABLED_TEXT_COLOR SHORTCUT_HELP_BG_COLOR;
+
+div.CSS_SHORTCUTS_HELP_POPUP {
+  left: 10%;
+  width: 80%;
+  top: 10%;
+
+  z-index: SHORTCUT_HELP_POPUP_ZINDEX;
+  color: SHORTCUT_HELP_TEXT_COLOR;
+
+  position: fixed;
+  text-align: center;
+  text-shadow: SHORTCUT_HELP_TEXT_SHADOW_COLOR 1px 1px 7px;
+  font-weight: bold;
+
+  background: SHORTCUT_HELP_BG_COLOR none repeat scroll 0;
+  overflow: hidden;
+
+  border: 1px solid #c4c4c4;
+  border-radius: 11px;
+}
+
+@media print {
+  div.CSS_SHORTCUTS_HELP_POPUP {
+    display: none !important;
+  }
+}
+
+.shortcuts-modalpopup-bg {
+  display: none;
+  left: 0;
+  top: 0;
+  position: absolute;
+}
+
+div.CSS_SHORTCUTS_HELP_POPUP_CONTAINER {
+  /* Use border box so that padding does not cut into scrollable area. */
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /* Inherit the max height so that we can set it programmatically on the
+     parent element. */
+  max-height: inherit;
+  overflow: auto;
+  padding: 1em;
+}
+
+table.CSS_SHORTCUTS_HELP_POPUP_HEADER, table.CSS_SHORTCUTS_HELP_POPUP_CONTENT {
+  width: 100%;
+}
+
+.CSS_SHORTCUTS_HELP_POPUP_HEADER_TABLE_ELEMENT {
+  padding-bottom: 0.8ex;
+}
+
+.CSS_SHORTCUTS_HELP_POPUP_TITLE {
+  font-size: SHORTCUT_HELP_TITLE_FONT_SIZE;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.CSS_SHORTCUTS_HELP_POPUP_TEAROFF_LINK_CONTAINER {
+  color: SHORTCUT_HELP_LINK_COLOR;
+  text-align: right;
+}
+
+.CSS_SHORTCUTS_HELP_POPUP_TEAROFF_LINK {
+  font-size: SHORTCUT_HELP_TITLE_FONT_SIZE;
+  cursor: pointer;
+  text-decoration: underline;
+  color: SHORTCUT_HELP_LINK_COLOR;
+}
+
+table.CSS_SHORTCUTS_HELP_POPUP_CONTENT {
+  border-top: 1px solid SHORTCUT_HELP_BORDER_COLOR;
+  font-size: SHORTCUT_HELP_FONT_SIZE;
+}
+
+.CSS_SHORTCUTS_HELP_POPUP_CONTENT_HEADER {
+  color: SHORTCUT_HELP_LINK_COLOR;
+  padding-top: 1em;
+  text-align: left;
+}
+
+.CSS_SHORTCUTS_HELP_POPUP_CONTENT_ELEMENT {
+  font-size: 14px;
+  vertical-align: middle;
+  padding-top: 0.15em;
+}
+
+table.CSS_SHORTCUTS_HELP_POPUP_CONTENT td.CSS_SHORTCUTS_HELP_POPUP_KEY {
+  font-weight: bold;
+  padding-right: 0.5em;
+  text-align: center;
+  white-space: nowrap;
+  color: white;
+  /*background-color: #555;*/
+  border-radius: 4px;
+  /*padding: 0px 6px;*/
+}
+
+table.CSS_SHORTCUTS_HELP_POPUP_CONTENT td.CSS_SHORTCUTS_HELP_POPUP_DESCRIPTION {
+  font-weight: normal;
+  text-align: center;
+}
+
+span.CSS_SHORTCUTS_HELP_POPUP_AUXILIARY_WORD {
+  font-weight: normal;
+  font-size: SHORTCUT_HELP_SMALL_FONT_SIZE;
+}
+
+span.CSS_SHORTCUTS_HELP_POPUP_KEY_MNEMONIC {
+  font-family: SHORTCUT_HELP_MNEMONIC_FONT_FACE;
+  color: SHORTCUT_HELP_MNEMONIC_TEXT_COLOR;
+}
+
+.CSS_SHORTCUTS_HELP_POPUP_PREF_CONTAINER {
+  border-top: 1px solid SHORTCUT_HELP_BORDER_COLOR;
+  padding: .5em 0;
+}
+
+.CSS_SHORTCUTS_HELP_POPUP_PREF_CONTENT {
+  background: SHORTCUT_HELP_PREF_DISABLED_BG_COLOR;
+  color: SHORTCUT_HELP_PREF_DISABLED_TEXT_COLOR;
+  padding: 3px 7px;
+  text-align: left;
+  font-size: SHORTCUT_HELP_FONT_SIZE;
+  text-shadow: none;
+}
+
+.CSS_SHORTCUTS_HELP_POPUP_PREF_ENABLED .CSS_SHORTCUTS_HELP_POPUP_PREF_CONTENT {
+  background: none;
+  color: SHORTCUT_HELP_TEXT_COLOR;
+}
+
+.CSS_SHORTCUTS_HELP_POPUP_PREF_LINK {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.CSS_SHORTCUTS_HELP_POPUP_PREF_ENABLED .CSS_SHORTCUTS_HELP_POPUP_PREF_LINK {
+  color: SHORTCUT_HELP_LINK_COLOR;
+}
+
+.CSS_APP_TABLE {}

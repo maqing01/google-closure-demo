@@ -1,0 +1,30 @@
+// Copyright 2010 Google Inc. All Rights Reserved.
+// Author: nthomas@google.com (Neil Thomas)
+
+{namespace wireless.soy.button.arrow autoescape="contextual"}
+
+/**
+ * Renders a text button with the shape of an arrow pointing left. Parameters
+ * are the same as for the wireless.soy.button.button template.
+ */
+{template .arrowButton}
+  {call wireless.soy.button.button data="all"}
+    {param borderImageClassesHtml}
+      {css CSS_WUI_IMG_BACK}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a text button that is styled as a navigation back button according to
+ * the platform on which it is rendered. On iPhone, back buttons are rendered as
+ * arrow buttons; on all other platforms, they are rendered as ordinary buttons.
+ * Parameters are the same as for the wireless.soy.button.button template.
+ */
+{template .backButton}
+  {call wireless.soy.button.button data="all"}
+    {param borderImageClassesHtml}
+      {css CSS_WUI_BUTTON_BACK}
+    {/param}
+  {/call}
+{/template}

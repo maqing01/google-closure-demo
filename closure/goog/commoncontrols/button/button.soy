@@ -1,0 +1,152 @@
+{namespace controls.templates.button}
+
+
+/**
+ * Renders a button in the Kennedy style.
+ * @param? attributes {string} Additional attributes to add, of
+ *     kind="attributes".
+ * @param? classes {string} Optional additional class names for the element.
+ * @param? content {string} The text of the button; may be .
+ * @param? disabled {boolean} Whether to render the button as disabled.
+ * @param? checked {boolean} Whether to render the button as checked.
+ * @param? id {string} The element id for the button.
+ * @param? style {controls.ButtonStyle.Style} The CONTROLS button style enum value.
+ * @param? tabindex {number} An optional tabindex for the element.
+ * @param? title {string} An optional title for the element.
+ * @param? usingKennedyTooltip {boolean} Use CONTROLS tooltip (true) or the "title" attribute (false).
+ * @param? value {string} An optional value for the element.
+ * @param? width {controls.ButtonStyle.Width} The CONTROLS button width enum value.
+ */
+{template .strict}
+  <div
+//  role="button"
+      {if $id}{sp}id="{$id}"{/if}
+      {sp}class="{call .classes_ data="all" /}"
+      {if $disabled}
+//        {sp}aria-disabled="true"
+      {else}
+        {sp}tabindex="{if $tabindex}{$tabindex}{else}0{/if}"
+      {/if}
+      {if $title}{sp}
+        {if $usingKennedyTooltip}data-tooltip{else}title{/if}
+        ="{$title}"
+      {/if}
+      {if $value}{sp}value="{$value}"{/if}
+      {if $attributes}
+        {sp}{$attributes}
+      {/if}>
+    <span>
+    {if $content}{$content|noAutoescape}{else}{/if}
+    </span>
+//    {$content ? : ''}
+  </div>
+{/template}
+
+
+/**
+ * Deprecated non-strict template for rendering a button in the Kennedy style.
+ * Use the strict template instead.
+ *  Add collapse left/right if needed server side.
+ * @param? action {string} The action for the button.
+ * @param? attributesHtml {string} Additional attributes to add. The value must
+ *     be correctly escaped (especially the attribute values). May be used with
+ *     custom attribute name, e.g. 'data-foo=bar'.
+ * @param? classes {string} Optional additional class names for the element.
+ * @param? contentHtml {string} The text of the button. This field must
+ *     already be HTML safe.
+ * @param? disabled {boolean} Whether to render the button as disabled.
+ * @param? checked {boolean} Whether to render the button as checked.
+ * @param? id {string} The element id for the button.
+ * @param? style {controls.ButtonStyle.Style} The CONTROLS button style enum value.
+ * @param? tabindex {number} An optional tabindex for the element.
+ * @param? title {string} An optional title for the element.
+ * @param? value {string} An optional value for the element.
+ * @param? width {controls.ButtonStyle.Width} The CONTROLS button width enum value.
+ */
+{template .main autoescape="contextual"}
+  {call .strict data="all"}
+    {param attributes}
+      {if $attributesHtml}
+        {$attributesHtml}  // noAutoescape: For legacy callers.
+      {/if}
+      {if $action}{sp}action="{$action}"{/if}
+    {/param}
+    {param content}
+      {if $contentHtml}
+        {$contentHtml}  // noAutoescape: For legacy callers.
+      {/if}
+    {/param}
+  {/call}
+{/template}
+
+
+/**
+ * Determines the classes for a button.
+ * @param? classes {string} Optional additional class names for the element.
+ * @param? disabled {boolean} Whether to render the button as disabled.
+ * @param? checked {boolean} Whether to render the button as checked.
+ * @param? style {controls.ButtonStyle.Style} The CONTROLS button style enum value.
+ * @param? width {controls.ButtonStyle.Width} The CONTROLS button width enum value.
+ */
+{template .classes_ }
+  {css goog-inline-block} {css controls-button}{sp}
+
+  /* Button style */
+  {switch $style}
+    {case 0}
+      {css controls-button-standard}
+    {case 2}
+      {css controls-button-action}
+    {case 3}
+      {css controls-button-primary}
+    {case 1}
+      {css controls-button-default}
+    {case 4}
+      {css controls-button-flat}
+    {case 5}
+      {css controls-button-mini}
+    {case 6}
+      {css controls-button-contrast}
+    {default}
+      {css controls-button-standard}
+  {/switch}
+
+  /* Button width */
+  {if $width == 1}
+    {sp}{css controls-button-narrow}
+  {/if}
+
+  /* Checked */
+  {if $checked}
+    {sp}{css controls-button-checked}
+  {/if}
+
+  /* Additional classes */
+  {if $classes}{sp}{$classes}{/if}
+
+  /* Enabled/disabled */
+  {if $disabled}{sp}{css controls-button-disabled}{/if}
+{/template}
+
+
+/**
+ * Renders a search button in the Kennedy style.
+ * @param? classes {string} Optional additional class names for the element.
+ * @param? tabindex {number} An optional tabindex for the element.
+ */
+{template .search}
+  {call .strict}
+    {param style: 2 /}
+    {param content}{call .searchIcon_ /}{/param}
+    {param classes: $classes /}
+    {param tabindex: $tabindex /}
+  {/call}
+{/template}
+
+/**
+ * The icon to use for the Kennedy search button.
+ */
+{template .searchIcon_ }
+  <img src="//not-connected/ui/v1/button/search-white.png" style="width: 21px; height: 21px;"
+      class="{css controls-button-img}">
+{/template}

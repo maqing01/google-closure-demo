@@ -1,0 +1,85 @@
+
+// Author: vbhasin@google.com (Vipul Bhasin)
+
+{namespace controls.templates.radiobutton}
+
+
+/**
+ * Renders basic structure of the radio button.
+ *
+ * TODO to replace with strict implementation
+ *
+ * @param? attributes {string} Additional attributes to add, of kind="attributes".
+ * @param? checked {boolean} Whether to render the radio button checked.
+ * @param? classes {string} Optional additional class names for the radio.
+ * @param? disabled {boolean} Whether to render the radio button disabled.
+ * @param? id {string} An ID for the radio button.
+ * @param? label {string} The label for the radio button. This field must
+ *     already be HTML safe.
+ * @param? name {string} The name for this radio button group.
+ * @param? value {string} An optional value for the radio button.
+ */
+{template .main autoescape="contextual"}
+  <div class="{css controls-radiobutton}
+
+        /* Checked */
+        {if $checked}{sp}{css controls-radiobutton-checked}{/if}
+
+        /* Enabled/disabled */
+        {if $disabled}{sp}{css controls-radiobutton-disabled}{/if}
+
+        /* Additional classes */
+        {if $classes}{sp}{$classes}{/if}"
+
+    {if $name}{sp}data-name="{$name}"{/if}
+    {if $value}{sp}data-value="{$value}"{/if}
+    {if $id}{sp}id="{$id}"{/if}
+    {if $attributes}
+      {sp}{$attributes}
+    {/if}
+    {sp}role="radio">
+    <span class="{css controls-radiobutton-radio}"></span>
+    <div class="{css controls-radiobutton-label}">
+      {if $label}{$label|noAutoescape}{/if}
+    </div>
+  </div>
+{/template}
+
+
+/**
+ * Renders basic structure of the radio button using strict (XSS-resistant) escaping.
+ * @param? attributes {string} Additional attributes to add, of kind="attributes".
+ * @param? checked {boolean} Whether to render the radio button checked.
+ * @param? classes {string} Optional additional class names for the radio.
+ * @param? disabled {boolean} Whether to render the radio button disabled.
+ * @param? id {string} An ID for the radio button.
+ * @param? label {string} The label for the radio button. May be .
+ * @param? name {string} The name for this radio button group.
+ * @param? value {string} An optional value for the radio button.
+ */
+{template .strict}
+  <div class="{css controls-radiobutton}
+
+        /* Checked */
+        {if $checked}{sp}{css controls-radiobutton-checked}{/if}
+
+        /* Enabled/disabled */
+        {if $disabled}{sp}{css controls-radiobutton-disabled}{/if}
+
+        /* Additional classes */
+        {if $classes}{sp}{$classes}{/if}"
+
+    {if $name}{sp}data-name="{$name}"{/if}
+    {if $value}{sp}data-value="{$value}"{/if}
+    {if $id}{sp}id="{$id}"{/if}
+    {if $attributes}
+      {sp}{$attributes}
+    {/if}
+    {sp}role="radio">
+    <span class="{css controls-radiobutton-radio}"></span>
+    <div class="{css controls-radiobutton-label}">
+      {if $label}{$label}{/if}
+    </div>
+  </div>
+{/template}
+

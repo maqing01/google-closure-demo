@@ -1,0 +1,40 @@
+//syntax = "proto2";
+//
+//option java_package = "com.google.apps.office.diagnostics.impressions.proto";
+//option java_multiple_files = true;
+//option (jspb.js_namespace) = "office.diagnostics.impressions.proto";
+//option (logs_proto.file_not_used_for_logging_except_enums) = true;
+//
+//import "java/com/google/apps/jspb/jspb.proto";
+//
+//import "logs/proto/logs_annotations/logs_annotations.proto";
+//
+//package office.diagnostics.impressions;
+
+// Pertaining to management and delivery of high-frequency impressions in the
+// client, see implementation (office.diagnostics.impressions.ImpressionManager)
+// for more details.
+// It describes what triggered the closing of an open impression.
+// Next enum value: 6
+enum ClosingTrigger {
+  // Optional fields default to the enum's first value, so this makes the
+  // default explicitly undefined instead of defaulting to some arbitrary,
+  // defined value.
+  UNDEFINED_CLOSER_TRIGGER = 0;
+
+  // Another type of impression was reported.
+  INTERLEAVING = 1;
+
+  // The impression was closed on a clock tick (a clock ticks on a time
+  // interval to deliver impressions) or the page was unloaded.
+  CLOCK_TICK = 2;
+
+  // The page was unloaded (e.g. navigated away, closed tab, refreshed, ...).
+  UNLOAD = 3;
+
+  // There was a lull in activity.
+  ACTIVITY_LULL = 4;
+
+  // We detected a high volume of activity components during the activity.
+  CARDINALITY_LIMIT = 5;
+};

@@ -1,0 +1,83 @@
+/**
+ * Copyright 2011 Google Inc, All Rights Reserved
+ *
+ * Styles for Star component.
+ *
+ * @author chrishenry@google.com (Chris Henry)
+ */
+
+
+
+@if (!DISABLE_KENNEDY) {
+
+@def CONTROLS_STAR_URL          url("");
+@def CONTROLS_STAR_2X_URL       url("");
+@def CONTROLS_STAR_HOVER_URL    url("");
+@def CONTROLS_STAR_HOVER_2X_URL url("");
+@def CONTROLS_STAR_ACTIVE_URL   url("");
+@def CONTROLS_STAR_ACTIVE_2X_URL
+    url("");
+
+@def CONTROLS_STAR_LIT_URL      url("");
+@def CONTROLS_STAR_LIT_2X_URL   url("");
+@def CONTROLS_STAR_LIT_ACTIVE_URL
+    url("");
+@def CONTROLS_STAR_LIT_ACTIVE_2X_URL
+    url("");
+@def CONTROLS_STAR_LIT_HOVER_URL
+    url("");
+@def CONTROLS_STAR_LIT_HOVER_2X_URL
+    url("");
+
+@def CONTROLS_STAR_WIDTH          19px;
+@def CONTROLS_STAR_HEIGHT         19px;
+
+@def CONTROLS_STAR_PADDING    2px;
+
+.controls-star {
+  display: inline-block;
+  height: CONTROLS_STAR_HEIGHT;
+  text-align: center;
+  width: CONTROLS_STAR_WIDTH;
+  padding: CONTROLS_STAR_PADDING;
+}
+
+.controls-star:before {
+  content: CONTROLS_STAR_URL;
+  /* @alternate */
+  /*content: -webkit-image-set(CONTROLS_STAR_URL 1x, CONTROLS_STAR_2X_URL 2x);*/
+}
+
+.controls-star-hover:before {
+  content: CONTROLS_STAR_HOVER_URL;
+  /* @alternate */
+  /*content: -webkit-image-set(CONTROLS_STAR_HOVER_URL 1x, CONTROLS_STAR_HOVER_2X_URL 2x);*/
+}
+
+.controls-star-active:before {
+  content: CONTROLS_STAR_ACTIVE_URL;
+  /* @alternate */
+  /*content: -webkit-image-set(CONTROLS_STAR_ACTIVE_URL 1x, CONTROLS_STAR_ACTIVE_2X_URL 2x);*/
+}
+
+.controls-star-checked:before {
+  content: CONTROLS_STAR_LIT_URL;
+  /* @alternate */
+  /*content: -webkit-image-set(CONTROLS_STAR_LIT_URL 1x, CONTROLS_STAR_LIT_2X_URL 2x);*/
+}
+
+.controls-star-checked.controls-star-hover:before {
+  content: CONTROLS_STAR_LIT_HOVER_URL;
+  /* @alternate */
+  /*content: -webkit-image-set(CONTROLS_STAR_LIT_HOVER_URL 1x,*/
+      /*CONTROLS_STAR_LIT_HOVER_2X_URL 2x);*/
+}
+
+.controls-star-checked.controls-star-active:before {
+  content: CONTROLS_STAR_LIT_ACTIVE_URL;
+  /* @alternate */
+  /*content: -webkit-image-set(CONTROLS_STAR_LIT_ACTIVE_URL 1x,*/
+      /*CONTROLS_STAR_LIT_ACTIVE_2X_URL 2x);*/
+}
+
+}  /* if (!DISABLE_KENNEDY) */

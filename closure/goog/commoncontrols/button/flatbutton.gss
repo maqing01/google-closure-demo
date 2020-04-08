@@ -1,0 +1,72 @@
+/**
+ * Copyright 2011 Google Inc, All Rights Reserved
+ *
+ * Styles for flat controls.Button.
+ *
+ * @author mariakhomenko@google.com (Maria Khomenko)
+ */
+
+
+
+
+
+
+
+@if (!DISABLE_KENNEDY) {
+
+.controls-button-flat {
+  @mixin border_radius(0);
+
+  border: 1px solid transparent;
+  font-size: CONTROLS_BUTTON_BORDERLESS_FONT_SIZE;
+  font-weight: CONTROLS_BUTTON_BORDERLESS_FONT_WEIGHT;
+
+  /* override dimensions of base button */
+  height: 21px;
+  line-height: 21px;
+  margin-right: 1px;
+  min-width: 0;
+  padding: 0;
+}
+
+.controls-button-flat.controls-button-hover,
+.controls-button-flat.controls-button-selected,
+.controls-button-flat:focus,
+.controls-button-flat:active {
+  @mixin box_shadow(none);
+}
+
+.controls-button-flat .controls-button-img {
+  height: 21px;
+  /* filter:opacity interacts badly with alpha-channel PNGs on IE8 */
+  opacity: CONTROLS_BUTTON_STANDARD_ICON_OPACITY;
+  width: 21px;
+}
+
+.controls-button-flat .controls-button-label {
+  display: inline-block;
+  margin: 0;
+  padding: 0 1px;
+}
+
+.controls-button-flat.controls-button-selected .controls-button-img,
+.controls-button-flat.controls-button-hover .controls-button-img {
+  /* filter:opacity interacts badly with alpha-channel PNGs on IE8 */
+  opacity: CONTROLS_BUTTON_STANDARD_ICON_HOVER_OPACITY;
+}
+
+.controls-button-flat.controls-button-disabled .controls-button-img {
+  filter: CONTROLS_BUTTON_STANDARD_ICON_DISABLED_FILTER;
+  opacity: CONTROLS_BUTTON_STANDARD_ICON_DISABLED_OPACITY;
+}
+
+.controls-button-flat:focus {
+  border: 1px solid CONTROLS_BUTTON_STANDARD_FOCUS_BORDER_COLOR;
+}
+
+/* This class is applied to clear the above :focus style. */
+.controls-button-flat.controls-button-clear-outline {
+  border: 1px solid transparent;
+}
+
+} /* if (!DISABLE_KENNEDY) */

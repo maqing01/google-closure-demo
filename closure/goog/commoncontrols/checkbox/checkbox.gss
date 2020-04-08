@@ -1,0 +1,121 @@
+@def CONTROLS_CHECKBOX_BG_COLOR         rgba(255,255,255,.05);
+@def CONTROLS_CHECKBOX_FALLBACK_BORDER  1px solid #c6c6c6;
+@def CONTROLS_CHECKBOX_BORDER           1px solid rgba(155, 155, 155, .57);
+@def CONTROLS_CHECKBOX_BORDER_RADIUS    1px;
+
+@def CONTROLS_CHECKBOX_UNDETERMINED_URL
+    url("");
+@def CONTROLS_CHECKBOX_CHECKED_URL
+    url(/static/yiqixie/images/checkmark-black.png);
+@def CONTROLS_CHECKBOX_UNDETERMINED_2X_URL
+    url("");
+@def CONTROLS_CHECKBOX_CHECKED_2X_URL
+    url("");
+
+@def CONTROLS_CHECKBOX_UNDETERMINED_BG
+    CONTROLS_CHECKBOX_UNDETERMINED_URL no-repeat -5px -3px;
+@def CONTROLS_CHECKBOX_CHECKED_BG
+    CONTROLS_CHECKBOX_CHECKED_URL no-repeat -5px -3px;
+
+@def CONTROLS_CHECKBOX_HOVER_BORDER                  1px solid #b2b2b2;
+
+@def CONTROLS_CHECKBOX_ACTIVE_BG_COLOR               #ebebeb;
+
+@def CONTROLS_CHECKBOX_CHECKED_FALLBACK_BG_COLOR     #fff;
+@def CONTROLS_CHECKBOX_CHECKED_BG_COLOR              rgba(255, 255, 255, .65);
+
+@def CONTROLS_CHECKBOX_UNDETERMINED_FALLBACK_BG_COLOR
+    CONTROLS_CHECKBOX_CHECKED_FALLBACK_BG_COLOR;
+@def CONTROLS_CHECKBOX_UNDETERMINED_BG_COLOR
+    CONTROLS_CHECKBOX_CHECKED_BG_COLOR;
+
+@def CONTROLS_CHECKBOX_DISABLED_BG_COLOR             #fff;
+@def CONTROLS_CHECKBOX_DISABLED_BORDER               1px solid #f1f1f1;
+
+@def CONTROLS_CHECKBOX_FOCUSED_BORDER                1px solid #2384d1;
+
+/* Font size applied to the checkbox to fix an IE6 rendering issue */
+@def CONTROLS_CHECKBOX_IE6_FIX_FONT_SIZE  1px;
+
+.controls-checkbox {
+  @mixin border_radius(CONTROLS_CHECKBOX_BORDER_RADIUS);
+
+  background-color: CONTROLS_CHECKBOX_BG_COLOR;
+  /* @alternate */ border: CONTROLS_CHECKBOX_FALLBACK_BORDER;
+  /* @alternate */ border: CONTROLS_CHECKBOX_BORDER;
+  font-size: CONTROLS_CHECKBOX_IE6_FIX_FONT_SIZE;
+  height: 11px;
+  margin: 0px 4px 0px 1px;
+  outline: 0;
+  vertical-align: text-top;
+  width: 11px;
+}
+
+.controls-checkbox-undetermined {
+  /* @alternate */ background-color:
+      CONTROLS_CHECKBOX_UNDETERMINED_FALLBACK_BG_COLOR;
+  /* @alternate */ background-color: CONTROLS_CHECKBOX_UNDETERMINED_BG_COLOR;
+}
+
+.controls-checkbox-checked {
+  /* @alternate */ background-color: CONTROLS_CHECKBOX_CHECKED_FALLBACK_BG_COLOR;
+  /* @alternate */ background-color: CONTROLS_CHECKBOX_CHECKED_BG_COLOR;
+}
+
+.controls-checkbox-hover {
+  @mixin box_shadow(inset 0px 1px 1px rgba(0, 0, 0, .1));
+
+  border: CONTROLS_CHECKBOX_HOVER_BORDER;
+}
+
+.controls-checkbox-active {
+  background-color: CONTROLS_CHECKBOX_ACTIVE_BG_COLOR;
+}
+
+.controls-checkbox-focused {
+  border: CONTROLS_CHECKBOX_FOCUSED_BORDER;
+}
+
+/*
+ * NOTE(chrishenry): We clear the focus outline if users click on the
+ * checkbox instead of tabbing into it.
+ */
+.controls-checkbox-clearOutline.controls-checkbox-focused {
+  /* @alternate */ border: CONTROLS_CHECKBOX_FALLBACK_BORDER;
+  /* @alternate */ border: CONTROLS_CHECKBOX_BORDER;
+}
+
+.controls-checkbox-disabled,
+.controls-checkbox-clearOutline.controls-checkbox-disabled {
+  background-color: CONTROLS_CHECKBOX_DISABLED_BG_COLOR;
+  border: CONTROLS_CHECKBOX_DISABLED_BORDER;
+  cursor: default;
+}
+
+/* Div that allows the checkmark image to be offset from the container box. */
+
+.controls-checkbox-checkmark {
+  /* dimensions */
+  height: 15px;
+  outline: 0;
+  width: 15px;
+
+  /* position */
+  left: 0;
+  position: relative;
+  top: -3px
+}
+
+.controls-checkbox-undetermined .controls-checkbox-checkmark {
+  background: CONTROLS_CHECKBOX_UNDETERMINED_BG;
+  /* @alternate */
+  /*background-image: -webkit-image-set(CONTROLS_CHECKBOX_UNDETERMINED_URL 1x,*/
+      /*CONTROLS_CHECKBOX_UNDETERMINED_2X_URL 2x);*/
+}
+
+.controls-checkbox-checked .controls-checkbox-checkmark {
+  background: CONTROLS_CHECKBOX_CHECKED_BG;
+  /* @alternate */
+  /*background-image: -webkit-image-set(CONTROLS_CHECKBOX_CHECKED_URL 1x,*/
+      /*CONTROLS_CHECKBOX_CHECKED_2X_URL 2x);*/
+}

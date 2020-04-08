@@ -1,0 +1,26 @@
+{namespace controls.templates.bubble}
+
+
+/**
+ * @param showCloseBox {boolean} Whether the close box is enabled.
+ */
+{template .main}
+  <div class="{css controls-bubble}">
+    <div class="{css controls-bubble-content-id}"></div>
+//    {if $showCloseBox}
+//      <div class="{css controls-bubble-closebtn-id} {css controls-bubble-closebtn}"
+//           aria-label="
+//           {msg desc="Close button label for bubble widget."
+//                meaning="MSG_CONTROLS_BUBBLE_CLOSE"}
+//             Close
+//           {/msg}"
+//           role="button" tabindex=0>
+//      </div>
+//    {/if}
+
+    <div class="{css controls-bubble-arrow-id} {css controls-bubble-arrow}">
+//      <div class="{css controls-bubble-arrowimplbefore}"></div>
+//      <div class="{css controls-bubble-arrowimplafter}"></div>
+    </div>
+  </div>
+{/template}

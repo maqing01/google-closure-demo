@@ -1,0 +1,104 @@
+/**
+ * Styles for the contrast controls.Button (controls.ContrastButton).
+ * Contrast buttons are being standardized for Google-wide use by the Rio team
+ * (gasp@google.com), but are currently only intended for use as a part of Rio
+ * with Showroom in Google+ (goto/rioguide). Until they are in wider
+ * circulation, they render the same as a standard button outside of Showroom.
+ */
+
+
+
+
+
+
+@if (!DISABLE_KENNEDY) {
+
+.controls-button-contrast {
+  @mixin box_shadow(CONTROLS_BUTTON_CONTRAST_BOX_SHADOW);
+  @mixin linear_gradient(
+      CONTROLS_BUTTON_CONTRAST_GRADIENT, CONTROLS_BUTTON_CONTRAST_BG_COLOR);
+
+  color: CONTROLS_BUTTON_CONTRAST_TEXT_COLOR;
+  /* @alternate */ border: 1px solid CONTROLS_BUTTON_CONTRAST_BORDER_COLOR;
+  /* @alternate */ border: 1px solid CONTROLS_BUTTON_CONTRAST_BORDER_COLOR_RGBA;
+}
+
+.controls-button-contrast.controls-button-hover,
+.controls-button-contrast.controls-button-clear-outline.controls-button-hover {
+  @mixin box_shadow(CONTROLS_BUTTON_CONTRAST_HOVER_BOX_SHADOW);
+  @mixin linear_gradient(
+      CONTROLS_BUTTON_CONTRAST_HOVER_GRADIENT, CONTROLS_BUTTON_CONTRAST_HOVER_BG_COLOR);
+
+  border: 1px solid CONTROLS_BUTTON_CONTRAST_HOVER_BORDER_COLOR;
+  color: CONTROLS_BUTTON_CONTRAST_HOVER_TEXT_COLOR;
+}
+
+.controls-button-contrast:active,
+.controls-button-contrast.controls-button-hover:active {
+  @mixin box_shadow(CONTROLS_BUTTON_CONTRAST_ACTIVE_BOX_SHADOW);
+  background: CONTROLS_BUTTON_CONTRAST_ACTIVE_BG_COLOR;
+}
+
+.controls-button-contrast.controls-button-selected,
+.controls-button-contrast.controls-button-clear-outline.controls-button-selected {
+  @mixin linear_gradient(
+      CONTROLS_BUTTON_CONTRAST_SELECTED_GRADIENT,
+      CONTROLS_BUTTON_CONTRAST_SELECTED_BG_COLOR);
+
+  border: 1px solid CONTROLS_BUTTON_CONTRAST_SELECTED_BORDER_COLOR;
+  color: CONTROLS_BUTTON_CONTRAST_SELECTED_TEXT_COLOR;
+}
+
+.controls-button-contrast.controls-button-checked,
+.controls-button-contrast.controls-button-clear-outline.controls-button-checked {
+  @mixin box_shadow(CONTROLS_BUTTON_CONTRAST_CHECKED_BOX_SHADOW);
+  @mixin linear_gradient(
+      CONTROLS_BUTTON_CONTRAST_CHECKED_GRADIENT,
+      CONTROLS_BUTTON_CONTRAST_CHECKED_BG_COLOR);
+
+  border: 1px solid CONTROLS_BUTTON_CONTRAST_CHECKED_BORDER_COLOR;
+  color: CONTROLS_BUTTON_CONTRAST_CHECKED_TEXT_COLOR;
+}
+
+.controls-button-contrast:focus {
+  border: 1px solid CONTROLS_BUTTON_CONTRAST_FOCUS_BORDER_COLOR;
+  outline: CONTROLS_BUTTON_CONTRAST_FOCUS_OUTLINE;
+}
+
+/* This class is applied to clear the above :focus style. */
+.controls-button-contrast.controls-button-clear-outline {
+  border: 1px solid  CONTROLS_BUTTON_CONTRAST_BORDER_COLOR;
+  outline: CONTROLS_BUTTON_CONTRAST_FOCUS_CLEAR_OUTLINE;
+}
+
+.controls-button-contrast.controls-button-disabled {
+  background: CONTROLS_BUTTON_CONTRAST_DISABLED_BG_COLOR;
+  /* @alternate */ border: 1px solid CONTROLS_BUTTON_CONTRAST_DISABLED_BORDER_COLOR;
+  /* @alternate */ border: 1px solid rgba(0,0,0,0.05);
+  color: CONTROLS_BUTTON_CONTRAST_DISABLED_TEXT_COLOR;
+}
+
+/* For the contrast button, the icon opacity should change on hover
+   and selection. */
+
+/*  These opacity values need to be changed for when we have
+   all-black image assets. */
+
+.controls-button-contrast .controls-button-img {
+  /* filter:opacity interacts badly with alpha-channel PNGs on IE8 */
+  opacity: CONTROLS_BUTTON_CONTRAST_ICON_OPACITY;
+}
+
+.controls-button-contrast.controls-button-checked .controls-button-img,
+.controls-button-contrast.controls-button-selected .controls-button-img,
+.controls-button-contrast.controls-button-hover .controls-button-img {
+  /* filter:opacity interacts badly with alpha-channel PNGs on IE8 */
+  opacity: CONTROLS_BUTTON_CONTRAST_ICON_HOVER_OPACITY;
+}
+
+.controls-button-contrast.controls-button-disabled .controls-button-img {
+  filter: CONTROLS_BUTTON_CONTRAST_ICON_DISABLED_FILTER;
+  opacity: CONTROLS_BUTTON_CONTRAST_ICON_DISABLED_OPACITY;
+}
+
+}  /* if (!DISABLE_KENNEDY) */

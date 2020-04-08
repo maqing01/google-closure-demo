@@ -1,0 +1,32 @@
+/**
+ * Place icon at the standard menu padding when there's no icon.
+ * Constant defined in controls/gss/menuitem.gss.
+ */
+.docs-fontmenu-icon {
+  left: CONTROLS_MENUITEM_PADDING_LEFT;
+}
+
+/**
+ * Since the icon has to be absolute positioned, the menu text needs to be
+ * positioned to the right of it (expects icon width of 21px).
+ */
+.docs-fontmenu-text {
+  padding-left: 23px;
+}
+
+.docs-fontmenu-newlyadded {
+  background-color: #fffecc;
+}
+
+.goog-menuitem-highlight.docs-fontmenu-newlyadded,
+.goog-menuitem-hover.docs-fontmenu-newlyadded {
+  background-color: CONTROLS_MENUITEM_HOVER_COLOR;
+}
+
+/* Constant defined in ui/common.gss. */
+#font-family .goog-toolbar-menu-button-caption {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: DOCS_STYLE_SELECT_WIDTH;
+}

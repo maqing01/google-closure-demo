@@ -1,0 +1,38 @@
+/**
+ * Copyright 2011 Google Inc. All Rights Reserved.
+ *
+ * Global CONTROLS styles for links.
+ *
+ * @author djlee@google.com (DJ Lee)
+ */
+
+
+
+
+@if (!DISABLE_KENNEDY) {
+
+@def CONTROLS_LINK_COLOR            CONTROLS_BASE_LINK_COLOR;
+@def CONTROLS_LINK_VISITED_COLOR    CONTROLS_BASE_VISITED_LINK_COLOR;
+@def CONTROLS_LINK_ACTIVE_COLOR     CONTROLS_BASE_ACTIVE_LINK_COLOR;
+
+a {
+  text-decoration: none;
+}
+
+a:link {
+  color: CONTROLS_LINK_COLOR;
+}
+
+a:visited {
+  color: CONTROLS_LINK_VISITED_COLOR;
+}
+
+a:active {
+  color: CONTROLS_LINK_ACTIVE_COLOR;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+}  /* if (!DISABLE_KENNEDY) */

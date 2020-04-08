@@ -1,0 +1,87 @@
+syntax = "proto2";
+
+import "java/com/xz/javascript/jspb/proto/jspb.proto";
+
+package fava.request;
+
+message VersionsResponse {
+  option (jspb.message_id) = "v";
+  required string js_version = 1;
+  required string js_array_version = 2;
+  optional string updatable_strings_version = 3;
+  optional string stylesheet_version = 4;
+  optional string active_mods = 5;
+  optional string stylesheet_tiny_version = 10;
+  optional string stylesheet_small_version = 11;
+}
+
+message EndPageResponse {
+  option (jspb.message_id) = "e";
+  required int32 array_count = 1;
+  required int64 num_bytes = 4 [(jspb.jstype)=INTEGER];
+}
+message DebugInfoResponse {
+  option (jspb.message_id) = "di";
+  optional int64 server_time = 1 [(jspb.jstype)=INTEGER];
+  optional string server_trace = 2;
+  optional string server_stats = 3;
+  optional int64 backend_time = 4 [(jspb.jstype)=INTEGER];
+  optional string dapper_url = 5;
+  repeated DebugInfoTick server_tick = 6;
+  repeated DebugRpcInfo rpc_info = 7;
+  optional string server_host = 8;
+  optional string action_name = 9;
+  repeated string log_record = 10;
+  repeated DebugProducerGraphInfo graph_info = 11;
+  optional string trace_id = 13;
+}
+
+message DebugRpcInfo {
+  option (jspb.message_id) = 'dri';
+  required string name = 1;
+  optional float query_cost = 2;
+  optional string request_payload = 3;
+  optional string response_payload = 4;
+}
+
+message DebugInfoTick {
+  required string key = 1;
+  required int64 value = 2 [(jspb.jstype)=INTEGER];
+}
+message DebugProducerGraphInfo {
+  option (jspb.message_id) = 'dpgi';
+  required string debug_producer_uri = 1;
+  required string dashboard_uri = 2;
+  optional string name = 3;
+}
+message ErrorResponse {
+  option (jspb.message_id) = "er";
+  optional string error_code = 1;
+  optional string error_message = 2;
+  optional string response_type = 3;
+  optional string data = 4 [(jspb.encoding)="raw"];
+}
+
+message ActionResponse {
+  option (jspb.message_id) = "ar";
+  required bool success = 1;
+}
+
+message RecipientInfoResponse {
+  option (jspb.message_id) = "f.ri";
+  required string recipient_id = 1;
+}
+
+message JsWarningsResponse {
+  option (jspb.message_id) = "f.jw";
+  repeated string error = 1;
+  repeated string warning = 2;
+}
+message XsrfData {
+  option (jspb.message_id) = "xsrf";
+  optional string xsrf_token = 1;
+  optional LoggedInUserData logged_in_user_data = 2;
+}
+message LoggedInUserData {
+  optional string user_token = 1;
+}

@@ -1,0 +1,30 @@
+@def CONTROLS_MENU_BG_COLOR         CONTROLS_BASE_MENU_BG_COLOR;
+@def CONTROLS_MENU_RGBA_BORDER      CONTROLS_BASE_MENU_BORDER;
+@def CONTROLS_MENU_FALLBACK_BORDER  CONTROLS_BASE_MENU_FALLBACK_BORDER;
+@def CONTROLS_MENU_BORDER_RADIUS    0;
+@def CONTROLS_MENU_BOX_SHADOW       0 2px 4px rgba(0, 0, 0, 0.2);
+@def CONTROLS_MENU_PADDING          2px 0;
+@def CONTROLS_MENU_TEXT_COLOR       CONTROLS_BASE_MENU_TEXT_COLOR;
+@def CONTROLS_MENU_TRANSITION       opacity 0.4s;
+
+
+.goog-menu {
+  @mixin border_radius(CONTROLS_MENU_BORDER_RADIUS);
+  @mixin box_shadow(CONTROLS_MENU_BOX_SHADOW);
+  @mixin transition(CONTROLS_MENU_TRANSITION);
+
+  background: CONTROLS_MENU_BG_COLOR;
+/*
+ *  If/when we support conditional browser GSS for CONTROLS,
+ * update this to use outline for browsers that support it.
+ */
+  /*border: CONTROLS_MENU_FALLBACK_BORDER; /!* IE8 can't handle RGBA *!/*/
+  /*/!* @alternate *!/ border: CONTROLS_MENU_RGBA_BORDER;*/
+  cursor: default;
+  font-size: CONTROLS_BASE_FONT_SIZE_NORMAL;
+  margin: 0;
+  outline: none;
+  padding: CONTROLS_MENU_PADDING;
+  position: absolute;
+  min-width: 140px;
+}

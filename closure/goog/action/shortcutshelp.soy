@@ -1,0 +1,93 @@
+/**
+ * @param shortcutsHelpUrl The URL of the "Open in new window" link.
+ * @param tearOffLinkId The id of the "Open in new window" link.
+ * @param closeLinkId The id of the Close link.
+ * @param columns The shortcut data.
+ * @param isPrivate The shortcut data.
+ * @param? prefComponentId Optional id for the shortcut preference component.
+ */
+{template apps.action.shortcutBannerTemplate}
+  <div class="{css CSS_SHORTCUTS_HELP_POPUP_CONTAINER}{sp}
+              {css controls-scrollbar-dark}">
+    <table cellpadding="0"
+           class="{css CSS_APP_TABLE} {css CSS_SHORTCUTS_HELP_POPUP_HEADER}">
+      <tr>
+        <td class="{css CSS_SHORTCUTS_HELP_POPUP_TITLE}{sp}
+            {css CSS_SHORTCUTS_HELP_POPUP_HEADER_TABLE_ELEMENT}">
+            快捷键设置
+        </td>
+        <td class="{css CSS_SHORTCUTS_HELP_POPUP_TEAROFF_LINK_CONTAINER}{sp}
+            {css CSS_SHORTCUTS_HELP_POPUP_HEADER_TABLE_ELEMENT}">
+            {if not $isPrivate}
+          <a id="{$tearOffLinkId |id}"
+             target="_blank"
+             href="{$shortcutsHelpUrl}"
+             class="{css CSS_SHORTCUTS_HELP_POPUP_TEAROFF_LINK}">
+              一起写帮助反馈中心
+          </a>
+          {sp}|{sp}
+            {/if}
+          <span id="{$closeLinkId |id}"
+              class="{css CSS_SHORTCUTS_HELP_POPUP_TEAROFF_LINK}"
+              tabindex="0"
+              role="button">
+              关闭
+          </span>
+        </td>
+      </tr>
+    </table>
+    {if $prefComponentId}<div id="{$prefComponentId}"></div>{/if}
+    <table cellpadding="0"
+           class="{css CSS_APP_TABLE} {css CSS_SHORTCUTS_HELP_POPUP_CONTENT}">
+      <tr>
+        {foreach $column in $columns}
+        <td class="{css CSS_SHORTCUTS_HELP_POPUP_CONTENT_ELEMENT}">
+          <table cellpadding="0" class="{css CSS_APP_TABLE}">
+            <tbody>
+              {foreach $group in $column}
+                <tr>
+                  <th class="{css CSS_SHORTCUTS_HELP_POPUP_CONTENT_HEADER}" />
+                  <th class="{css CSS_SHORTCUTS_HELP_POPUP_CONTENT_HEADER}">
+                    <h3>{$group.title}</h3>
+                  </th>
+                </tr>
+                {foreach $shortcut in $group.shortcuts}
+                <tr>
+                  <td class="{css CSS_SHORTCUTS_HELP_POPUP_KEY}{sp}
+                      {css CSS_SHORTCUTS_HELP_POPUP_CONTENT_ELEMENT}">
+                    {$shortcut.key |noAutoescape}
+                  </td>
+                  <td class="{css CSS_SHORTCUTS_HELP_POPUP_DESCRIPTION}{sp}
+                      {css CSS_SHORTCUTS_HELP_POPUP_CONTENT_ELEMENT}">
+                    {$shortcut.description}
+                  </td>
+                </tr>
+                {/foreach}
+              {/foreach}
+            </tbody>
+          </table>
+        </td>
+        {/foreach}
+      </tr>
+    </table>
+  </div>
+{/template}
+
+/**
+ * @param ariaLabelText A screen-reader friendly description of the shortcut.
+ * @param words Array of words to format. Every even word will be formatted
+ * as an "auxilary word" (smaller, unbold).
+ */
+{template apps.action.shortcutKeyTemplate}
+  <span>
+    {foreach $word in $words}
+      <span class="
+      {if index($word) % 2 }
+        {css CSS_SHORTCUTS_HELP_POPUP_AUXILIARY_WORD}
+      {else}
+        {css CSS_SHORTCUTS_HELP_POPUP_KEY_MNEMONIC}
+      {/if}
+      ">{$word|bidiSpanWrap}</span>{sp}
+    {/foreach}
+  </span>
+{/template}

@@ -1,0 +1,79 @@
+// Copyright 2010 Google Inc. All Rights Reserved.
+// Author: nthomas@google.com (Neil Thomas)
+
+{namespace wireless.soy.button.checkbox}
+
+/**
+ * Deprecated non-strict template.
+ * Renders a button that acts as a two/three-state checkbox. This template also accepts all of the
+ * parameters taken by wireless.soy.button.button. See wireless.soy.button.base.plainButtonStrict
+ * and .buttonStrict for a description of this template's parameters.
+ * @param? imageClassesHtml
+ * @param? labelHtml
+ * @param? contentsHtml
+ * @param? buttonClassesHtml
+ * @param? borderImageClassesHtml
+ * @param? labelClassesHtml
+ * @param? extraEventArgument
+ */
+{template .checkbox autoescape="contextual"}
+  {call .checkboxStrict data="all"}
+    {param imageClasses }
+      {if window.isNonnull($imageClassesHtml)}{$imageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelHtml }
+      {if window.isNonnull($labelHtml)}{$labelHtml|noAutoescape}{/if}
+    {/param}
+    {param contentsHtml }
+      {if window.isNonnull($contentsHtml)}{$contentsHtml|noAutoescape}{/if}
+    {/param}
+    {param buttonClasses }
+      {if window.isNonnull($buttonClassesHtml)}{$buttonClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param borderImageClasses }
+      {if window.isNonnull($borderImageClassesHtml)}{$borderImageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelClasses }
+      {if window.isNonnull($labelClassesHtml)}{$labelClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param extraEventArgument }
+      {if window.isNonnull($extraEventArgument)}{$extraEventArgument|noAutoescape}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a button that acts as a two- or three-state checkbox. This template
+ * also accepts all of the parameters taken by wireless.soy.button.button.
+ * @param initialState The initial state of the checkbox.
+ * @param? imageClasses Additional CSS classes to apply to the inner div
+ *     containing the checkbox image.
+ */
+{template .checkboxStrict}
+  {call wireless.soy.button.base.plainButtonStrict data="all"}
+    {param imageClasses }
+      {if $initialState == wireless.ui.button.CheckboxState.NOT_SELECTED}
+        {css CSS_WUI_IMG_CHECKBOX}
+      {elseif $initialState == wireless.ui.button.CheckboxState.PARTIALLY_SELECTED}
+        {css CSS_WUI_IMG_CHECKBOX_MIXED}
+      {elseif $initialState == wireless.ui.button.CheckboxState.SELECTED}
+        {css CSS_WUI_IMG_CHECKBOX} {css CSS_WUI_ACTIVE}
+      {else}
+      {/if}
+      {if $imageClasses} {$imageClasses}{/if}
+    {/param}
+    {param ariaChecked }
+      {if $initialState == wireless.ui.button.CheckboxState.NOT_SELECTED}
+        false
+      {elseif $initialState == wireless.ui.button.CheckboxState.PARTIALLY_SELECTED}
+        mixed
+      {elseif $initialState == wireless.ui.button.CheckboxState.SELECTED}
+        true
+      {else}
+      {/if}
+    {/param}
+    {param ariaRole }
+      checkbox
+    {/param}
+  {/call}
+{/template}

@@ -1,0 +1,64 @@
+{namespace office.fonts}
+
+
+/**
+ * Builds the font menu.
+ * @param recentMenuItems Recent font menu items.
+ * @param allMenuItems All font menu items.
+ * @param includeAddMore Whether the add fonts menu item should be created.
+ */
+{template .fontSelectMenu}
+  <div class="{css goog-menu} {css goog-menu-noaccel}"
+      style="overflow:auto">
+    {if $recentMenuItems.length > 0}
+      <div class="{css goog-menu-content}">
+        {foreach $recentMenuItem in $recentMenuItems}
+          <div class="{css goog-menuitem}">
+            <span style="font-family:'{$recentMenuItem.family}'">
+                {$recentMenuItem.displayName}
+            </span>
+          </div>
+        {/foreach}
+        <hr>
+      </div>
+    {/if}
+    <div class="{css goog-menu-content} {css office-fontmenu-fonts}">
+      {if $allMenuItems.length > 0}
+        {foreach $allMenuItem in $allMenuItems}
+          <div class="{css goog-option} {css goog-menuitem}{if $allMenuItem.highlight} {css office-fontmenu-newlyadded}{/if}">
+            {call .fontMenuItem}
+              {param menuItem: $allMenuItem /}
+            {/call}
+          </div>
+        {/foreach}
+      {/if}
+    </div>
+    {if $includeAddMore}
+      <div class="{css goog-menu-content}">
+        <hr>
+        <div class="{css goog-menuitem}">
+          <div class="{css goog-menuitem-icon} {css office-icon} {css office-fontmenu-icon}">
+            <div class="{css office-icon-img-container} {css office-icon-img} {css office-icon-add-fonts}">
+            </div>
+          </div>
+          <div class="{css office-fontmenu-text}">
+            {msg desc="[BACKUP_MESSAGE_ID:658571728025439159] Label for get fonts menu item which opens a font picker."}
+              More fonts...
+            {/msg}
+          </div>
+        </div>
+      </div>
+    {/if}
+  </div>
+{/template}
+
+
+/**
+ * Builds the font menu item.
+ * @param menuItem A menu item.
+ */
+{template .fontMenuItem}
+  <span style="font-family:'{$menuItem.family}'">
+      {$menuItem.displayName}
+  </span>
+{/template}

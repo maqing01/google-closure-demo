@@ -1,0 +1,223 @@
+<!doctype html>
+<!--
+Copyright 2011 Google, Inc. All Rights Reserved.
+HTML demo for Kennedy TwoThumbSlider control.
+Author: ehwang@google.com (Eric Hwang)
+-->
+<html>
+<head>
+<title>Slider demo</title>
+<link href="../demo_css.css" rel="stylesheet">
+
+<style>
+#slider-container {
+  position: absolute;
+  left: 320px;
+  top: 60px;
+}
+#slider {
+  width: 200px;
+}
+#slider2 {
+  height: 200px;
+}
+#v-spacer {
+  height: 120px;
+}
+#debug-panel {
+  position: absolute;
+  top: 380px;
+  left: 16px;
+  width: 280px;
+  height: 400px;
+}
+#options-panel {
+  position: absolute;
+  width: 255px;
+  left: 15px;
+  height: 300px;
+  top: 65px;
+}
+#valueFields input {
+  width: 30px;
+  border: 1px solid #888;
+  border-top-color: #aaa;
+}
+#valueFields label {
+  display: inline-block;
+  width: 15em;
+}
+#options-panel label {
+  color: #333;
+  margin-right: 10px;
+  padding-left: 5px;
+}
+</style>
+
+<script src="../../closure/base.js"></script>
+<script src="../deps-runfiles.js"></script>
+<script>
+goog.require('goog.debug.DivConsole');
+goog.require('goog.debug.LogManager');
+goog.require('goog.debug.Logger');
+goog.require('goog.dom');
+goog.require('goog.events');
+
+goog.require('jfk.RtlDemo');
+goog.require('jfk.TwoThumbSlider');
+</script>
+
+</head>
+
+<body>
+
+<h1>Slider demo</h1>
+<div id="slider-container">
+  <p>Horizontal Kennedy slider (using existing HTML structure):</p>
+  <div id="slider" class="jfk-twothumbslider">
+    <div class="jfk-slider-scale"></div>
+    <div class="goog-twothumbslider-rangehighlight"></div>
+    <div class="goog-twothumbslider-value-thumb"></div>
+    <div class="goog-twothumbslider-extent-thumb"></div>
+  </div>
+
+  <div id="v-spacer"></div>
+
+  <p>Vertical Kennedy slider (rendered with JS):</p>
+  <!-- JS-rendered slider below -->
+</div>
+
+<!-- Horizontal slider options -->
+<fieldset id="options-panel">
+  <legend>Configure horizontal slider</legend>
+  <div id="valueFields">
+    <label for="sliderMin">minimum</label><input id="sliderMin"><br>
+    <label for="sliderMax">maximum</label><input id="sliderMax"><br>
+    <label for="sliderValue">value</label><input id="sliderValue"><br>
+    <label for="sliderExtent">extent</label><input id="sliderExtent"><br>
+    <label for="sliderStep">step</label><input id="sliderStep"><br>
+    <label for="sliderUnit">unit increment (arrows, mouse wheel)</label>
+        <input id="sliderUnit"><br>
+    <label for="sliderBlock">block increment (pg up, pg down)</label>
+        <input id="sliderBlock"><br>
+  </div>
+  <input id="sliderMoveToPointEnabled" type="checkbox">
+  <label for="sliderMoveToPointEnabled">Enable move to point</label>
+</fieldset>
+
+<!-- Event log. -->
+<div id="debug-panel">
+  <fieldset class="goog-debug-panel">
+    <legend>Event Log</legend>
+    <div id="log"></div>
+  </fieldset>
+  <div id="perf"></div>
+</div>
+
+<script type="text/javascript">
+// Set up a logger.
+var logger = goog.debug.Logger.getLogger('demo');
+var logconsole = new goog.debug.DivConsole(goog.dom.getElement('log'));
+logconsole.setCapturing(true);
+
+var eventTypes = goog.object.getValues(goog.ui.Component.EventType);
+logger.info('Listening for: ' + eventTypes.join(', ') + '.');
+
+var startTime = goog.now();
+
+// setup horizontal slider
+var slider = new jfk.TwoThumbSlider();
+slider.decorate(goog.dom.getElement('slider'));
+slider.setMoveToPointEnabled(true);
+
+var sliderTime = goog.now();
+
+// setup vertical slider
+var slider2 = new jfk.TwoThumbSlider();
+slider2.render(goog.dom.getElement('slider-container'));
+slider2.getElement().id = 'slider2';
+slider2.setMoveToPointEnabled(true);
+slider2.setOrientation(goog.ui.SliderBase.Orientation.VERTICAL);
+
+var endTime = goog.now();
+
+
+// setup slider option inputs
+
+/**
+ * Sets up the listener on value change for a form input element.
+ * @param {!HTMLInputElement} inputElement The input element
+ * @param {function(number)} setFn The function that is called to update
+ *     the control with the value of the input element.
+ */
+var setupListener = function(inputElement, setFn) {
+  goog.events.listen(inputElement, goog.events.EventType.CHANGE,
+      function() {
+        var val = parseFloat(inputElement.value);
+        if (!isNaN(val)) {
+          setFn(val);
+        }
+        updateSlider1OptionValues();
+      });
+};
+
+// Associaties [input element id, set fn, get fn]
+var inputAssociations = [
+  ['sliderMin', slider.setMinimum, slider.getMinimum],
+  ['sliderMax', slider.setMaximum, slider.getMaximum],
+  ['sliderValue', slider.setValue, slider.getValue],
+  ['sliderExtent', slider.setExtent, slider.getExtent],
+  ['sliderStep', slider.setStep, slider.getStep],
+  ['sliderUnit', slider.setUnitIncrement, slider.getUnitIncrement],
+  ['sliderBlock', slider.setBlockIncrement, slider.getBlockIncrement]
+];
+
+for (var i = 0; i < inputAssociations.length; i++) {
+  var elementId = inputAssociations[i][0];
+  var setFn = inputAssociations[i][1];
+  var input = goog.dom.getElement(elementId);
+  setupListener(input, goog.bind(setFn, slider));
+}
+
+goog.events.listen(goog.dom.getElement('sliderMoveToPointEnabled'),
+    goog.events.EventType.CLICK,
+    function() {
+      slider.setMoveToPointEnabled(e.target.checked);
+      updateSlider1OptionValues();
+    });
+
+function updateSlider1OptionValues() {
+  for (var i = 0; i < inputAssociations.length; i++) {
+    var elementId = inputAssociations[i][0];
+    var getFn = inputAssociations[i][2];
+    goog.dom.getElement(elementId).value = getFn.apply(slider);
+  }
+  goog.dom.getElement('sliderMoveToPointEnabled').checked =
+      slider.getMoveToPointEnabled();
+};
+
+updateSlider1OptionValues();
+
+// setup debug listeners
+goog.events.listen(slider, eventTypes, logEvent);
+goog.events.listen(slider2, eventTypes, logEvent);
+
+function logEvent(e) {
+  var name = e.target.getElement().id;
+  logger.info('"' + name + '" dispatched: ' + e.type);
+
+  // update slider options
+  if (name == 'slider') {
+    updateSlider1OptionValues();
+  }
+}
+
+// output timing measurements
+goog.dom.getElement('perf').innerHTML =
+    'slider intialized in: ' + (sliderTime - startTime) + 'ms' + '<br/>' +
+    'slider2 intialized in: ' + (endTime - sliderTime) + 'ms';
+
+jfk.RtlDemo.init();
+</script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+// Copyright 2010 Google Inc. All Rights Reserved.
+// Author: Ryan Dixon (rjdixon@google.com)
+
+{namespace wireless.soy.callout.accountscallout autoescape="contextual"}
+
+/**
+ * Renders a list of accounts in a callout section.
+ * @param accountList Array of buttons to add to the section. Should include
+ *     accountName, partition and isActive attributes.
+ */
+{template .buttons_ private="true"}
+  {call wireless.soy.callout.components.buttonGroup}
+    {param buttonsHtml}
+      {foreach $button in $accountList}
+        {if isFirst($button) and isLast($button)}
+          {call wireless.soy.callout.components.singleButton}
+            {param labelHtml: $button.accountName /}
+            {param controlType: wireless.ui.callout.accountscallout.ControlType.SWITCH_ACCOUNT /}
+            {param extraEventArgument: $button.partition /}
+            {param isActive: $button.isActive /}
+          {/call}
+        {elseif isFirst($button)}
+          {call wireless.soy.callout.components.topButton}
+            {param labelHtml: $button.accountName /}
+            {param controlType: wireless.ui.callout.accountscallout.ControlType.SWITCH_ACCOUNT /}
+            {param extraEventArgument: $button.partition /}
+            {param isActive: $button.isActive /}
+          {/call}
+        {elseif isLast($button)}
+          {call wireless.soy.callout.components.bottomButton}
+            {param labelHtml: $button.accountName /}
+            {param controlType: wireless.ui.callout.accountscallout.ControlType.SWITCH_ACCOUNT /}
+            {param extraEventArgument: $button.partition /}
+            {param isActive: $button.isActive /}
+          {/call}
+        {else}
+          {call wireless.soy.callout.components.button}
+            {param labelHtml: $button.accountName /}
+            {param controlType: wireless.ui.callout.accountscallout.ControlType.SWITCH_ACCOUNT /}
+            {param extraEventArgument: $button.partition /}
+            {param isActive: $button.isActive /}
+          {/call}
+        {/if}
+      {/foreach}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a set of account action buttons in a callout section.
+ * @param logoutControlType Control type to attach to sign out button.
+ */
+{template .actionButtons_ private="true"}
+  {call wireless.soy.callout.components.buttonGroup}
+    {param buttonsHtml}
+      {call wireless.soy.callout.components.topButton}
+        {param labelHtml}
+          {msg desc="Button appearing in the list of account actions which
+              allows the user to add another account to their session [Character
+              limit: 35]."}
+            Sign into another account...
+          {/msg}
+        {/param}
+        {param controlType: wireless.ui.callout.accountscallout.ControlType.ADD_ACCOUNT /}
+      {/call}
+      {call wireless.soy.callout.components.bottomButton}
+        {param labelHtml}
+          {msg desc="Button appearing in the list of account actions which
+              allows the user to sign out of all accounts in their current
+              session [Character limit: 35]."}
+            Sign out of all accounts
+          {/msg}
+        {/param}
+        {param controlType: $logoutControlType /}
+      {/call}
+    {/param}
+  {/call}
+{/template}
+
+/** Renders an accounts section label. */
+{template .accountsSectionLabel_ private="true"}
+  {msg desc="Label for the accounts button section of the callout [Character limit: 20]."}
+    Accounts
+  {/msg}
+{/template}
+
+/**
+ * Renders an accounts callout.
+ * @param accountButtons List of buttons for the accounts section.
+ * @param logoutControlType Control type to use for sign out button.
+ * @param? sectionsHtml Markup for additional sections to be added to accounts
+ *     callout.
+ */
+{template .callout}
+  {call wireless.soy.callout.callout}
+    {param contentsHtml}
+      {if not $sectionsHtml}
+        {call wireless.soy.callout.components.bottomSection}
+          {param label}
+            {call .accountsSectionLabel_ /}
+          {/param}
+          {param sectionHtml}
+            {call .buttons_}
+              {param accountList: $accountButtons /}
+            {/call}
+            {call .actionButtons_}
+              {param logoutControlType: $logoutControlType /}
+            {/call}
+          {/param}
+        {/call}
+      {else}
+        {call wireless.soy.callout.components.section}
+          {param label}
+            {call .accountsSectionLabel_ /}
+          {/param}
+          {param sectionHtml}
+            {call .buttons_}
+              {param accountList: $accountButtons /}
+            {/call}
+            {call .actionButtons_}
+              {param logoutControlType: $logoutControlType /}
+            {/call}
+          {/param}
+        {/call}
+        {$sectionsHtml |noAutoescape}
+      {/if}
+    {/param}
+    {param contentClassesHtml}
+      {css CSS_WUI_ACCOUNTSCALLOUT_CONTENT}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Deprecated non-strict template.
+ * Renders a button that can be used to toggle the accounts callout. See
+ * wireless.soy.button.base.plainButtonStrict for a description of this template's
+ * parameters.
+ * @param? imageClassesHtml
+ * @param? labelHtml
+ * @param? borderImageClassesHtml
+ * @param? labelClassesHtml
+ * @param? buttonLabelClassesHtml
+ * @param? extraEventArgument
+ */
+{template .toggleButton}
+  {call .toggleButtonStrict data="all"}
+    {param imageClasses }
+      {if window.isNonnull($imageClassesHtml)}{$imageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelHtml }
+      {if window.isNonnull($labelHtml)}{$labelHtml|noAutoescape}{/if}
+    {/param}
+    {param borderImageClasses }
+      {if window.isNonnull($borderImageClassesHtml)}{$borderImageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelClasses }
+      {if window.isNonnull($labelClassesHtml)}{$labelClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param buttonLabelClasses }
+      {if window.isNonnull($buttonLabelClassesHtml)}{$buttonLabelClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param extraEventArgument }
+      {if window.isNonnull($extraEventArgument)}{$extraEventArgument|noAutoescape}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a button that can be used to toggle the accounts callout.
+ * @param buttonLabel Label which should be the current session email.
+ * @param? buttonLabelClasses Additional CSS classes for the label
+ *     of the button.
+ * @param controlType The control type that toggles the callout.
+ * @param? openUp True if the more icon should be pointing up.
+ */
+{template .toggleButtonStrict autoescape="contextual"}
+  {call wireless.soy.button.buttonStrict}
+    {param controlType: $controlType /}
+    {param buttonClasses }
+      {css CSS_WUI_ACCOUNTSCALLOUT_BUTTON}
+    {/param}
+    {param contentsHtml }
+      <div class="{css CSS_WUI_BUTTON_INNER} {css CSS_WUI_BUTTON_LABEL} {$buttonLabelClasses}">
+        {$buttonLabel}
+      </div>
+      {if $openUp}
+        <div class="{css CSS_WUI_BUTTON_INNER} {css CSS_WUI_IMG_ICON_MORE_UP}"></div>
+      {else}
+        <div class="{css CSS_WUI_BUTTON_INNER} {css CSS_WUI_IMG_ICON_MORE}"></div>
+      {/if}
+    {/param}
+  {/call}
+{/template}

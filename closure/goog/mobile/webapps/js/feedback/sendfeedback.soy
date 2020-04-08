@@ -1,0 +1,61 @@
+// Copyright 2009 Google Inc.
+// All Rights Reserved.
+// Author: bchiu@google.com (Bikin Chiu)
+
+{template name="webapps.feedback.render"}
+  <div style="{webapps.feedback.CSS_WEBAPP_SHADOW} height: {$pageBottom}px">
+  </div>
+  <div style="{webapps.feedback.CSS_WEBAPP_FEEDBACK_POPUP}">
+    {msg desc="Compose feedback message, recipient label [Character limit: 20 characters]"}
+      To:
+    {/msg} {$to}<br><br>
+    {msg desc="Compose feedback message, from label [Character limit: 50 characters]"}
+      From: (email address)
+    {/msg}<br>
+    <textarea id="webapps-feedback-from" style="{webapps.feedback.CSS_WEBAPP_FEEDBACK_INPUT} height: 20px;">
+      {$from}
+    </textarea><br><br>
+    {msg desc="Compose feedback message, comment label [Character limit: 20 characters]"}
+      Comment:
+    {/msg}<br>
+    <textarea id="webapps-feedback-comment" style="{webapps.feedback.CSS_WEBAPP_FEEDBACK_INPUT} height: 60px;">
+
+    </textarea><br><br>
+    <div>
+      {msg desc="A message to inform user about his/her error logs are attached to the message [Character limit: 70 characters]"}
+        Console logs are appended automatically.
+      {/msg}&nbsp;&nbsp;
+      <a id='webapps-feedback-console-link' href="javascript:_showConsoleLogs()" style="text-decoration: underline !important; color: #3366CC !important;">
+        {msg desc="Link to display error logs. [Character limit: 20 characters]"}
+          show logs
+        {/msg}
+      </a>
+    </div>
+    <br>
+    <textarea id="webapps-feedback-console" style="{webapps.feedback.CSS_WEBAPP_FEEDBACK_INPUT} height: 200px; display:none">
+    </textarea><br><br>
+
+    <div>
+      {msg desc="Status info label. [Character limit: 20 characters]"}
+        Status:
+      {/msg}&nbsp;
+      <b>
+        <span id="webapps-feedback-status">
+        </span>
+      </b>
+    </div>
+    <br>
+
+    <div style="{webapps.feedback.CSS_WEBAPP_BUTTON} float: left;"
+        onclick="_sendFeedback('{$webappName}', '{$to}');">
+      {msg desc="Send button label. [Character limit: 20 characters]"}
+        Send
+      {/msg}
+    </div>
+    <div style="{webapps.feedback.CSS_WEBAPP_BUTTON} float: right;" onclick="_cancelFeedback();">
+      {msg desc="Close button label. [Character limit: 20 characters]"}
+        Close
+      {/msg}
+    </div>
+  </div>
+{/template}

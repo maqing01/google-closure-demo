@@ -1,0 +1,29 @@
+// Copyright 2010 Google Inc. All Rights Reserved.
+// Author: nthomas@google.com (Neil Thomas)
+
+{namespace wireless.soy.dialog.filterableselectionlist autoescape="contextual"}
+
+/**
+ * Renders the selection list. This template accepts all of the same parameters
+ * as wireless.soy.dialog.selectionlist.dialog.
+ * @param listHtml Rendered list of items.
+ * @param isFilterable True if the dialog allows typing into a textbox at the
+ *     top to filter the list of items.
+ */
+{template .dialog}
+  {call wireless.soy.dialog.selectionlist.dialog data="all"}
+    {param listHtml}
+      {if $isFilterable}
+        <div class="{css CSS_WUI_SELECTIONLIST_FILTER_CONTAINER}">
+          <input class="{css CSS_WUI_SELECTIONLIST_FILTER}"
+              autocorrect="off" autocomplete="off"
+              onkeypress="_x(event, '{wireless.ui.dialog.filterableselectionlist.ControlType.FILTER_KEYPRESS}')"
+              onkeyup="_x(event, '{wireless.ui.dialog.filterableselectionlist.ControlType.FILTER_KEYUP}')" />
+        </div>
+      {/if}
+      <div class="{css CSS_WUI_SELECTIONLIST_LIST}">
+        {$listHtml |noAutoescape}
+      </div>
+    {/param}
+  {/call}
+{/template}

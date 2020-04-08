@@ -1,0 +1,39 @@
+//syntax = "proto2";
+//
+//option java_package = "com.google.apps.office.diagnostics.impressions.proto.impressiondetails";
+//option java_multiple_files = true;
+//option (jspb.js_namespace) = "office.diagnostics.impressions.proto.impressiondetails";
+//option (logs_proto.file_not_used_for_logging_except_enums) = true;
+//
+//import "java/com/google/apps/jspb/jspb.proto";
+//import "logs/proto/logs_annotations/logs_annotations.proto";
+//
+//package office.diagnostics.impressions.impressiondetails;
+
+// Classification of navigable views in products that support internal
+// navigation.
+// Next enum value: 16
+enum ViewType {
+  // Optional fields default to the enum's first value, so this makes the
+  // default explicitly unknown instead of defaulting to some arbitrary value.
+  UNDEFINED_VIEW = 0;
+
+  // Drive view types
+  DRIVE_FOLDER = 8;
+  DRIVE_INCOMING = 9;
+  DRIVE_RECENT = 10;
+  DRIVE_ROOT_FOLDER = 15;
+  DRIVE_SEARCH = 14;
+  DRIVE_STARRED = 11;
+  DRIVE_TRASH = 12;
+  DRIVE_QUOTA = 13;
+
+  // Homeroom view types
+  HOMEROOM_ASSIGNMENT_DETAIL = 1;
+  HOMEROOM_COURSE_STREAM = 2;
+  HOMEROOM_HOME_VIEW = 3;
+  HOMEROOM_POST_DETAIL_VIEW = 4;
+  HOMEROOM_ROSTER_VIEW = 5;
+  HOMEROOM_SHORT_ANSWER_DETAIL_VIEW = 7;
+  HOMEROOM_STUDENT_ASSIGNMENTS_SUMMARY_VIEW = 6;
+}

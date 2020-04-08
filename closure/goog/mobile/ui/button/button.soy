@@ -1,0 +1,178 @@
+{namespace wireless.soy.button autoescape="contextual"}
+
+/*
+ * All components rendered by templates in this file use Cirrus styling. See
+ * http://go/cirrusui for more information.
+ */
+
+/**
+ * Deprecated non-strict template.
+ * Renders a button with an image, text, or custom HTML. See .buttonStrict
+ * for a description of this template's parameters.
+ * @param? labelClassesHtml
+ * @param? buttonClassesHtml
+ * @param? borderImageClassesHtml
+ */
+{template .button autoescape="contextual"}
+  {call wireless.soy.button.base.button data="all" }
+    {param labelClassesHtml}
+      {css CSS_WUI_BUTTON_LABEL}{if $labelClassesHtml} {$labelClassesHtml}{/if}
+    {/param}
+    {param borderImageClassesHtml}
+      {if $borderImageClassesHtml}{$borderImageClassesHtml}{else}{css CSS_WUI_IMG_BUTTON}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a button with an image, text, or custom HTML. See
+ * wireless.soy.button.base.plainButton for a description of this template's
+ * parameters.
+ * @param? labelClasses CSS classes to apply to the button's label. All
+ *     buttons will always have the class CSS_WUI_BUTTON_LABEL in addition to
+ *     any classes specified through this parameter.
+ * @param? buttonClasses CSS classes to apply to the button's outer div. All
+ *     buttons will always have the class CSS_WUI_BUTTON.
+ * @param? borderImageClasses CSS classes to apply as the button's border
+ *     image. If no styles are provided, the default CSS_WUI_IMG_BUTTON will be
+ *     used.
+ */
+{template .buttonStrict}
+  {call wireless.soy.button.base.buttonStrict data="all" }
+    {param labelClasses }
+      {css CSS_WUI_BUTTON_LABEL}{if $labelClasses} {$labelClasses}{/if}
+    {/param}
+    {param borderImageClasses }
+      {if $borderImageClasses}{$borderImageClasses}{else}{css CSS_WUI_IMG_BUTTON}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Deprecated non-strict template.
+ * Renders a button with an image, text, or custom HTML. See
+ * wireless.soy.button.base.plainButtonStrict for a description of this template's
+ * parameters.
+ * @param? imageClassesHtml
+ * @param? labelHtml
+ * @param? contentsHtml
+ * @param? buttonClassesHtml
+ * @param? borderImageClassesHtml
+ * @param? labelClassesHtml
+ * @param? extraEventArgument
+ */
+{template .buttonWithoutBorderImage autoescape="contextual"}
+  {call .buttonWithoutBorderImageStrict data="all"}
+    {param imageClasses }
+      {if window.isNonnull($imageClassesHtml)}{$imageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelHtml }
+      {if window.isNonnull($labelHtml)}{$labelHtml|noAutoescape}{/if}
+    {/param}
+    {param contentsHtml }
+      {if window.isNonnull($contentsHtml)}{$contentsHtml|noAutoescape}{/if}
+    {/param}
+    {param buttonClasses }
+      {if window.isNonnull($buttonClassesHtml)}{$buttonClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param borderImageClasses }
+      {if window.isNonnull($borderImageClassesHtml)}{$borderImageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelClasses }
+      {if window.isNonnull($labelClassesHtml)}{$labelClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param extraEventArgument }
+      {if window.isNonnull($extraEventArgument)}{$extraEventArgument|noAutoescape}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a button with an image, text, or custom HTML, but without a border
+ * image. See wireless.soy.button.base.plainButton for a description of this
+ * template's parameters.
+ */
+{template .buttonWithoutBorderImageStrict}
+  {call .buttonStrict data="all" }
+    {param borderImageClasses }
+      {css CSS_WUI_NO_BORDER_IMAGE}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Deprecated non-strict template.
+ * Renders a button with an image, text, or custom HTML. See
+ * wireless.soy.button.base.plainButtonStrict for a description of this template's
+ * parameters.
+ */
+{template .plainButton autoescape="contextual"}
+  {call wireless.soy.button.base.plainButton data="all" /}
+{/template}
+
+/**
+ * Deprecated non-strict template.
+ * Renders a button with an image, text, or custom HTML. See
+ * wireless.soy.button.base.plainButtonStrict for a description of this template's
+ * parameters.
+ * @param? imageClassesHtml
+ * @param? labelHtml
+ * @param? contentsHtml
+ * @param? buttonClassesHtml
+ * @param? borderImageClassesHtml
+ * @param? labelClassesHtml
+ * @param? extraEventArgument
+ */
+{template .pillButton autoescape="contextual"}
+  {call .pillButtonStrict data="all"}
+    {param imageClasses }
+      {if window.isNonnull($imageClassesHtml)}{$imageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelHtml }
+      {if window.isNonnull($labelHtml)}{$labelHtml|noAutoescape}{/if}
+    {/param}
+    {param contentsHtml }
+      {if window.isNonnull($contentsHtml)}{$contentsHtml|noAutoescape}{/if}
+    {/param}
+    {param buttonClasses }
+      {if window.isNonnull($buttonClassesHtml)}{$buttonClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param borderImageClasses }
+      {if window.isNonnull($borderImageClassesHtml)}{$borderImageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelClasses }
+      {if window.isNonnull($labelClassesHtml)}{$labelClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param extraEventArgument }
+      {if window.isNonnull($extraEventArgument)}{$extraEventArgument|noAutoescape}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a pill button. This template should never be called directly;
+ * instead, use wireless.soy.button.pill.{left,middle,right}Button. These
+ * templates all accept the same parameters as .button in addition to the
+ * parameters explicitly listed below.
+ * @param pillButtonClasses CSS class defining the pill button styles.
+ * @param pillBorderImageClasses CSS class containing the pill border image.
+ * @param? isSlave Whether the button should not toggle its own state.
+ * @param? buttonClasses
+ * @param? borderImageClasses
+ */
+{template .pillButtonStrict}
+  {call .buttonStrict data="all"}
+    {param isSticky: not $isSlave /}
+    {param buttonClasses }
+      {$pillButtonClasses}
+      {if $buttonClasses} {$buttonClasses}{/if}
+    {/param}
+    {param borderImageClasses }
+      {if $borderImageClasses}
+        {$borderImageClasses}
+      {else}
+        {$pillBorderImageClasses}
+      {/if}
+    {/param}
+  {/call}
+{/template}

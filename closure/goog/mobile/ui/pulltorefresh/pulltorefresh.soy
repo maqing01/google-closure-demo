@@ -1,0 +1,23 @@
+// Copyright 2011 Google Inc.
+// All Rights Reserved.
+// Author: rjfioravanti@google.com (Ryan Fioravanti)
+
+{namespace wireless.soy.pulltorefresh autoescape="contextual"}
+
+/**
+ * Renders the initial DOM for pull-to-refresh feature.
+ */
+{template .pullToRefresh}
+  <div class="{css CSS_WUI_BOX_FLEX}"></div>
+  <div class="{css CSS_PDTR_ITEM_INNER}">
+    <div class="{css CSS_PDTR_INDICATOR}">
+      <div class="{css CSS_PDTR_SPINNER}"></div>
+      <div class="{css CSS_WUI_IMG_PDTR_ARROW}"></div>
+    </div>
+    <div class="{css CSS_PDTR_LABEL}">
+      <div class="{css CSS_PDTR_LAST_REFRESHED}"></div>
+      <div class="{css CSS_PDTR_ITEM_DESC}"></div>
+    </div>
+  </div>
+  <div class="{css CSS_WUI_BOX_FLEX}"></div>
+{/template}

@@ -1,0 +1,29 @@
+@def JFK_FREESTANDING_MENU_BUTTON_BORDER              1px solid #e5e5e5;
+@def JFK_FREESTANDING_MENU_BUTTON_HEIGHT              11px;
+@def JFK_FREESTANDING_MENU_BUTTON_HOVER_BORDER_COLOR  #c6c6c6;
+@def JFK_FREESTANDING_MENU_BUTTON_WIDTH               11px;
+
+@def JFK_FREESTANDING_MENU_BUTTON_BACKGROUND
+    url()
+    center no-repeat;
+
+@def JFK_FREESTANDING_MENU_BUTTON_HOVER_BACKGROUND
+    url()
+    center no-repeat #eee;
+
+.jfk-freestanding-menu-button {
+  @mixin border_radius(1px);
+
+  background: JFK_FREESTANDING_MENU_BUTTON_BACKGROUND;
+  border: JFK_FREESTANDING_MENU_BUTTON_BORDER;
+  height: JFK_FREESTANDING_MENU_BUTTON_HEIGHT;
+  width: JFK_FREESTANDING_MENU_BUTTON_WIDTH;
+  cursor: pointer;
+}
+
+.jfk-freestanding-menu-button-hover,
+.jfk-freestanding-menu-button-active,
+.jfk-freestanding-menu-button-open {
+  background: JFK_FREESTANDING_MENU_BUTTON_HOVER_BACKGROUND;
+  border-color: JFK_FREESTANDING_MENU_BUTTON_HOVER_BORDER_COLOR;
+}

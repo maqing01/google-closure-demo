@@ -1,0 +1,56 @@
+{namespace controls.templates.checkbox}
+
+/**
+ * Renders the checkbox. Requires the associated checkbox.gss to render
+ * correctly.
+ * @param? attributes {string} Additional attributes to add, of
+ *     kind="attributes".
+ * @param? classes {string} Additional classes to apply to the checkbox.
+ * @param? checked {boolean} Whether to render the checkbox as checked.
+ * @param? disabled {boolean} Whether to render the checkbox as disabled.
+ * @param? id {string} The optional element id.
+ * @param? tabindex {number} An optional tabindex for the element.
+ * @param? undetermined {boolean} Whether to render the checkbox
+ *     as undetermined. This overrides the checked attribute.
+ * @param? ariaLabelledBy {string} Value to apply to the aria-labelledby
+ *     property.
+ */
+{template .main}
+<span class="{css controls-checkbox}{sp}{css goog-inline-block}
+             {if $undetermined}
+               {sp}{css controls-checkbox-undetermined}
+             {elseif $checked}
+               {sp}{css controls-checkbox-checked}
+             {else}
+               {sp}{css controls-checkbox-unchecked}
+             {/if}
+             {if $disabled}
+               {sp}{css controls-checkbox-disabled}
+             {/if}
+             {if $classes}{sp}{$classes}{/if}"
+//      role="checkbox"
+
+//      aria-checked="{if $undetermined}mixed{elseif $checked}true{else}false{/if}"
+//      {if $ariaLabelledBy}aria-labelledby="{$ariaLabelledBy}"{/if}
+
+      {if $id}
+        id="{$id}"
+      {/if}
+
+      {if $disabled}
+//        aria-disabled="true"
+        tabindex="-1"
+      {else}
+        tabindex="{if $tabindex}{$tabindex}{else}0{/if}"
+      {/if}
+
+      {if $attributes}
+        {sp}{$attributes}
+      {/if}
+
+      /* LTR is forced so that the checked sprite offset and width do not need
+         to be recalculated in RTL mode. */
+      dir="ltr">
+  <div class="{css controls-checkbox-checkmark}"></div>
+</span>
+{/template}

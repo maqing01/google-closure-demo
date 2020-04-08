@@ -1,0 +1,16 @@
+message ButtonProto {
+  enum Style {
+    STANDARD = 0;
+    DEFAULT = 1;
+    ACTION = 2;
+    PRIMARY = 3;
+    FLAT = 4;
+    MINI = 5;
+    CONTRAST = 6;
+  }
+
+  enum Width {
+    NORMAL = 0;
+    NARROW = 1;
+  }
+}

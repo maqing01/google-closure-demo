@@ -1,0 +1,76 @@
+/* Basic Kennedy typography. */
+@def CONTROLS_BASE_FONT_FAMILY                  Microsoft Yahei,arial,sans-serif;
+@def CONTROLS_BASE_FONT_LINE_HEIGHT             1.4;
+@def CONTROLS_BASE_FONT_SIZE_SMALL              11px;
+@def CONTROLS_BASE_FONT_SIZE_NORMAL             13px;
+@def CONTROLS_BASE_FONT_NORMAL
+    normal CONTROLS_BASE_FONT_SIZE_NORMAL CONTROLS_BASE_FONT_FAMILY;
+@def CONTROLS_BASE_FONT
+    normal CONTROLS_BASE_FONT_SIZE_NORMAL / CONTROLS_BASE_FONT_LINE_HEIGHT CONTROLS_BASE_FONT_FAMILY;
+
+/* Primary and secondary typography for body text. */
+@def CONTROLS_BASE_PRIMARY_TEXT_COLOR           #222;
+@def CONTROLS_BASE_SECONDARY_TEXT_FONT_SIZE     CONTROLS_BASE_FONT_SIZE_SMALL;
+@def CONTROLS_BASE_SECONDARY_TEXT_COLOR         #777;
+@def CONTROLS_BASE_SECONDARY_SOURCE_LINK_COLOR  #093;
+
+/* Product name typography. */
+@def CONTROLS_BASE_PRODUCT_NAME_TEXT_COLOR      #dd4b39;
+@def CONTROLS_BASE_PRODUCT_NAME_FONT_SIZE       20px;
+
+/* Section header typography. */
+@def CONTROLS_BASE_SECTION_HEADER_TEXT_COLOR    #222;
+@def CONTROLS_BASE_SECTION_HEADER_FONT_SIZE     16px;
+
+/* Link typography. */
+@def CONTROLS_BASE_LINK_COLOR                   #15c;
+@def CONTROLS_BASE_VISITED_LINK_COLOR           #61c;
+@def CONTROLS_BASE_ACTIVE_LINK_COLOR            #d14836;
+@def CONTROLS_BASE_DISABLED_LINK_COLOR          #ccc;
+@def CONTROLS_BASE_TITLE_LINK_COLOR             CONTROLS_BASE_LINK_COLOR;
+@def CONTROLS_BASE_TITLE_LINK_FONT_SIZE         CONTROLS_BASE_SECTION_HEADER_FONT_SIZE;
+
+@def CONTROLS_BASE_MENU_BG_COLOR                #fff;
+@def CONTROLS_BASE_MENU_TEXT_COLOR              #333;
+@def CONTROLS_BASE_MENU_BORDER                  1px solid #2895F1;
+@def CONTROLS_BASE_MENU_FALLBACK_BORDER         1px solid #2895F1;
+@def CONTROLS_BASE_MENU_SEPARATOR               1px solid #ebebeb;
+
+/* Shared text input @def. */
+@def CONTROLS_BASE_INPUT_BORDER_COLOR           #d9d9d9;
+@def CONTROLS_BASE_INPUT_BORDER_TOP_COLOR       #c0c0c0;
+@def CONTROLS_BASE_INPUT_FOCUS_BOX_SHADOW       0 1px 2px rgba(0, 0, 0, 0.3);
+@def CONTROLS_BASE_INPUT_FOCUS_BORDER_COLOR     #d9d9d9;
+
+@def CONTROLS_TOOLBAR_BUTTON_DISCLOSURE_ARROW
+    /*url(//static/yiqixie/sheets/grey-disclosure-arrow.png);*/
+url('/static/yiqixie/images/arrow.png');
+@def CONTROLS_TOOLBAR_BUTTON_DISCLOSURE_ARROW_SELECT
+url('/static/yiqixie/images/arrow.png');
+@def CONTROLS_TOOLBAR_BUTTON_SMALL_DISCLOSURE_ARROW
+    /*url(//static/yiqixie/sheets/small-grey-disclosure-arrow-down.png);*/
+url('/static/yiqixie/images/arrow.png');
+
+@def CONTROLS_TOOLBAR_BUTTON_DISCLOSURE_ARROW_SELECT_WHITE
+url('/static/yiqixie/images/arrowwhite.png');
+
+@def CONTROLS_ARROW_DROPDOWN
+url('/static/yiqixie/images/arrow.png');
+
+@def CONTROLS_SETTINGS_ICON_BG  url("");
+
+
+/* DEPRECATED: do not use these @defs on new gss. */
+
+@def CONTROLS_BASE_BORDER_SHADE_COLOR           #ececec;
+@def CONTROLS_BASE_ERROR_TEXT_COLOR             #f00;
+@def CONTROLS_BASE_FONT_SIZE_LARGE              110%;
+@def CONTROLS_BASE_FONT_TITLE                   bold 130% CONTROLS_BASE_FONT_FAMILY;
+@def CONTROLS_BASE_INPUT_FALLBACK_BORDER        CONTROLS_BASE_MENU_FALLBACK_BORDER;
+@def CONTROLS_BASE_INPUT_RGBA_BORDER            CONTROLS_BASE_MENU_BORDER;
+@def CONTROLS_BASE_INPUT_SEPARATOR              CONTROLS_BASE_MENU_SEPARATOR;
+@def CONTROLS_BASE_ONTOP_TEXT_COLOR             #fff;
+@def CONTROLS_BASE_SECONDARY_BG_COLOR           #e4ebf8;
+@def CONTROLS_BASE_SHADE_BG_COLOR               #f1f6fa;
+/*@def CONTROLS_TOOLBAR_BUTTON_SMALL_DISCLOSURE_ARROW_SELECT*/
+    /*url(//not-connected/ui/v1/disclosure/small-grey-disclosure-arrow-up-down.png);*/

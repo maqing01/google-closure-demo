@@ -1,0 +1,37 @@
+//syntax = "proto2";
+//
+//option java_package = "com.google.apps.office.diagnostics.impressions.proto";
+//option java_multiple_files = true;
+//option (jspb.js_namespace) = "office.diagnostics.impressions.proto";
+//option (logs_proto.file_not_used_for_logging_except_enums) = true;
+//
+//import "java/com/google/apps/jspb/jspb.proto";
+//import "logs/proto/logs_annotations/logs_annotations.proto";
+//
+//package office.diagnostics.impressions;
+
+// The version of the impression system generating and reporting impressions.
+// With this field, consumers of impressions data will know what to expect
+// from the data and process it accordingly. Optional versions are marked with
+// 'OPTIONAL', whereas mandatory ones are marked as 'MANDATORY'. See go/pcqgw
+// for more details.
+//
+// Next enum value: 4
+enum ImpressionSystemVersion {
+  // Optional fields default to the enum's first value, so this makes the
+  // default explicitly undefined instead of defaulting to some arbitrary,
+  // defined value.
+  UNDEFINED_V0 = 0;
+
+  // MANDATORY. This is the state the impression system was in before we
+  // introduced the version proto. Clients of the system must populate and log
+  // the ImpressionSystemVersion field in their batches.
+  V1_PRE_VERSIONING = 1;
+
+  // MANDATORY. Start-of-session and end-of-session impressions reported at
+  // the beginning and end of a session.
+  V2_START_AND_END_OF_SESSION_IMPRESSIONS = 2;
+
+  // MANDATORY. Heartbeats were introduced in this version.
+  V3_HEARTBEATS = 3;
+}

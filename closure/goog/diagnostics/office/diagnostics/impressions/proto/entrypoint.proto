@@ -1,0 +1,47 @@
+// Copyright 2011 Google Inc. All Rights Reserved.
+// Author: nikolasco@google.com (Nikolas Coukouma)
+
+//syntax = "proto2";
+//
+//option java_package = "com.google.apps.office.diagnostics.impressions.proto";
+//option java_multiple_files = true;
+//option (jspb.js_namespace) = "office.diagnostics.impressions.proto";
+//option (logs_proto.file_not_used_for_logging_except_enums) = true;
+//
+//import "java/com/google/apps/jspb/jspb.proto";
+//import "logs/proto/logs_annotations/logs_annotations.proto";
+//
+//package office.diagnostics.impressions;
+
+// Possible entry points for impressions
+// Next enum value: 22
+enum EntryPoint {
+  // If one is not specified explicitly, the default value for enum fields is
+  // the first one. So, do not move this below another value without first
+  // updating all proto fields of this type.
+  UNDEFINED_ENTRY_POINT = 21;
+
+  AUTOMATIC = 19;
+  BROWSER_ACTION = 13;
+  BUBBLE = 9;
+  BUTTER = 6;
+  CONTEXT_MENU = 0;
+  DIALOG = 1;
+  // This covers actions in the editor canvas, not everything in the editor.
+  EDITOR = 7;
+  FILMSTRIP = 14;
+  HEADER = 8;
+  IMPORT_WARNING = 15;
+  KEYBOARD_SHORTCUT = 2;
+  MENUBAR = 3;
+  MOBILE = 16;
+  MOUSE_SPECIAL = 17;
+  OMNIBOX = 5;
+  POP_UP_WINDOW = 12;
+  REFERENCE = 18;
+  RULER = 11;
+  SIDEBAR = 10;
+  TOOLBAR = 4;
+  // This is for assistive technology triggered actions (a11y).
+  USER_EVENT = 20;
+}

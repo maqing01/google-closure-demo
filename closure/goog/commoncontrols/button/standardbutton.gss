@@ -1,0 +1,89 @@
+/*.controls-button-standard {*/
+  /*@mixin box_shadow(CONTROLS_BUTTON_STANDARD_BOX_SHADOW);*/
+  /*@mixin linear_gradient(*/
+      /*CONTROLS_BUTTON_STANDARD_GRADIENT, CONTROLS_BUTTON_STANDARD_BG_COLOR);*/
+
+  /*color: CONTROLS_BUTTON_STANDARD_TEXT_COLOR;*/
+  /*!* @alternate *! border: 1px solid CONTROLS_BUTTON_STANDARD_BORDER_COLOR;*/
+  /*!* @alternate *! border: 1px solid CONTROLS_BUTTON_STANDARD_BORDER_COLOR_RGBA;*/
+/*}*/
+
+/*.controls-button-standard.controls-button-hover,*/
+/*.controls-button-standard.controls-button-clear-outline.controls-button-hover {*/
+  /*@mixin box_shadow(CONTROLS_BUTTON_STANDARD_HOVER_BOX_SHADOW);*/
+  /*@mixin linear_gradient(*/
+      /*CONTROLS_BUTTON_STANDARD_HOVER_GRADIENT, CONTROLS_BUTTON_STANDARD_HOVER_BG_COLOR);*/
+
+  /*border: 1px solid CONTROLS_BUTTON_STANDARD_HOVER_BORDER_COLOR;*/
+  /*color: CONTROLS_BUTTON_STANDARD_HOVER_TEXT_COLOR;*/
+/*}*/
+
+/*.controls-button-standard:active,*/
+/*.controls-button-standard.controls-button-hover:active {*/
+  /*@mixin box_shadow(CONTROLS_BUTTON_STANDARD_ACTIVE_BOX_SHADOW);*/
+  /*background: CONTROLS_BUTTON_STANDARD_ACTIVE_BG_COLOR;*/
+  /*color: CONTROLS_BUTTON_STANDARD_ACTIVE_TEXT_COLOR;*/
+/*}*/
+
+/*.controls-button-standard.controls-button-selected,*/
+/*.controls-button-standard.controls-button-clear-outline.controls-button-selected {*/
+  /*@mixin linear_gradient(*/
+      /*CONTROLS_BUTTON_STANDARD_SELECTED_GRADIENT,*/
+      /*CONTROLS_BUTTON_STANDARD_SELECTED_BG_COLOR);*/
+
+  /*border: 1px solid CONTROLS_BUTTON_STANDARD_SELECTED_BORDER_COLOR;*/
+  /*color: CONTROLS_BUTTON_STANDARD_SELECTED_TEXT_COLOR;*/
+/*}*/
+
+/*.controls-button-standard.controls-button-checked,*/
+/*.controls-button-standard.controls-button-clear-outline.controls-button-checked {*/
+  /*@mixin box_shadow(CONTROLS_BUTTON_STANDARD_CHECKED_BOX_SHADOW);*/
+  /*@mixin linear_gradient(*/
+      /*CONTROLS_BUTTON_STANDARD_CHECKED_GRADIENT,*/
+      /*CONTROLS_BUTTON_STANDARD_CHECKED_BG_COLOR);*/
+
+  /*border: 1px solid CONTROLS_BUTTON_STANDARD_CHECKED_BORDER_COLOR;*/
+  /*color: CONTROLS_BUTTON_STANDARD_CHECKED_TEXT_COLOR;*/
+/*}*/
+
+/*.controls-button-standard:focus {*/
+  /*border: 1px solid CONTROLS_BUTTON_STANDARD_FOCUS_BORDER_COLOR;*/
+  /*outline: CONTROLS_BUTTON_STANDARD_FOCUS_OUTLINE;*/
+/*}*/
+
+/*!* This class is applied to clear the above :focus style. *!*/
+/*.controls-button-standard.controls-button-clear-outline {*/
+  /*!* @alternate *! border: 1px solid CONTROLS_BUTTON_STANDARD_BORDER_COLOR;*/
+  /*!* @alternate *! border: 1px solid CONTROLS_BUTTON_STANDARD_BORDER_COLOR_RGBA;*/
+  /*outline: CONTROLS_BUTTON_STANDARD_FOCUS_CLEAR_OUTLINE;*/
+/*}*/
+
+/*.controls-button-standard.controls-button-disabled {*/
+  /*background: CONTROLS_BUTTON_STANDARD_DISABLED_BG_COLOR;*/
+  /*!* @alternate *! border: 1px solid CONTROLS_BUTTON_STANDARD_DISABLED_BORDER_COLOR;*/
+  /*!* @alternate *! border: 1px solid rgba(0,0,0,0.05);*/
+  /*color: CONTROLS_BUTTON_STANDARD_DISABLED_TEXT_COLOR;*/
+/*}*/
+
+/*!* For the standard button, the icon opacity should change on hover*/
+   /*and selection. *!*/
+
+/*!*  These opacity values need to be changed for when we have*/
+   /*all-black image assets. *!*/
+
+/*.controls-button-standard .controls-button-img {*/
+  /*!* filter:opacity interacts badly with alpha-channel PNGs on IE8 *!*/
+  /*opacity: CONTROLS_BUTTON_STANDARD_ICON_OPACITY;*/
+/*}*/
+
+/*.controls-button-standard.controls-button-checked .controls-button-img,*/
+/*.controls-button-standard.controls-button-selected .controls-button-img,*/
+/*.controls-button-standard.controls-button-hover .controls-button-img {*/
+  /*!* filter:opacity interacts badly with alpha-channel PNGs on IE8 *!*/
+  /*opacity: CONTROLS_BUTTON_STANDARD_ICON_HOVER_OPACITY;*/
+/*}*/
+
+/*.controls-button-standard.controls-button-disabled .controls-button-img {*/
+  /*filter: CONTROLS_BUTTON_STANDARD_ICON_DISABLED_FILTER;*/
+  /*opacity: CONTROLS_BUTTON_STANDARD_ICON_DISABLED_OPACITY;*/
+/*}*/

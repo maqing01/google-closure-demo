@@ -1,0 +1,29 @@
+//syntax = "proto2";
+//
+//option java_package = "com.google.apps.office.diagnostics.impressions.proto.impressiondetails";
+//option java_multiple_files = true;
+//option (jspb.js_namespace) = "office.diagnostics.impressions.proto.impressiondetails";
+//option (logs_proto.file_not_used_for_logging_except_enums) = true;
+//
+//import "java/com/google/apps/jspb/jspb.proto";
+//import "logs/proto/logs_annotations/logs_annotations.proto";
+//
+//package office.diagnostics.impressions.impressiondetails;
+
+//  Deprecate these in favor of ViewType
+// Homeroom view types.
+// Next enum value: 9
+enum HomeroomViewType {
+  // Optional fields default to the enum's first value, so this makes the
+  // default explicitly unknown instead of defaulting to some arbitrary value.
+  UNKNOWN_VIEW = 0;
+
+  ASSIGNMENT_DETAIL_VIEW = 1;
+  COURSE_STREAM_VIEW = 2;
+  HOME_VIEW = 3;
+  POST_DETAIL_VIEW = 4;
+  ROSTER_VIEW = 5;
+  SETTINGS_VIEW = 8;
+  SHORT_ANSWER_DETAIL_VIEW = 7;
+  STUDENT_ASSIGNMENTS_SUMMARY_VIEW = 6;
+}

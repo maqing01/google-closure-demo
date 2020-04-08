@@ -1,0 +1,148 @@
+/**
+ * Copyright 2011 Google Inc. All Rights Reserved.
+ *
+ * Styles for the Kennedy Radio Button.
+ *
+ * @author vbhasin@google.com (Vipul Bhasin)
+ */
+
+
+
+
+@if (!DISABLE_KENNEDY) {
+
+@def CONTROLS_RADIOBUTTON_UNCHECKED_FALLBACK_BG
+    url(//) -3px -3px;
+@def CONTROLS_RADIOBUTTON_CHECKED_FALLBACK_BG
+    url(//) -3px -3px;
+@def CONTROLS_RADIOBUTTON_UNCHECKED_DISABLED_FALLBACK_BG
+    url(//) -3px -3px;
+@def CONTROLS_RADIOBUTTON_CHECKED_DISABLED_FALLBACK_BG
+    url(//) -3px -3px;
+@def CONTROLS_RADIOBUTTON_UNCHECKED_FOCUSED_FALLBACK_BG
+    url(//) -3px -3px;
+@def CONTROLS_RADIOBUTTON_CHECKED_FOCUSED_FALLBACK_BG
+    url(//) -3px -3px;
+
+
+/* Since some CSS features are not supported in IE they are given with an image
+   fallback. To prevent this image to show in non IE browsers the background
+   declaration below is used to override the image background -- using a syntax
+   that is not supported in IE (i.e., a 4th opacity parameter). */
+@def CONTROLS_RADIOBUTTON_DISABLED_BORDER_COLOR
+    rgba(241, 241, 241, 1);
+
+@def CONTROLS_RADIOBUTTON_DISABLED_TEXT_COLOR
+    rgb(184, 184, 184);
+
+@def CONTROLS_RADIOBUTTON_CLEAR_BG
+    rgba(255, 255, 255, 0);
+
+.controls-radiobutton {
+  display: inline-block;
+  outline: none;
+  padding: 5px 7px;
+  position: relative;
+}
+
+.controls-radiobutton-radio {
+  @mixin border_radius(50%);
+  @mixin box_sizing(border-box);
+
+  /* We use background images for IE8 (and lower) for the radio button on the
+     page. For modern browsers, a combination of spans, border-radius, and
+     ::after is used to create the same effect.
+     Since IE8 doesn't understand 'rgba' and modern browsers do, we use it to
+     make IE8 honor the background-image and ignore the override that modern
+     browsers understand. End result => IE8 loads the image, modern browsers
+     do not... it's like magic! */
+  /* @alternate */ background: CONTROLS_RADIOBUTTON_UNCHECKED_FALLBACK_BG;
+  /* @alternate */ background: CONTROLS_RADIOBUTTON_CLEAR_BG;
+  border: 1px solid rgba(198, 198, 198, 1);
+  height: 15px;
+  left: 7px;
+  margin: 0;
+  outline: none;
+  position: absolute;
+  /* the 'selected' part of the button requires left text alignment */
+  text-align: left;
+  top: 6px;
+  width: 15px;
+}
+
+.controls-radiobutton:active .controls-radiobutton-radio {
+  background: rgba(235, 235, 235, 1);
+  border-color: rgba(182, 182, 182, 1);
+}
+
+.controls-radiobutton:hover .controls-radiobutton-radio {
+  @mixin box_shadow(inset 0 1px 1px rgba(0, 0, 0, .1));
+  border-color: rgba(182, 182, 182, 1);
+}
+
+.controls-radiobutton:focus .controls-radiobutton-radio {
+  border-color: rgba(77, 144, 254, 1);
+}
+
+.controls-radiobutton-checked .controls-radiobutton-radio {
+  /* @alternate */ background: CONTROLS_RADIOBUTTON_CHECKED_FALLBACK_BG;
+  /* @alternate */ background: CONTROLS_RADIOBUTTON_CLEAR_BG;
+}
+
+.controls-radiobutton.controls-radiobutton:focus .controls-radiobutton-radio {
+  /* @alternate */ background: CONTROLS_RADIOBUTTON_UNCHECKED_FOCUSED_FALLBACK_BG;
+  /* @alternate */ background: rgba(255, 255, 255, 0);
+}
+
+.controls-radiobutton-checked.controls-radiobutton:focus .controls-radiobutton-radio {
+  /* @alternate */ background: CONTROLS_RADIOBUTTON_CHECKED_FOCUSED_FALLBACK_BG;
+  /* @alternate */ background: rgba(255, 255, 255, 0);
+}
+
+.controls-radiobutton-checked .controls-radiobutton-radio::after {
+  @mixin border_radius(50%);
+
+  background: rgba(96, 96, 96, 1);
+  content: '';
+  display: block;
+  height: 7px;
+  left: 3px;
+  position: relative;
+  top: 3px;
+  width: 7px;
+}
+
+.controls-radiobutton .controls-radiobutton-label {
+  cursor: default;
+  margin-left: 22px;
+}
+
+.controls-radiobutton-disabled .controls-radiobutton-radio {
+  /* @alternate */ background: CONTROLS_RADIOBUTTON_UNCHECKED_DISABLED_FALLBACK_BG;
+  /* @alternate */ background: CONTROLS_RADIOBUTTON_CLEAR_BG;
+  border-color: CONTROLS_RADIOBUTTON_DISABLED_BORDER_COLOR;
+}
+
+.controls-radiobutton-disabled.controls-radiobutton-checked .controls-radiobutton-radio {
+  /* @alternate */ background: CONTROLS_RADIOBUTTON_CHECKED_DISABLED_FALLBACK_BG;
+  /* @alternate */ background: CONTROLS_RADIOBUTTON_CLEAR_BG;
+}
+
+.controls-radiobutton-disabled.controls-radiobutton-checked .controls-radiobutton-radio::after {
+  background: rgba(184, 184, 184, 1);
+}
+
+.controls-radiobutton-disabled .controls-radiobutton-label {
+  color: CONTROLS_RADIOBUTTON_DISABLED_TEXT_COLOR;
+}
+
+.controls-radiobutton-disabled:active .controls-radiobutton-radio,
+.controls-radiobutton-disabled:hover .controls-radiobutton-radio {
+  @mixin box_shadow(none);
+
+  background: rgba(255, 255, 255, 1);
+  border-color: CONTROLS_RADIOBUTTON_DISABLED_BORDER_COLOR;
+}
+
+
+}  /* @if (!DISABLE_KENNEDY) */

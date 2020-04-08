@@ -1,0 +1,308 @@
+// Copyright 2010 Google Inc. All Rights Reserved.
+// Author: mbolohan@google.com (Matthew Bolohan)
+
+/*
+ * Note: These templates are meant to override templates in the default
+ * namespace. Because Soy V2 doesn't allow overrides, new overrides need to be
+ * added to iphone_overrides.js.
+ */
+
+//  Remove dependencies from button.gss.
+
+{namespace wireless.soy.button.iphone autoescape="contextual"}
+
+/**
+ * Deprecated non-strict template.
+ * Renders a button that is styled like an iPhone toolbar button. See
+ * wireless.soy.button.base.plainButtonStrict for a description of this template's
+ * parameters.
+ * @param? labelClassesHtml
+ * @param? buttonClassesHtml
+ * @param? borderImageClassesHtml
+ */
+{template .button}
+  {call wireless.soy.button.base.button data="all"}
+    {param labelClassesHtml}
+      {css CSS_WUI_BUTTON_LABEL}{if $labelClassesHtml} {$labelClassesHtml}{/if}
+    {/param}
+    {param buttonClassesHtml}
+      {css CSS_WUI_IPHONE_BUTTON}{if $buttonClassesHtml} {$buttonClassesHtml}{/if}
+    {/param}
+    {param borderImageClassesHtml}
+      {if $borderImageClassesHtml}{$borderImageClassesHtml}{else}{css CSS_WUI_IMG_IPHONE_BUTTON} {css CSS_WUI_IMG_BUTTON}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a button that is styled like an iPhone toolbar button. Parameters
+ * are the same as for the wireless.soy.button.button template.
+ * @param? labelClasses
+ * @param? buttonClasses
+ * @param? borderImageClasses
+ */
+{template .buttonStrict autoescape="contextual"}
+  {call wireless.soy.button.base.buttonStrict data="all"}
+    {param labelClasses }
+      {css CSS_WUI_BUTTON_LABEL}{if $labelClasses} {$labelClasses}{/if}
+    {/param}
+    {param buttonClasses }
+      {css CSS_WUI_IPHONE_BUTTON}{if $buttonClasses} {$buttonClasses}{/if}
+    {/param}
+    {param borderImageClasses }
+      {if $borderImageClasses}{$borderImageClasses}
+      {else}{css CSS_WUI_IMG_IPHONE_BUTTON} {css CSS_WUI_IMG_BUTTON}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a button that is styled like an iPhone post button. Parameters
+ * are the same as for the wireless.soy.button.button template.
+ * @param? labelClassesHtml
+ * @param? buttonClassesHtml
+ * @param? borderImageClassesHtml
+ */
+{template .postButton}
+  {call wireless.soy.button.base.button data="all"}
+    {param labelClassesHtml}
+      {css CSS_WUI_BUTTON_LABEL}{if $labelClassesHtml} {$labelClassesHtml}{/if}
+    {/param}
+    {param buttonClassesHtml}
+      {css CSS_WUI_IPHONE_BUTTON} {css CSS_WUI_IPHONE_POST_BUTTON}{if $buttonClassesHtml} {$buttonClassesHtml}{/if}
+    {/param}
+    {param borderImageClassesHtml}
+      {if $borderImageClassesHtml}{$borderImageClassesHtml}{else}{css CSS_WUI_IMG_IPHONE_POST_BUTTON}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a button that is styled like an iPhone tab bar button. Parameters
+ * are the same as for the wireless.soy.button.button template.
+ * @param? buttonClassesHtml
+ * @param? borderImageClassesHtml
+ */
+{template .tabBarButton}
+  {call wireless.soy.button.base.button data="all"}
+    {param isSticky: true /}
+    {param buttonClassesHtml}
+      {css CSS_WUI_IPHONE_TAB_BAR_BUTTON}{if $buttonClassesHtml} {$buttonClassesHtml}{/if}
+    {/param}
+    {param borderImageClassesHtml}
+      {if $borderImageClassesHtml}{$borderImageClassesHtml}{else}{css CSS_WUI_IMG_IPHONE_TAB_BAR_BUTTON}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a button that is styled like an iPhone back toolbar button.
+ * Parameters are the same as for the wireless.soy.button.button template.
+ *  Get the images for the iphone styled back button.
+ */
+{template .arrowButton}
+  {call wireless.soy.button.base.button data="all"}
+    {param labelHtml}
+    {/param}
+    {param imageClassesHtml}
+      {css CSS_WUI_IMG_IPHONE_BACK_ARROW}
+    {/param}
+    {param buttonClassesHtml}
+      {css CSS_WUI_IPHONE_ARROW_BUTTON}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a button that is styled like an iPhone back toolbar button.
+ * Parameters are the same as for the wireless.soy.button.button template.
+ */
+{template .backButton}
+  {call .arrowButton data="all" /}
+{/template}
+
+/**
+ * Deprecated non-strict template.
+ * Renders the leftmost button in a pill button group. See
+ * wireless.soy.button.pillButton and wireless.soy.button.base.plainButtonStrict
+ * for a description of this template's parameters.
+ * @param? imageClassesHtml
+ * @param? labelHtml
+ * @param? contentsHtml
+ * @param? buttonClassesHtml
+ * @param? borderImageClassesHtml
+ * @param? labelClassesHtml
+ * @param? extraEventArgument
+ */
+{template .leftPillButton}
+  {call .leftPillButtonStrict data="all"}
+    {param imageClasses }
+      {if window.isNonnull($imageClassesHtml)}{$imageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelHtml }
+      {if window.isNonnull($labelHtml)}{$labelHtml|noAutoescape}{/if}
+    {/param}
+    {param contentsHtml }
+      {if window.isNonnull($contentsHtml)}{$contentsHtml|noAutoescape}{/if}
+    {/param}
+    {param buttonClasses }
+      {if window.isNonnull($buttonClassesHtml)}{$buttonClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param borderImageClasses }
+      {if window.isNonnull($borderImageClassesHtml)}{$borderImageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelClasses }
+      {if window.isNonnull($labelClassesHtml)}{$labelClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param extraEventArgument }
+      {if window.isNonnull($extraEventArgument)}{$extraEventArgument|noAutoescape}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders the leftmost button in a pill button group. See
+ * wireless.soy.button.pillButton for a description of this template's
+ * parameters.
+ * @param? isLight Determines if a light or dark pill button is shown.
+ * @param? notSticky True if button should not remain pressed when activated.
+ */
+{template .leftPillButtonStrict autoescape="contextual"}
+  {call wireless.soy.button.pillButtonStrict data="all"}
+    {param pillButtonClasses }
+      {if not $notSticky}{css CSS_WUI_BUTTON_PILL_LEFT_MARKER}{/if}{sp}
+      {css CSS_WUI_BUTTON_PILL_LEFT}
+    {/param}
+    {param pillBorderImageClasses }
+      {if hasData() and $isLight}
+        {css CSS_WUI_IMG_IPHONE_PILL_LIGHT_LEFT} {css CSS_WUI_IMG_IPHONE_BUTTON_LIGHT}
+      {else}
+        {css CSS_WUI_IMG_IPHONE_PILL_LEFT}
+      {/if}
+    {/param}
+    {param isSlave: $notSticky /}
+  {/call}
+{/template}
+
+/**
+ * Deprecated non-strict template.
+ * Renders a middle button in a pill button group. See
+ * wireless.soy.button.pillButton and wireless.soy.button.base.plainButtonStrict
+ * for a description of this template's parameters.
+ * @param? imageClassesHtml
+ * @param? labelHtml
+ * @param? contentsHtml
+ * @param? buttonClassesHtml
+ * @param? borderImageClassesHtml
+ * @param? labelClassesHtml
+ * @param? extraEventArgument
+ */
+{template .middlePillButton}
+  {call .middlePillButtonStrict data="all"}
+    {param imageClasses }
+      {if window.isNonnull($imageClassesHtml)}{$imageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelHtml }
+      {if window.isNonnull($labelHtml)}{$labelHtml|noAutoescape}{/if}
+    {/param}
+    {param contentsHtml }
+      {if window.isNonnull($contentsHtml)}{$contentsHtml|noAutoescape}{/if}
+    {/param}
+    {param buttonClasses }
+      {if window.isNonnull($buttonClassesHtml)}{$buttonClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param borderImageClasses }
+      {if window.isNonnull($borderImageClassesHtml)}{$borderImageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelClasses }
+      {if window.isNonnull($labelClassesHtml)}{$labelClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param extraEventArgument }
+      {if window.isNonnull($extraEventArgument)}{$extraEventArgument|noAutoescape}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a middle button in a pill button group. See
+ * wireless.soy.button.pillButton for a description of this template's
+ * parameters.
+ * @param? isLight Determines if a light or dark pill button is shown.
+ */
+{template .middlePillButtonStrict autoescape="contextual"}
+  {call wireless.soy.button.pillButtonStrict data="all"}
+    {param pillButtonClasses }
+      {css CSS_WUI_BUTTON_PILL_MIDDLE}
+    {/param}
+    {param pillBorderImageClasses }
+      {if hasData() and $isLight}
+        {css CSS_WUI_IMG_IPHONE_PILL_LIGHT_MIDDLE} {css CSS_WUI_IMG_IPHONE_BUTTON_LIGHT}
+      {else}
+        {css CSS_WUI_IMG_IPHONE_PILL_MIDDLE}
+      {/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Deprecated non-strict template.
+ * Renders the rightmost in a pill button group. See
+ * wireless.soy.button.pillButton and wireless.soy.button.base.plainButtonStrict
+ * for a description of this template's parameters.
+ * @param? imageClassesHtml
+ * @param? labelHtml
+ * @param? contentsHtml
+ * @param? buttonClassesHtml
+ * @param? borderImageClassesHtml
+ * @param? labelClassesHtml
+ * @param? extraEventArgument
+ */
+{template .rightPillButton}
+  {call .rightPillButtonStrict data="all"}
+    {param imageClasses }
+      {if window.isNonnull($imageClassesHtml)}{$imageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelHtml }
+      {if window.isNonnull($labelHtml)}{$labelHtml|noAutoescape}{/if}
+    {/param}
+    {param contentsHtml }
+      {if window.isNonnull($contentsHtml)}{$contentsHtml|noAutoescape}{/if}
+    {/param}
+    {param buttonClasses }
+      {if window.isNonnull($buttonClassesHtml)}{$buttonClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param borderImageClasses }
+      {if window.isNonnull($borderImageClassesHtml)}{$borderImageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelClasses }
+      {if window.isNonnull($labelClassesHtml)}{$labelClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param extraEventArgument }
+      {if window.isNonnull($extraEventArgument)}{$extraEventArgument|noAutoescape}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders the rightmost button in a pill button group. See
+ * wireless.soy.button.pillButton for a description of this template's
+ * parameters.
+ * @param? isLight Determines if a light or dark pill button is shown.
+ * @param? notSticky True if button should not remain pressed when activated.
+ */
+{template .rightPillButtonStrict autoescape="contextual"}
+  {call wireless.soy.button.pillButtonStrict data="all"}
+    {param pillButtonClasses }
+      {if not $notSticky}{css CSS_WUI_BUTTON_PILL_RIGHT_MARKER}{/if}{sp}
+      {css CSS_WUI_BUTTON_PILL_RIGHT}
+    {/param}
+    {param pillBorderImageClasses }
+      {if hasData() and $isLight}
+        {css CSS_WUI_IMG_IPHONE_PILL_LIGHT_RIGHT} {css CSS_WUI_IMG_IPHONE_BUTTON_LIGHT}
+      {else}
+        {css CSS_WUI_IMG_IPHONE_PILL_RIGHT}
+      {/if}
+    {/param}
+    {param isSlave: $notSticky /}
+  {/call}
+{/template}

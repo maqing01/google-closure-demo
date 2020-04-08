@@ -1,0 +1,30 @@
+
+// Author: braden@google.com (Braden Shepherdson)
+
+{namespace wireless.soy.button.tabs autoescape="contextual"}
+
+/**
+ * Renders a tab. Meant for placing in the tabsHtml parameter of a .tabBar (see
+ * below).
+ * @param controlType The control type to be sent when this tab is tapped.
+ * @param labelHtml The HTML for the label of this tab.
+ */
+{template .tab}
+  {call wireless.soy.button.base.plainButton data="all"}
+    {param buttonClassesHtml}
+      {css CSS_WUI_TAB_MARKER} {css CSS_WUI_TAB}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a tab bar, with Kennedy styling.
+ * Can be decorated as a wireless.ui.ButtonGroup.
+ * @param tabsHtml The HTML for the tabs (use the .tab template above).
+ */
+{template .tabBar}
+  <div class="{css CSS_WUI_TAB_BAR}">
+    {$tabsHtml |noAutoescape}
+  </div>
+{/template}
+

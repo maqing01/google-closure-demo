@@ -1,0 +1,67 @@
+/**
+ * Copyright 2011 Google Inc, All Rights Reserved
+ *
+ * Styles for the mini controls.Button (controls.MiniButton).
+ *
+ * @author ziegs@google.com (Matt Ziegelbaum)
+ */
+
+
+
+
+
+
+
+@if (!DISABLE_KENNEDY) {
+
+.controls-button-mini {
+  @mixin linear_gradient(
+      CONTROLS_BUTTON_MINI_GRADIENT, CONTROLS_BUTTON_MINI_BG_COLOR);
+
+  /* @alternate */ border: 1px solid CONTROLS_BUTTON_MINI_BORDER_COLOR;
+  /* @alternate */ border: 1px solid CONTROLS_BUTTON_MINI_BORDER_COLOR_RGBA;
+  color: CONTROLS_BUTTON_MINI_TEXT_COLOR;
+  height: CONTROLS_BUTTON_MINI_HEIGHT;
+  line-height: CONTROLS_BUTTON_MINI_HEIGHT;
+  min-width: 22px;
+  text-shadow: CONTROLS_BUTTON_MINI_TEXT_SHADOW;
+}
+
+.controls-button-mini.controls-button-hover,
+.controls-button-mini.controls-button-clear-outline.controls-button-hover {
+  @mixin linear_gradient(
+      CONTROLS_BUTTON_MINI_HOVER_GRADIENT, CONTROLS_BUTTON_MINI_HOVER_BG_COLOR);
+  border: 1px solid CONTROLS_BUTTON_MINI_HOVER_BORDER_COLOR;
+  text-shadow: CONTROLS_BUTTON_MINI_HOVER_TEXT_SHADOW;
+}
+
+.controls-button-mini:active {
+  @mixin box_shadow(CONTROLS_BUTTON_MINI_ACTIVE_BOX_SHADOW);
+}
+
+.controls-button-mini.controls-button-checked,
+.controls-button-mini.controls-button-clear-outline.controls-button-checked {
+  @mixin box_shadow(CONTROLS_BUTTON_MINI_CHECKED_BOX_SHADOW);
+  @mixin linear_gradient(
+      CONTROLS_BUTTON_MINI_CHECKED_GRADIENT,
+      CONTROLS_BUTTON_MINI_CHECKED_GRADIENT_FALLBACK_COLOR);
+  border: CONTROLS_BUTTON_MINI_CHECKED_BORDER;
+  color: CONTROLS_BUTTON_MINI_CHECKED_TEXT_COLOR;
+}
+
+.controls-button-mini:focus {
+  border: 1px solid CONTROLS_BUTTON_MINI_FOCUS_BORDER_COLOR;
+}
+
+.controls-button-mini.controls-button-clear-outline {
+  border: 1px solid CONTROLS_BUTTON_MINI_BORDER_COLOR;
+}
+
+.controls-button-mini.controls-button-disabled {
+  background: CONTROLS_BUTTON_MINI_DISABLED_BG_COLOR;
+  /* @alternate */ border: 1px solid CONTROLS_BUTTON_MINI_DISABLED_BORDER_COLOR;
+  /* @alternate */ border: 1px solid rgba(0,0,0,0.05);
+  color: CONTROLS_BUTTON_MINI_DISABLED_TEXT_COLOR;
+}
+
+}  /* @if (!DISABLE_KENNEDY) */

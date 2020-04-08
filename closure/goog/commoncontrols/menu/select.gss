@@ -1,0 +1,16 @@
+.controls-select .goog-flat-menu-button-caption {
+  /*
+   * These styles are needed when a width/max-width is added to the
+   * select button.
+   */
+  overflow: hidden;
+  width: 100%;
+}
+
+.controls-select .goog-flat-menu-button-dropdown {
+  background: CONTROLS_TOOLBAR_BUTTON_DISCLOSURE_ARROW_SELECT center no-repeat;
+  border: none;
+  height: 11px;
+  margin-top: -4px;
+  width: 7px;
+}

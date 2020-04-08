@@ -1,0 +1,55 @@
+// Copyright 2011 Google Inc. All Rights Reserved.
+// Author: nikolasco@google.com (Nikolas Coukouma)
+
+//syntax = "proto2";
+//
+//option java_package = "com.google.apps.office.diagnostics.impressions.proto.impressiondetails";
+//option java_multiple_files = true;
+//option (jspb.js_namespace) = "office.diagnostics.impressions.proto.impressiondetails";
+//option (logs_proto.file_not_used_for_logging_except_enums) = true;
+//
+//import "java/com/google/apps/jspb/jspb.proto";
+//import "logs/proto/logs_annotations/logs_annotations.proto";
+//
+//package office.diagnostics.impressions.impressiondetails;
+
+// Possible active contexts in alphabetical order.
+// Next enum value: 25
+enum ImpressionContext {
+  // If one is not specified explicitly, the default value for enum fields is
+  // the first one. So, do not move this below another value without first
+  // updating all proto fields of this type.
+  UNDEFINED_IMPRESSION_CONTEXT = 21;
+
+  // Kix contexts are determined by Features that have non-trivial
+  // implementations of locationHasFeature().
+  VODKA_AUTOTEXT = 0;
+  VODKA_BOOKMARK = 1;
+  VODKA_COMMENT = 2;
+  VODKA_EMBEDDED_ENTITY = 3;
+  VODKA_EQUATION = 4;
+  VODKA_FOOTNOTE = 5;
+  VODKA_HEADER_FOOTER = 6;
+  VODKA_HORIZONTAL_RULE = 7;
+  VODKA_LIST = 20;
+  VODKA_PAGE_BREAK = 8;
+  VODKA_SPELLCHECK = 11;
+  VODKA_TABLE = 9;
+  VODKA_TABLE_OF_CONTENTS = 10;
+
+  // Sketchy/Punch contexts are determined by what the user has selected at the
+  // time of the impression.
+  SKETCHY_ANIMATION = 12;
+  SKETCHY_CURRENT_PAGE = 13;
+  SKETCHY_PAGE = 14;
+  SKETCHY_PAGE_CURSOR = 15;
+  SKETCHY_SHAPE = 16;
+  SKETCHY_TABLE_BORDER = 17;
+  SKETCHY_TABLE_CELL = 18;
+  SKETCHY_TEXT = 19;
+
+  // Waffle contexts.
+  WAFFLE_GRID = 22;
+  WAFFLE_EMBEDDED_OBJECT = 23;
+  WAFFLE_EMBEDDED_OBJECT_SHEET = 24;
+}

@@ -1,0 +1,132 @@
+{namespace wireless.soy.toolbar autoescape="contextual"}
+
+/**
+ * @param? leftHtml
+ * @param? centerHtml
+ * @param? rightHtml
+ * @param? toolbarClassesHtml
+ * @param? backgroundClassesHtml
+ * @param? centerClassesHtml
+ * @param? shadowClassesHtml
+ * @param? extraContentHtml
+ */
+{template .toolbar autoescape="contextual"}
+  {call .toolbarImplStrict data="all"}{/call}
+{/template}
+
+/**
+ */
+{template .toolbarStrict}
+  {call .toolbarImplStrict data="all" /}
+{/template}
+
+/**
+ * @param? leftHtml
+ * @param? centerHtml
+ * @param? rightHtml
+ * @param? toolbarClassesHtml
+ * @param? backgroundClassesHtml
+ * @param? centerClassesHtml
+ * @param? shadowClassesHtml
+ * @param? extraContentHtml
+ */
+{template .toolbarImpl autoescape="contextual"}
+  {call .toolbarImplStrict data="all"}
+    {param leftHtml }
+      {if $leftHtml}{$leftHtml}{/if}
+    {/param}
+    {param centerHtml }
+      {if $centerHtml}{$centerHtml}{/if}
+    {/param}
+    {param rightHtml }
+      {if $rightHtml}{$rightHtml}{/if}
+    {/param}
+    {param toolbarClasses }
+      {if $toolbarClassesHtml}{$toolbarClassesHtml}{/if}
+    {/param}
+    {param backgroundClasses }
+      {if $backgroundClassesHtml}{$backgroundClassesHtml}{/if}
+    {/param}
+    {param centerClasses }
+      {if $centerClassesHtml}{$centerClassesHtml}{/if}
+    {/param}
+    {param shadowClasses }
+      {if $shadowClassesHtml}{$shadowClassesHtml}{/if}
+    {/param}
+    {param extraContentHtml }
+      {if $extraContentHtml}{$extraContentHtml}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * @param? leftHtml Markup for the left-aligned part of the toolbar.
+ * @param? centerHtml Markup for the centered part of the toolbar.
+ * @param? rightHtml Markup for the right-aligned part of the toolbar.
+ * @param? toolbarClasses CSS classes to apply to the toolbar's outer div.
+ *     All toolbars will always have the class CSS_WUI_TOOLBAR.
+ * @param? backgroundClasses CSS classes to apply the toolbar's background.
+ *     If no classes are provided, the default CSS_WUI_TOOLBAR_BACKGROUND will
+ *     be used.
+ * @param? centerClasses CSS classes to apply to the toolbar's center div.
+ *     All toolbars will always have the class CSS_WUI_TOOLBAR_MIDDLE in
+ *     addition to classes specified here. For example: to truncate text in the
+ *     center, use CSS_WUI_ELLIPSIS; to support buttons in the centerHtml, use
+ *     CSS_WUI_TOOLBAR_MIDDLE_BOX.
+ * @param? shadowBottom Whether to display a shadow at the bottom of the
+ *     toolbar.  Defaults to true, which is appropriate for a toolbar displayed
+ *     at the top of the page.
+ * @param? shadowTop Whether to display a shadow at the top of the toolbar.
+ * @param? shadowClasses CSS classes to apply to the toolbar's shadow div.
+ *     Defaults to an image that matches the default toolbar background image.
+ *     Note that there is currently no default top shadow image available, so
+ *     this parameter must be set in order for a shadow to appear when
+ *     shadowPosition is set to TOP.
+ * @param? toolbarId Id to assign to the outermost element.
+ * @param? extraContentHtml Html elements appended to the inside of the toolbar.
+ */
+{template .toolbarImplStrict}
+  // width:100% is required to override the CSS_WUI_IMG_BG which wants to
+  // make the DIV 1px wide.
+  <div class="{css CSS_WUI_TOOLBAR}
+      {if $toolbarClasses}
+        {sp}{$toolbarClasses}
+      {/if}
+      {if $backgroundClasses}
+        {sp}{$backgroundClasses}
+      {else}
+        {sp}{css CSS_WUI_IMG_BG} {css CSS_WUI_TOOLBAR_BACKGROUND}
+      {/if}"
+      {if $toolbarId}id="{$toolbarId}"{/if}
+      style="width: 100%;">
+//    {if $shadowTop}
+//      <div class="{if $shadowClasses}{$shadowClasses}
+//          {else}{css CSS_WUI_TOOLBAR_SHADOW_UP}{/if}"></div>
+//    {/if}
+    <div class="{css CSS_WUI_TOOLBAR_LEFT}">
+      {if $leftHtml}
+        {$leftHtml |noAutoescape}
+      {/if}
+    </div>
+    <div class="{css CSS_WUI_TOOLBAR_MIDDLE}
+        {if $centerClasses}
+          {sp}{$centerClasses}
+        {/if}">
+        {if $centerHtml}
+          {$centerHtml |noAutoescape}
+        {/if}
+    </div>
+    <div class="{css CSS_WUI_TOOLBAR_RIGHT}">
+      {if $rightHtml}
+        {$rightHtml |noAutoescape}
+      {/if}
+    </div>
+//    {if $shadowBottom or not goog.isDef($shadowBottom)}
+//      <div class="{if $shadowClasses}{$shadowClasses}
+//          {else}{css CSS_WUI_TOOLBAR_SHADOW}{/if}"></div>
+//    {/if}
+    {if $extraContentHtml}
+      {$extraContentHtml |noAutoescape}
+    {/if}
+  </div>
+{/template}

@@ -1,0 +1,174 @@
+// Copyright 2010 Google Inc. All Rights Reserved.
+// Author: nthomas@google.com (Neil Thomas)
+
+{namespace wireless.soy.dialog autoescape="contextual"}
+
+/**
+ * Deprecated non-strict template.
+ * Renders a modal dialog on top of the page contents. See .dialogStrict for a
+ * description of this template's parameters.
+ * @param? contentsHtml
+ * @param? toolbarHtml
+ */
+{template .dialog autoescape="contextual"}
+  {call .dialogStrict data="all"}
+    {param contentsHtml }
+      {if window.isNonnull($contentsHtml)}{$contentsHtml|noAutoescape}{/if}
+    {/param}
+    {param toolbarHtml }
+      {if window.isNonnull($toolbarHtml)}{$toolbarHtml|noAutoescape}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a modal dialog on top of the page contents.
+ * @param toolbarHtml Markup for a toolbar at the top of the dialog. The use of
+ *     the .toolbar template is recommended for this purpose.
+ * @param contentsHtml Markup for the main contents of the dialog.
+ * @param? extraContainerCssClasses CSS classes to apply to the container of the
+ *     dialog.
+ * @param? extraDialogCssClasses CSS classes to apply to the contents of the
+ *     dialog.
+ */
+{template .dialogStrict}
+  <div class="{css CSS_WUI_DIALOG} {css CSS_WUI_OVERLAY}">
+    <div class="{css CSS_WUI_DIALOG_INNER}{sp}
+      {if $extraContainerCssClasses}{$extraContainerCssClasses}{/if}">
+      {if $toolbarHtml}{$toolbarHtml}{/if}
+      <div class="{css CSS_WUI_DIALOG_CONTENTS}{sp}
+            {if $extraDialogCssClasses}{$extraDialogCssClasses}{/if}">
+        {$contentsHtml}
+      </div>
+    </div>
+  </div>
+{/template}
+
+/**
+ * Deprecated non-strict template.
+ * Renders a toolbar. See wireless.soy.toolbar.toolbarStrict for parameter descriptions.
+ * @param? leftHtml
+ * @param? centerHtml
+ * @param? rightHtml
+ * @param? toolbarClassesHtml
+ * @param? backgroundClassesHtml
+ * @param? centerClassesHtml
+ * @param? shadowClassesHtml
+ * @param? extraContentHtml
+ */
+{template .toolbar autoescape="contextual"}
+  {call .toolbarStrict data="all"}
+    {param leftHtml }
+      {if window.isNonnull($leftHtml)}{$leftHtml|noAutoescape}{/if}
+    {/param}
+    {param centerHtml }
+      {if window.isNonnull($centerHtml)}{$centerHtml|noAutoescape}{/if}
+    {/param}
+    {param rightHtml }
+      {if window.isNonnull($rightHtml)}{$rightHtml|noAutoescape}{/if}
+    {/param}
+    {param toolbarClasses }
+      {if window.isNonnull($toolbarClassesHtml)}{$toolbarClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param backgroundClasses }
+      {if window.isNonnull($backgroundClassesHtml)}{$backgroundClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param centerClasses }
+      {if window.isNonnull($centerClassesHtml)}{$centerClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param shadowClasses }
+      {if window.isNonnull($shadowClassesHtml)}{$shadowClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param extraContentHtml }
+      {if window.isNonnull($extraContentHtml)}{$extraContentHtml|noAutoescape}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a toolbar in the default dialog style. Parameters are the same as for
+ * the wireless.soy.toolbar.toolbar template. The .toolbarButton template is
+ * recommended for any buttons appearing in this toolbar.
+ * @param? leftHtml Markup for the left-aligned part of the toolbar.
+ * @param? centerHtml Markup for the centered part of the toolbar.
+ * @param? rightHtml Markup for the right-aligned part of the toolbar.
+ * @param? toolbarClasses CSS classes to apply to the toolbar's outer div.
+ *     All toolbars will always have the class CSS_WUI_TOOLBAR.
+ * @param? backgroundClasses CSS classes to apply the toolbar's background.
+ *     If no classes are provided, the default CSS_WUI_TOOLBAR_BACKGROUND will
+ *     be used.
+ * @param? centerClasses CSS classes to apply to the toolbar's center div.
+ *     All toolbars will always have the class CSS_WUI_TOOLBAR_MIDDLE in
+ *     addition to classes specified here. For example: to truncate text in the
+ *     center, use CSS_WUI_ELLIPSIS; to support buttons in the centerHtml, use
+ *     CSS_WUI_TOOLBAR_MIDDLE_BOX.
+ * @param? shadowClasses CSS classes to apply to the toolbar's shadow div.
+ *     Defaults to an image that matches the default toolbar background image.
+ *     Note that there is currently no default top shadow image available, so
+ *     this parameter must be set in order for a shadow to appear when
+ *     shadowPosition is set to TOP.
+ * @param? toolbarId Id to assign to the outermost element.
+ */
+{template .toolbarStrict}
+  {call wireless.soy.toolbar.toolbarImplStrict data="all"}
+    {param toolbarClasses }
+      {css CSS_WUI_DIALOG_TOOLBAR} {$toolbarClasses} {css CSS_WUI_IMG_DIALOG_TITLE_BLUE}
+    {/param}
+    {param shadowBottom: false /}
+  {/call}
+{/template}
+
+/**
+ * Deprecated non-strict template.
+ * Renders a button styled to match the default dialog toolbar style. See
+ * wireless.soy.button.base.plainButtonStrict for a description of this template's
+ * parameters.
+ * @param? imageClassesHtml
+ * @param? labelHtml
+ * @param? contentsHtml
+ * @param? buttonClassesHtml
+ * @param? borderImageClassesHtml
+ * @param? labelClassesHtml
+ * @param? extraEventArgument
+ */
+{template .toolbarButton autoescape="contextual"}
+  {call .toolbarButtonStrict data="all"}
+    {param imageClasses }
+      {if window.isNonnull($imageClassesHtml)}{$imageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelHtml }
+      {if window.isNonnull($labelHtml)}{$labelHtml|noAutoescape}{/if}
+    {/param}
+    {param contentsHtml }
+      {if window.isNonnull($contentsHtml)}{$contentsHtml|noAutoescape}{/if}
+    {/param}
+    {param buttonClasses }
+      {if window.isNonnull($buttonClassesHtml)}{$buttonClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param borderImageClasses }
+      {if window.isNonnull($borderImageClassesHtml)}{$borderImageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelClasses }
+      {if window.isNonnull($labelClassesHtml)}{$labelClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param extraEventArgument }
+      {if window.isNonnull($extraEventArgument)}{$extraEventArgument|noAutoescape}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a button styled to match the default dialog toolbar style.
+ * Parameters are the same as for the wireless.soy.button.button template.
+ * @param? buttonClasses CSS classes to be passed through to the button.
+ */
+{template .toolbarButtonStrict}
+  {call wireless.soy.button.buttonStrict data="all"}
+    {param buttonClasses }
+      {css CSS_WUI_IMG_BUTTON_DARK}
+      {if $buttonClasses}
+        {sp}{$buttonClasses}
+      {/if}
+    {/param}
+  {/call}
+{/template}

@@ -1,0 +1,28 @@
+/* Copyright 2010 Google Inc. All Rights Reserved. */
+
+/* This is a reset stylesheet: styles intended to remove the default styling
+   applied by browsers and provide a consistent starting point for applications
+   to define their own styles. */
+
+body,
+form,
+html,
+iframe,
+img,
+p,
+table {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  word-break: break-word;
+  -webkit-text-size-adjust: none;
+
+  /* This is required to make the styles on the background overlay for
+     //javascript/wireless/ui/dialog work properly. */
+  position: relative;
+}

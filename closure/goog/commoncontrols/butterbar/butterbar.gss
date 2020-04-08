@@ -1,0 +1,87 @@
+@def CONTROLS_BUTTERBAR_BORDER_RADIUS            2px;
+@def CONTROLS_BUTTERBAR_BORDER_STYLE             solid;
+@def CONTROLS_BUTTERBAR_BORDER_WIDTH             1px;
+@def CONTROLS_BUTTERBAR_FONT_SIZE                11px;
+@def CONTROLS_BUTTERBAR_HEIGHT                   40px;
+@def CONTROLS_BUTTERBAR_MINI_PADDING             2px 16px;
+@def CONTROLS_BUTTERBAR_PADDING                  0px 16px;
+@def CONTROLS_BUTTERBAR_SHADOW                   0px 2px 4px rgba(0,0,0,0.2);
+@def CONTROLS_BUTTERBAR_TRANSITION_IN            opacity 0.218s;
+@def CONTROLS_BUTTERBAR_TRANSITION_OUT           all 0 linear 1s, opacity 1s;
+
+@def CONTROLS_BUTTERBAR_ERROR_BG_COLOR           #484848;
+@def CONTROLS_BUTTERBAR_ERROR_BORDER_COLOR       #202020;
+@def CONTROLS_BUTTERBAR_ERROR_TEXT_COLOR         #fff;
+/*@def CONTROLS_BUTTERBAR_INFO_BG_COLOR            #2384d1;*/
+@def CONTROLS_BUTTERBAR_INFO_BG_COLOR            #ffffff;
+@def CONTROLS_BUTTERBAR_INFO_BORDER_COLOR        #2384d1;
+@def CONTROLS_BUTTERBAR_INFO_TEXT_COLOR          #2384d1;
+@def CONTROLS_BUTTERBAR_PROMO_BG_COLOR           #D6E9F8;
+@def CONTROLS_BUTTERBAR_PROMO_BORDER_COLOR       #4D90F0;
+@def CONTROLS_BUTTERBAR_PROMO_TEXT_COLOR         #333;
+@def CONTROLS_BUTTERBAR_WARNING_BG_COLOR         #e6685b;
+@def CONTROLS_BUTTERBAR_WARNING_BORDER_COLOR     #602019;
+@def CONTROLS_BUTTERBAR_WARNING_TEXT_COLOR       #fff;
+
+.controls-butterBar {
+  /*@mixin border_radius(CONTROLS_BUTTERBAR_BORDER_RADIUS);*/
+  /*@mixin box_shadow(CONTROLS_BUTTERBAR_SHADOW);*/
+  /*@mixin transition(CONTROLS_BUTTERBAR_TRANSITION_OUT);*/
+
+  /*border-style: CONTROLS_BUTTERBAR_BORDER_STYLE;*/
+  border-width: 0;
+  font-size: CONTROLS_BUTTERBAR_FONT_SIZE;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  padding: 0;
+  text-align: center;
+}
+
+.controls-butterBar-info {
+  /*background-color: CONTROLS_BUTTERBAR_INFO_BG_COLOR;*/
+  /*border-color: CONTROLS_BUTTERBAR_INFO_BORDER_COLOR;*/
+  /*color: CONTROLS_BUTTERBAR_INFO_TEXT_COLOR;*/
+  background: #737373;
+  color: #fff;
+}
+
+.controls-butterBar-error {
+  background-color: CONTROLS_BUTTERBAR_ERROR_BG_COLOR;
+  border-color: CONTROLS_BUTTERBAR_ERROR_BORDER_COLOR;
+  color: CONTROLS_BUTTERBAR_ERROR_TEXT_COLOR;
+}
+
+.controls-butterBar-promo {
+  background-color: CONTROLS_BUTTERBAR_PROMO_BG_COLOR;
+  border-color: CONTROLS_BUTTERBAR_PROMO_BORDER_COLOR;
+  color: CONTROLS_BUTTERBAR_PROMO_TEXT_COLOR;
+}
+
+.controls-butterBar-warning {
+  background-color: CONTROLS_BUTTERBAR_WARNING_BG_COLOR;
+  border-color: CONTROLS_BUTTERBAR_WARNING_BORDER_COLOR;
+  color: CONTROLS_BUTTERBAR_WARNING_TEXT_COLOR;
+  opacity: 1 !important;
+}
+
+.controls-butterBar-shown {
+  /*@mixin transition(CONTROLS_BUTTERBAR_TRANSITION_IN);*/
+
+  /*border-width: CONTROLS_BUTTERBAR_BORDER_WIDTH;*/
+  height: CONTROLS_BUTTERBAR_HEIGHT;
+  line-height: CONTROLS_BUTTERBAR_HEIGHT;
+  opacity: 1;
+  visibility: visible;
+  padding: CONTROLS_BUTTERBAR_PADDING;
+}
+
+.office-butterbar-link-nopad {
+  color: #f5d57a;
+  cursor: pointer;
+}
+
+.controls-butterBar-mini.controls-butterBar-shown {
+  padding: CONTROLS_BUTTERBAR_MINI_PADDING;
+}

@@ -1,0 +1,85 @@
+/**
+ * Copyright 2011 Google Inc, All Rights Reserved
+ *
+ * Styles for the default controls.Button (controls.DefaultButton).
+ *
+ * @author nnaze@google.com (Nathan Naze)
+ */
+
+
+
+
+
+
+@if (!DISABLE_KENNEDY) {
+
+@def CONTROLS_BUTTON_DEFAULT_BG_COLOR #3d9400;
+@def CONTROLS_BUTTON_DEFAULT_BORDER_COLOR #29691d;
+@def CONTROLS_BUTTON_DEFAULT_GRADIENT top,#3d9400,#398a00;
+@def CONTROLS_BUTTON_DEFAULT_TEXT_COLOR #fff;
+@def CONTROLS_BUTTON_DEFAULT_TEXT_SHADOW 0px 1px rgba(0,0,0,0.1);
+@def CONTROLS_BUTTON_DEFAULT_BOX_SHADOW none;
+
+@def CONTROLS_BUTTON_DEFAULT_HOVER_BG_COLOR #368200;
+@def CONTROLS_BUTTON_DEFAULT_HOVER_BORDER_COLOR #2d6200;
+@def CONTROLS_BUTTON_DEFAULT_HOVER_BOTTOM_BORDER_COLOR CONTROLS_BUTTON_DEFAULT_HOVER_BORDER_COLOR;
+@def CONTROLS_BUTTON_DEFAULT_HOVER_GRADIENT top,#3d9400,#368200;
+@def CONTROLS_BUTTON_DEFAULT_HOVER_TEXT_SHADOW 0px 1px rgba(0,0,0,0.3);
+@def CONTROLS_BUTTON_DEFAULT_HOVER_BOX_SHADOW none;
+
+@def CONTROLS_BUTTON_DEFAULT_ACTIVE_BOX_SHADOW inset 0px 1px 2px rgba(0, 0, 0, 0.3);
+@def CONTROLS_BUTTON_DEFAULT_ACTIVE_BG_COLOR CONTROLS_BUTTON_DEFAULT_HOVER_BG_COLOR;
+@def CONTROLS_BUTTON_DEFAULT_ACTIVE_BORDER_COLOR CONTROLS_BUTTON_DEFAULT_HOVER_BORDER_COLOR;
+@def CONTROLS_BUTTON_DEFAULT_ACTIVE_TOP_BORDER_COLOR CONTROLS_BUTTON_DEFAULT_HOVER_BORDER_COLOR;
+
+@def CONTROLS_BUTTON_DEFAULT_CLEAR_FOCUS_OUTLINE none;
+
+@def CONTROLS_BUTTON_DEFAULT_FOCUS_OUTLINE_IE8_FALLBACK
+    1px solid CONTROLS_BUTTON_DEFAULT_BG_COLOR;
+
+.controls-button-default {
+  @mixin box_shadow(CONTROLS_BUTTON_DEFAULT_BOX_SHADOW);
+  @mixin linear_gradient(
+      CONTROLS_BUTTON_DEFAULT_GRADIENT, CONTROLS_BUTTON_DEFAULT_BG_COLOR);
+
+  border: 1px solid CONTROLS_BUTTON_DEFAULT_BORDER_COLOR;
+  color: CONTROLS_BUTTON_DEFAULT_TEXT_COLOR;
+  text-shadow: CONTROLS_BUTTON_DEFAULT_TEXT_SHADOW;
+}
+
+/* Keep styles in order -- hover, focus, active */
+
+.controls-button-default.controls-button-hover {
+  @mixin box_shadow(CONTROLS_BUTTON_DEFAULT_HOVER_BOX_SHADOW);
+  @mixin linear_gradient(
+      CONTROLS_BUTTON_DEFAULT_HOVER_GRADIENT, CONTROLS_BUTTON_DEFAULT_HOVER_BG_COLOR);
+
+  border: 1px solid CONTROLS_BUTTON_DEFAULT_HOVER_BORDER_COLOR;
+  border-bottom: 1px solid CONTROLS_BUTTON_DEFAULT_HOVER_BOTTOM_BORDER_COLOR;
+  text-shadow: CONTROLS_BUTTON_DEFAULT_HOVER_TEXT_SHADOW;
+}
+
+.controls-button-default:focus {
+  @mixin controls_button_focus(CONTROLS_BUTTON_DEFAULT_FOCUS_OUTLINE_IE8_FALLBACK);
+}
+
+/* This class is applied to clear the above :focus style. */
+.controls-button-default.controls-button-clear-outline {
+  @mixin box_shadow(none);
+  outline: CONTROLS_BUTTON_DEFAULT_CLEAR_FOCUS_OUTLINE;
+}
+
+.controls-button-default:active {
+  @mixin box_shadow(CONTROLS_BUTTON_DEFAULT_ACTIVE_BOX_SHADOW);
+  background: CONTROLS_BUTTON_DEFAULT_ACTIVE_BG_COLOR;
+  border: 1px solid CONTROLS_BUTTON_DEFAULT_ACTIVE_BORDER_COLOR;
+  border-top: 1px solid CONTROLS_BUTTON_DEFAULT_ACTIVE_TOP_BORDER_COLOR;
+}
+
+.controls-button-default.controls-button-disabled {
+  background: CONTROLS_BUTTON_DEFAULT_BG_COLOR;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+}
+
+}  /* if (!DISABLE_KENNEDY) */

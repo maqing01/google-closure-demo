@@ -1,0 +1,162 @@
+.modal-dialog {
+  color: #333;
+  /*position: fixed;*/
+  z-index: 2001;
+  background-size: contain;
+  /*border: 1px solid #c4c4c4;*/
+  /*border-radius: 11px;*/
+  left: 50%;
+  top: 50%;
+  /*width: 350px;*/
+  -webkit-user-select: none;
+  margin: -10px;
+  overflow: hidden;
+  outline: none;
+
+
+  -webkit-box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  -moz-box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  box-shadow: 0 4px 8px rgba(0,0,0,.32), 0 8px 40px rgba(0,0,0,.4);
+  background: #fff;
+  background-clip: padding-box;
+  /*border: 1px solid #acacac;*/
+  /*border: 1px solid rgba(0,0,0,.333);*/
+  outline: 0;
+  position: absolute;
+  padding: 24px 32px;
+}
+
+.modal-dialog-bg {
+  background-color: white;
+  background-color: rgba(0, 0, 0, 0.54);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1990;
+  pointer-events: auto;
+}
+
+.modal-dialog-title {
+  /*background-color: #f8f8f9;*/
+  font-weight: bold;
+  font-size: 16px;
+  /*font-weight: 500;*/
+  line-height: 44px;
+  /*text-align: center;*/
+  position: relative;
+  height: 44px;
+  overflow: hidden;
+  /*border-bottom: 1px solid #c4c4c4;*/
+  cursor: default;
+}
+
+.modal-dialog-title-draggable {
+  cursor: move;
+}
+
+.modal-dialog-buttons {
+  display: block;
+  outline: none;
+  width: 100%;
+  margin-top: 1px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: #fff;
+  text-align: center;
+}
+
+/*.modal-dialog-buttons button {*/
+  /*font-size: 16px;*/
+  /*font-weight: 400;*/
+  /*color: #2384d1;*/
+  /*cursor: pointer;*/
+  /*display: inline-block;*/
+  /*margin: 10px;*/
+  /*border: #2384d1 solid 1px;*/
+  /*background-color: white;*/
+  /*padding: 5px 20px;*/
+/*}*/
+
+
+
+/*.modal-dialog-buttons .goog-buttonset-action {*/
+  /*@mixin linear_gradient(*/
+      /*CONTROLS_BUTTON_ACTION_GRADIENT, CONTROLS_BUTTON_ACTION_BG_COLOR);*/
+
+  /*border: 1px solid rgba(0,0,0,0.1);*/
+  /*color: white;*/
+  /*background-color: #4285f4;*/
+  /*background-image: -webkit-linear-gradient(top,#4285f4,#4787ed);*/
+/*}*/
+
+.modal-dialog-buttons .button-text {
+  padding: 11px 30px 11px 30px;
+  max-width: 120px;
+  line-height: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+
+.modal-dialog-buttons div {
+  font-size: 14px;
+  height: 36px;
+  line-height: 36px;
+  vertical-align: middle;
+  text-align: center;
+  border-radius: 2px;
+  cursor: pointer;
+  display: inline-block;
+  float: right;
+  color: #2785fc;
+}
+
+.modal-dialog-buttons div:hover {
+  background-color: rgba(153, 153, 153, 0.2);
+}
+
+/*.modal-dialog-buttons button {*/
+  /*!*background: #fff;*!*/
+  /*!*border: 1px solid #f3f3f3;*!*/
+  /*!*border: 1px solid rgba(0,0,0,0.05);*!*/
+  /*!*color: #b8b8b8;*!*/
+
+  /*-webkit-box-shadow: none;*/
+  /*-moz-box-shadow: none;*/
+  /*box-shadow: none;*/
+  /*background-color: #f5f5f5;*/
+  /*background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);*/
+  /*background-image: -moz-linear-gradient(top,#f5f5f5,#f1f1f1);*/
+  /*background-image: -ms-linear-gradient(top,#f5f5f5,#f1f1f1);*/
+
+  /*background-image: -o-linear-gradient(top,#f5f5f5,#f1f1f1);*/
+
+  /*!*background-image: -webkit-linear-gradient(top,#2383d1,#2374d1);*!*/
+
+  /*background-image: linear-gradient(top,#f5f5f5,#f1f1f1);*/
+  /*!*color: #333;*!*/
+  /*border: 1px solid #dcdcdc;*/
+  /*border: 1px solid rgba(0,0,0,0.1);*/
+
+
+  /*-webkit-border-radius: 2px;*/
+  /*-moz-border-radius: 2px;*/
+  /*border-radius: 2px;*/
+  /*cursor: default;*/
+  /*font-size: 11px;*/
+  /*text-align: center;*/
+  /*white-space: nowrap;*/
+  /*margin-right: 16px;*/
+  /*height: 29px;*/
+  /*line-height: 27px;*/
+  /*min-width: 70px;*/
+
+  /*outline: 0px;*/
+  /*padding: 0 8px;*/
+  /*!*color: white;*!*/
+/*}*/
+
+

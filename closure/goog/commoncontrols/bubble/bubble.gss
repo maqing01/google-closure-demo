@@ -1,0 +1,168 @@
+@def CONTROLS_BUBBLE_ARROW_WIDTH                 9px;
+@def CONTROLS_BUBBLE_ARROW_WIDTH_NEGATIVE        -9px;
+/* Should be 1px less than CONTROLS_BUBBLE_ARROW_WIDTH */
+@def CONTROLS_BUBBLE_ARROW_WIDTH_NOBORDER        8px;
+@def CONTROLS_BUBBLE_ARROW_WIDTH_NOBORDER_NEGATIVE -8px;
+@def CONTROLS_BUBBLE_ARROW_LENGTH                15px;
+
+@def CONTROLS_BUBBLE_BOX_SHADOW                  0 1px 3px rgba(0, 0, 0, .2);
+@def CONTROLS_BUBBLE_BG_COLOR                    #f0f0f0;
+@def CONTROLS_BUBBLE_BORDER_COLOR                #c4c4c4;
+@def CONTROLS_BUBBLE_BORDER_BOTTOM_COLOR         #a8a8a8;
+@def CONTROLS_BUBBLE_Z_INDEX                     1201;
+@def CONTROLS_BUBBLE_PADDING                     16px;
+
+@def CONTROLS_BUBBLE_CLOSE_ICON_URL
+  url("");
+    /*url("//not-connected/ui/v1/icons/common/x_8px.png");*/
+@def CONTROLS_BUBBLE_CLOSE_ICON_SIZE             21px;
+@def CONTROLS_BUBBLE_CLOSE_ICON_PADDING          2px;
+@def CONTROLS_BUBBLE_CLOSE_BUTTON_OPACITY        .4;
+@def CONTROLS_BUBBLE_CLOSE_BUTTON_FOCUS_OPACITY  .8;
+@def CONTROLS_BUBBLE_CLOSE_BUTTON_FOCUS_BORDER_COLOR  #2384d1;
+
+
+.controls-bubble {
+  @mixin box_shadow(CONTROLS_BUBBLE_BOX_SHADOW);
+
+  background-color: CONTROLS_BUBBLE_BG_COLOR;
+  border: 1px solid #2384d1;
+  padding: CONTROLS_BUBBLE_PADDING;
+  position: absolute;
+  z-index: CONTROLS_BUBBLE_Z_INDEX !important;
+}
+
+/*
+ *  Use :before for high-contrast a11y. It seems
+ * that this is causing the 'x' to disappear in IE8 (highly
+ * reproducible, but not in the demo). Please test in IE8, especially
+ * in property like Oz/GMail.
+ */
+.controls-bubble-closebtn {
+  background: CONTROLS_BUBBLE_CLOSE_ICON_URL no-repeat;
+  border: 1px solid transparent;
+  height: CONTROLS_BUBBLE_CLOSE_ICON_SIZE;
+  opacity: CONTROLS_BUBBLE_CLOSE_BUTTON_OPACITY;
+  outline: 0;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  width: CONTROLS_BUBBLE_CLOSE_ICON_SIZE;
+}
+
+.controls-bubble-closebtn:focus {
+  border: 1px solid CONTROLS_BUBBLE_CLOSE_BUTTON_FOCUS_BORDER_COLOR;
+  opacity: CONTROLS_BUBBLE_CLOSE_BUTTON_FOCUS_OPACITY;
+}
+
+/*
+ * Image-less arrows: the idea is to use 2 div elements that we
+ * placed on top of each other. We then use a border magic to create
+ * a triangle, one slightly smaller than the other.
+ *
+ *  If we are dropping support for IE7 completely,
+ * we can discard the 2 elements and use .controls-bubble-arrow:before and :after
+ * pseudo-elements with content: ""; to simulate the 2 elements.
+ *
+ *  Extract a template for the arrow part so we can
+ * create implementations of arrows with different width, length,
+ * border color, and background easily.
+ */
+
+.controls-bubble-arrow {
+  position: absolute;
+}
+
+.controls-bubble-arrow .controls-bubble-arrowimplbefore,
+.controls-bubble-arrow .controls-bubble-arrowimplafter {
+  display: block;
+  height: 0;
+  position: absolute;
+  width: 0;
+}
+
+.controls-bubble-arrow .controls-bubble-arrowimplbefore {
+  border: CONTROLS_BUBBLE_ARROW_WIDTH solid;
+}
+
+.controls-bubble-arrow .controls-bubble-arrowimplafter {
+  border: CONTROLS_BUBBLE_ARROW_WIDTH_NOBORDER solid;
+}
+
+.controls-bubble-arrowdown {
+  bottom: 0;
+}
+
+.controls-bubble-arrowup {
+  top: CONTROLS_BUBBLE_ARROW_WIDTH_NEGATIVE;
+}
+
+.controls-bubble-arrowleft {
+  left: CONTROLS_BUBBLE_ARROW_WIDTH_NEGATIVE;
+}
+
+.controls-bubble-arrowright {
+  right: 0;
+}
+
+.controls-bubble-arrowdown .controls-bubble-arrowimplbefore,
+.controls-bubble-arrowup .controls-bubble-arrowimplbefore {
+  border-color: CONTROLS_BUBBLE_BORDER_COLOR transparent;
+  left: CONTROLS_BUBBLE_ARROW_WIDTH_NEGATIVE;
+}
+
+.controls-bubble-arrowdown .controls-bubble-arrowimplbefore {
+  border-color: CONTROLS_BUBBLE_BORDER_BOTTOM_COLOR transparent;
+}
+
+.controls-bubble-arrowdown .controls-bubble-arrowimplafter,
+.controls-bubble-arrowup .controls-bubble-arrowimplafter {
+  border-color: #333;
+  left: CONTROLS_BUBBLE_ARROW_WIDTH_NOBORDER_NEGATIVE;
+}
+
+.controls-bubble-arrowdown .controls-bubble-arrowimplbefore {
+  border-bottom-width: 0;
+}
+
+.controls-bubble-arrowdown .controls-bubble-arrowimplafter {
+  border-bottom-width: 0;
+}
+
+.controls-bubble-arrowup .controls-bubble-arrowimplbefore {
+  border-top-width: 0;
+}
+
+.controls-bubble-arrowup .controls-bubble-arrowimplafter {
+  border-top-width: 0;
+  top: 1px;
+}
+
+.controls-bubble-arrowleft .controls-bubble-arrowimplbefore,
+.controls-bubble-arrowright .controls-bubble-arrowimplbefore {
+  border-color: transparent CONTROLS_BUBBLE_BORDER_COLOR;
+  top: CONTROLS_BUBBLE_ARROW_WIDTH_NEGATIVE;
+}
+
+.controls-bubble-arrowleft .controls-bubble-arrowimplafter,
+.controls-bubble-arrowright .controls-bubble-arrowimplafter {
+  border-color: transparent CONTROLS_BUBBLE_BG_COLOR;
+  top: CONTROLS_BUBBLE_ARROW_WIDTH_NOBORDER_NEGATIVE;
+}
+
+.controls-bubble-arrowleft .controls-bubble-arrowimplbefore {
+  border-left-width: 0;
+}
+
+.controls-bubble-arrowleft .controls-bubble-arrowimplafter {
+  border-left-width: 0;
+  left: 1px;
+}
+
+.controls-bubble-arrowright .controls-bubble-arrowimplbefore {
+  border-right-width: 0;
+}
+
+.controls-bubble-arrowright .controls-bubble-arrowimplafter {
+  border-right-width: 0;
+}

@@ -1,0 +1,94 @@
+// Copyright 20110 Google Inc. All Rights Reserved.
+
+{namespace wireless.soy.dialog.colorpicker autoescape="contextual"}
+
+/**
+ * Renders a modal dialog used to select a color from a color grid.
+ * @param contentsHtml Dialog contents.
+ * @param doneButtonLabel Label for the done button.
+ * @param? title The dialog title.
+ */
+{template .dialog}
+  {call wireless.soy.dialog.dialog}
+    {param toolbarHtml}
+      {call wireless.soy.dialog.toolbar}
+        {param leftHtml}
+          {call wireless.soy.dialog.toolbarButton}
+            {param imageClassesHtml}
+              {css CSS_WUI_IMG_ICON_STOP_WHITE}
+            {/param}
+            {param buttonClassesHtml}
+              {css CSS_WUI_BUTTON_X}
+            {/param}
+            {param controlType: wireless.ui.dialog.colorpicker.ControlType.CANCEL /}
+          {/call}
+        {/param}
+        {param centerHtml}
+          {if $title}
+            {$title}
+          {/if}
+        {/param}
+        {param rightHtml}
+            {call wireless.soy.dialog.toolbarButton}
+              {param labelHtml: $doneButtonLabel /}
+              {param controlType: wireless.ui.dialog.colorpicker.ControlType.DONE /}
+            {/call}
+        {/param}
+      {/call}
+    {/param}
+    {param contentsHtml}
+      {$contentsHtml |noAutoescape}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders the color grid.
+ * @param colors A list of colors that can be selected.
+ * @param currentlySelectedColor The currently selected color.
+ */
+{template .colorPicker}
+  <table class="{css CSS_WUI_COLOR_PICKER_TABLE}">
+    <tr>
+      {for $i in range(0, 5)}
+        {call .colorButton}
+          {param color: $colors[$i]/}
+          {param colorIndex: $i/}
+        {/call}
+      {/for}
+    </tr>
+    <tr>
+      {for $i in range(5, 10)}
+        {call .colorButton}
+          {param color: $colors[$i]/}
+          {param colorIndex: $i/}
+        {/call}
+      {/for}
+    </tr>
+  </table>
+  {call wireless.soy.dialog.toolbar}
+    {param leftHtml}
+      <div class="{css CSS_WUI_CURRENT_COLOR_DISPLAY}"
+           style="background: rgba({$currentlySelectedColor[0]}, {$currentlySelectedColor[1]}, {$currentlySelectedColor[2]}, {$currentlySelectedColor[3]});">
+      </div>
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Applies style and color to a cell in the color grid.
+ * @param color The color to set the background of the button as.
+ * @param colorIndex The color index.
+ */
+{template .colorButton}
+  <td class="{css CSS_WUI_COLOR_PICKER_CELL}"
+      style="background: rgba({$color[0]}, {$color[1]}, {$color[2]}, {$color[3]})">
+    {call wireless.soy.button.base.plainButton}
+      {param controlType: wireless.ui.dialog.colorpicker.ControlType.SELECT /}
+      {param extraEventArgument: $colorIndex /}
+      {param buttonClassesHtml}
+         {css CSS_WUI_COLOR_PICKER_BTN}
+      {/param}
+    {/call}
+  </td>
+{/template}

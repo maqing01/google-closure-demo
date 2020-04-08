@@ -1,0 +1,152 @@
+/*
+ * NOTE(chrishenry): Do not add pointer-events: none; to disabled button.
+ * TooltipManager requires pointer events to show tooltips. We still
+ * want to show tooltip for disabled buttons to conform with default
+ * browser behavior and so that users still can figure out what a
+ * button means. This is especially important since Kennedy design
+ * utilizes image caption in place of text caption.
+ */
+
+/* Common button styles */
+.controls-button {
+  /*@mixin border_radius(CONTROLS_BUTTON_COMMON_BORDER_RADIUS);*/
+
+  /*cursor: CONTROLS_BUTTON_COMMON_CURSOR;*/
+  /*font-size: CONTROLS_BUTTON_COMMON_FONT_SIZE;*/
+  /*font-weight: CONTROLS_BUTTON_COMMON_FONT_WEIGHT;*/
+  /*text-align: center;*/
+  /*white-space: nowrap;*/
+
+  /*margin-right: 16px;*/
+
+  /*!* dimensions *!*/
+  /*height: CONTROLS_BUTTON_COMMON_HEIGHT;*/
+  /*line-height: CONTROLS_BUTTON_COMMON_HEIGHT;*/
+  /*min-width: 54px;*/
+  /*outline: 0px;*/
+  /*padding: 0 8px;*/
+
+
+  font-size: 14px;
+  height: 36px;
+  line-height: 36px;
+  vertical-align: middle;
+  text-align: center;
+  border-radius: 2px;
+  cursor: pointer;
+  display: inline-block;
+  /*float: right;*/
+  color: #2785fc;
+}
+
+.controls-button:hover {
+  background-color: rgba(153, 153, 153, 0.2);
+}
+
+.controls-button span {
+  padding: 11px 30px 11px 30px;
+  max-width: 120px;
+  line-height: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+
+.controls-button-hover {
+  /*@mixin box_shadow(CONTROLS_BUTTON_COMMON_HOVER_BOX_SHADOW);*/
+}
+
+.controls-button-selected {
+  /*@mixin box_shadow(inset 0px 1px 2px rgba(0, 0, 0, 0.1));*/
+}
+
+/* Icon and label content styles */
+
+.controls-button .controls-button-img {
+  margin-top: -3px;
+  vertical-align: middle;
+}
+
+.controls-button-label {
+  margin-left: 5px;
+}
+
+/* Width */
+
+.controls-button-narrow {
+  min-width:27px;
+  padding:0;
+}
+
+/* Collapsed buttons */
+
+/*
+ * To create the collapsed button, we actually overlap the collapsed buttons
+ * by 1px, causing the left border of the right button to overlap on top
+ * of the left button. In the following 3 rules, we add z-indices such
+ * that the correct border is visible.
+ */
+.controls-button-collapse-left, .controls-button-collapse-right {
+  z-index: 1;
+}
+
+.controls-button-collapse-left.controls-button-disabled {
+  z-index: 0;
+}
+
+.controls-button-checked.controls-button-collapse-left,
+.controls-button-checked.controls-button-collapse-right {
+  z-index: 2
+}
+
+.controls-button-collapse-left:focus,
+.controls-button-collapse-right:focus,
+.controls-button-hover.controls-button-collapse-left,
+.controls-button-hover.controls-button-collapse-right {
+  z-index: 3;
+}
+
+/*
+ * NOTE(chrishenry): goog.ui.Button already has a logic to determine
+ * whether to add controls-button-collapse-left or -right class name correctly
+ * depending on whether the button is LTR/RTL. So we should not let
+ * the css compiler performs flipping in these 2 selectors.
+ */
+.controls-button-collapse-left {
+  /* Causes border to overlap with neighboring button to form a 1px border. */
+  /* @noflip */ margin-left: -1px;
+
+  /* @noflip */ -moz-border-radius-bottomleft: 0;
+  /* @noflip */ -moz-border-radius-topleft: 0;
+  /* @noflip */ -webkit-border-bottom-left-radius: 0;
+  /* @noflip */ -webkit-border-top-left-radius: 0;
+  /* @noflip */ border-bottom-left-radius: 0;
+  /* @noflip */ border-top-left-radius: 0;
+}
+
+.controls-button-collapse-right {
+  /* @noflip */ margin-right: 0px;
+
+  /* @noflip */ -moz-border-radius-topright: 0;
+  /* @noflip */ -moz-border-radius-bottomright: 0;
+  /* @noflip */ -webkit-border-top-right-radius: 0;
+  /* @noflip */ -webkit-border-bottom-right-radius: 0;
+  /* @noflip */ border-top-right-radius: 0;
+  /* @noflip */ border-bottom-right-radius: 0;
+}
+
+/* Disabled button */
+
+/*
+ * NOTE(chrishenry): disabled button should not have :active state.
+ * One option is to specify active state using controls-button-active
+ * class name provided by Closure to style active button (which will
+ * not be activated on disabled button). We opted to use :active
+ * instead (for better performance), hence requiring us to override
+ * all :active style for disabled button. Currently, this is only
+ * box-shadow.
+ */
+.controls-button.controls-button-disabled:active {
+  @mixin box_shadow(none);
+}

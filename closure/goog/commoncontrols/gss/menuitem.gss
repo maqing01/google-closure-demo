@@ -1,0 +1,157 @@
+@def CONTROLS_MENUITEM_ACCEL_TEXT_PADDING         6px;
+@def CONTROLS_MENUITEM_CHECKBOX_BACKGROUND_POS    left center;
+@def CONTROLS_MENUITEM_CHECKBOX_BACKGROUND_REPEAT no-repeat;
+@def CONTROLS_MENUITEM_CHECKBOX_LEFT              3px;
+@def CONTROLS_MENUITEM_CHECKBOX_TOP               3px;
+@def CONTROLS_MENUITEM_CHECKBOX_PADDING           30px;
+@def CONTROLS_MENUITEM_CHECKBOX_SIZE              21px;
+@def CONTROLS_MENUITEM_DISABLED_TEXT_COLOR        CONTROLS_BASE_DISABLED_LINK_COLOR;
+@def CONTROLS_MENUITEM_DISABLED_OPACITY           0.3;
+@def CONTROLS_MENUITEM_DISABLED_FILTER_OPACITY    30;
+/*  Move this color to base.gss? */
+@def CONTROLS_MENUITEM_HOVER_BG_COLOR             #eee;
+@def CONTROLS_MENUITEM_HOVER_COLOR                #eee;
+/* CONTROLS_MENUITEM_PADDING_TOP - 1 */
+@def CONTROLS_MENUITEM_HOVER_VERTICAL_PADDING     5px;
+@def CONTROLS_MENUITEM_MARGIN                     0;
+@def CONTROLS_MENUITEM_MNEMONIC_SEPARATOR_FONTSIZE 12px;
+@def CONTROLS_MENUITEM_MNEMONIC_SEPARATOR_PADDING 4px;
+@def CONTROLS_MENUITEM_PADDING_TOP                6px;
+@def CONTROLS_MENUITEM_PADDING_RIGHT              8em;
+@def CONTROLS_MENUITEM_NOACCEL_PADDING_RIGHT      44px;
+@def CONTROLS_MENUITEM_PADDING_LEFT               16px;
+@def CONTROLS_MENUITEM_SELECTED_TEXT_COLOR        CONTROLS_BASE_MENU_TEXT_COLOR;
+@def CONTROLS_MENUITEM_SHORTCUT_TEXT_COLOR        CONTROLS_BASE_SECONDARY_TEXT_COLOR;
+@def CONTROLS_MENUITEM_TEXT_COLOR                 CONTROLS_BASE_MENU_TEXT_COLOR;
+
+@def CONTROLS_MENUITEM_CHECKBOX_BACKGROUND_IMAGE
+    url(/static/yiqixie/images/checkmark-black.png);
+
+@def CONTROLS_MENUITEM_CHECKBOX_BACKGROUND_IMAGE_WHITE
+    url(/static/yiqixie/images/checkmark-white.png);
+
+
+/* State: resting. */
+.goog-menuitem, .goog-tristatemenuitem, .goog-filterobsmenuitem {
+  position: relative;
+  color: CONTROLS_MENUITEM_TEXT_COLOR;
+  cursor: pointer;
+  list-style: none;
+  margin: CONTROLS_MENUITEM_MARGIN;
+  padding: CONTROLS_MENUITEM_PADDING_TOP CONTROLS_MENUITEM_PADDING_RIGHT
+           CONTROLS_MENUITEM_PADDING_TOP CONTROLS_MENUITEM_CHECKBOX_PADDING;
+  white-space: nowrap;
+}
+
+/*
+ * If a menu doesn't have checkable items or items with icons, remove
+ * padding.
+ */
+.goog-menu-nocheckbox .goog-menuitem,
+.goog-menu-noicon .goog-menuitem {
+  padding-left: CONTROLS_MENUITEM_PADDING_LEFT;
+  vertical-align: middle;
+}
+
+/*
+ * If a menu doesn't have items with shortcuts, leave just enough room for
+ * submenu arrows, if they are rendered.
+ */
+.goog-menu-noaccel .goog-menuitem {
+  padding-right: CONTROLS_MENUITEM_NOACCEL_PADDING_RIGHT;
+}
+
+/* State: disabled. */
+.goog-menuitem-disabled {
+  cursor: default;
+}
+
+.goog-menuitem-disabled .goog-menuitem-accel,
+.goog-menuitem-disabled .goog-menuitem-content {
+  color: CONTROLS_MENUITEM_DISABLED_TEXT_COLOR !important;
+}
+
+.goog-menuitem-disabled .goog-menuitem-icon {
+  filter: alpha(opacity=CONTROLS_MENUITEM_DISABLED_FILTER_OPACITY);
+  opacity: CONTROLS_MENUITEM_DISABLED_OPACITY;
+}
+
+/* State: hover. */
+.goog-menuitem-highlight,
+.goog-menuitem-hover {
+  background-color: #ececec;
+
+  /* We set an explicit top and bottom border for high-contrast mode. */
+  /*border-color: CONTROLS_MENUITEM_HOVER_COLOR;*/
+  /*border-style: dotted;*/
+  /*border-width: 1px 0;*/
+  /*padding-top:  CONTROLS_MENUITEM_HOVER_VERTICAL_PADDING;*/
+  /*padding-bottom: CONTROLS_MENUITEM_HOVER_VERTICAL_PADDING;*/
+}
+
+.goog-menuitem-highlight .goog-menuitem-content,
+.goog-menuitem-hover .goog-menuitem-content {
+  color: CONTROLS_MENUITEM_SELECTED_TEXT_COLOR;
+}
+
+/* State: selected/checked. */
+.goog-menuitem-checkbox,
+.goog-menuitem-icon {
+  background-repeat: no-repeat;
+  height: CONTROLS_MENUITEM_CHECKBOX_SIZE;
+  left: CONTROLS_MENUITEM_CHECKBOX_LEFT;
+  position: absolute;
+  right: auto;
+  top: CONTROLS_MENUITEM_CHECKBOX_TOP;
+  vertical-align: middle;
+  width: CONTROLS_MENUITEM_CHECKBOX_SIZE;
+}
+
+/*.goog-option,*/
+.goog-option-selected {
+  background-image: CONTROLS_MENUITEM_CHECKBOX_BACKGROUND_IMAGE;
+  background-repeat: CONTROLS_MENUITEM_CHECKBOX_BACKGROUND_REPEAT;
+  background-position: CONTROLS_MENUITEM_CHECKBOX_BACKGROUND_POS;
+}
+
+.docker-paragraph-menu .goog-option-selected {
+  background-image: CONTROLS_MENUITEM_CHECKBOX_BACKGROUND_IMAGE_WHITE;
+}
+
+/**
+ *  left center here is a workaround for b/10616087  Remove this
+ * block once the bug is fixed.
+ */
+@if (SCS_BIDI) {
+  .goog-option-selected {
+    background-position: left center;
+  }
+}
+
+.goog-option-selected .goog-menuitem-content,
+.goog-option-selected .goog-menuitem-content {
+  color: CONTROLS_MENUITEM_SELECTED_TEXT_COLOR;
+}
+
+/* Keyboard shortcut ("accelerator") style. */
+.goog-menuitem-accel {
+  color: CONTROLS_MENUITEM_SHORTCUT_TEXT_COLOR;
+  /* Keyboard shortcuts are untranslated; always left-to-right. */
+  /* @noflip */ direction: ltr;
+  left: auto;
+  padding: 0 CONTROLS_MENUITEM_ACCEL_TEXT_PADDING;
+  position: absolute;
+  right: 0;
+  text-align: right;
+}
+
+/* Mnemonic styles. */
+.goog-menuitem-mnemonic-hint {
+  text-decoration: underline;
+}
+
+.goog-menuitem-mnemonic-separator {
+  color: CONTROLS_MENUITEM_SHORTCUT_TEXT_COLOR;
+  font-size: CONTROLS_MENUITEM_MNEMONIC_SEPARATOR_FONTSIZE;
+  padding-left: CONTROLS_MENUITEM_MNEMONIC_SEPARATOR_PADDING;
+}

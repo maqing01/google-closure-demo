@@ -1,0 +1,39 @@
+/* Copyright 2012 Google Inc. All Rights Reserved. */
+/* Styles for Kennedy tab bars. */
+/* Author: braden@google.com (Braden Shepherdson) */
+
+@def WUI_TAB_HEIGHT 36px;
+@def WUI_TAB_TEXT_COLOR #fff;
+@def WUI_TAB_BACKGROUND_COLOR #404040;
+@def WUI_TAB_ACTIVE_BACKGROUND_COLOR #222;
+@def WUI_TAB_ACTIVE_BORDER_COLOR #000;
+@def WUI_TAB_LEFT_BORDER_COLOR #535353;
+@def WUI_TAB_RIGHT_BORDER_COLOR #393939;
+
+.CSS_WUI_TAB {
+  background-color: WUI_TAB_BACKGROUND_COLOR;
+  border-bottom: 1px solid WUI_TAB_ACTIVE_BORDER_COLOR;
+  border-left: 1px solid WUI_TAB_LEFT_BORDER_COLOR;
+  border-right: 1px solid WUI_TAB_RIGHT_BORDER_COLOR;
+  color: WUI_TAB_TEXT_COLOR;
+  display: table-cell;
+  font-weight: bold;
+  line-height: WUI_TAB_HEIGHT;
+  min-height: WUI_TAB_HEIGHT;
+  overflow: hidden;
+  text-align: center;
+}
+
+.CSS_WUI_TAB.CSS_WUI_ACTIVE,
+.CSS_WUI_TAB.CSS_WUI_PRESSED {
+  background-color: WUI_TAB_ACTIVE_BACKGROUND_COLOR;
+  border-left: 1px solid WUI_TAB_ACTIVE_BORDER_COLOR;
+  border-right: 1px solid WUI_TAB_ACTIVE_BORDER_COLOR;
+  text-shadow: none;
+}
+
+.CSS_WUI_TAB_BAR {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}

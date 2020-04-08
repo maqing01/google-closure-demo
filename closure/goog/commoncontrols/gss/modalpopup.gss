@@ -1,0 +1,32 @@
+@def CONTROLS_MODAL_POPUP_BOX_SHADOW           0 4px 16px rgba(0, 0, 0, .2);
+@def CONTROLS_MODAL_POPUP_BACKGROUND           #fff;
+@def CONTROLS_MODAL_POPUP_BORDER_FALLBACK_BORDER  1px solid #acacac;
+@def CONTROLS_MODAL_POPUP_BORDER               1px solid rgba(0, 0, 0, .333);
+
+@def CONTROLS_MODAL_POPUP_MASK_BACKGROUND      #fff;
+@def CONTROLS_MODAL_POPUP_MASK_OPACITY         .75;
+@def CONTROLS_MODAL_POPUP_MASK_OPACITY_IE      alpha(opacity=75);
+
+.goog-modalpopup, .modal-dialog {
+  @mixin box_shadow(CONTROLS_MODAL_POPUP_BOX_SHADOW);
+
+  background: CONTROLS_MODAL_POPUP_BACKGROUND;
+  background-clip: padding-box;
+  /* @alternate */ border: CONTROLS_MODAL_POPUP_BORDER_FALLBACK_BORDER;
+  /* @alternate */ border: CONTROLS_MODAL_POPUP_BORDER;
+  outline: 0;
+  position: absolute;
+}
+
+.goog-modalpopup-bg, .modal-dialog-bg {
+  background: CONTROLS_MODAL_POPUP_MASK_BACKGROUND;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+div.goog-modalpopup-bg, div.modal-dialog-bg {
+  filter: CONTROLS_MODAL_POPUP_MASK_OPACITY_IE;
+  -moz-opacity: CONTROLS_MODAL_POPUP_MASK_OPACITY;
+  opacity: CONTROLS_MODAL_POPUP_MASK_OPACITY;
+}

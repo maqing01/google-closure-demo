@@ -1,0 +1,43 @@
+.controls-textinput {
+  /*@mixin border_radius(1px);*/
+  /*border: 1px solid CONTROLS_BASE_INPUT_BORDER_COLOR;*/
+  /*border-top: 1px solid CONTROLS_BASE_INPUT_BORDER_TOP_COLOR;*/
+  /*font-size: CONTROLS_BASE_FONT_SIZE_NORMAL;*/
+  /*height: 25px;  !* 29px total height incl padding+border *!*/
+  padding: 1px 10px 1px 10px;
+
+  font-size: 13px;
+  height: 36px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /*-webkit-border-radius: 3px;*/
+  /*-moz-border-radius: 3px;*/
+  border-radius: 0px;
+  border: none;
+  border-bottom: 1px solid #dbdbdb;
+  color: #666666;
+}
+
+.controls-textinput:focus {
+  /*@mixin box_shadow(inset CONTROLS_BASE_INPUT_FOCUS_BOX_SHADOW);*/
+
+  /*border: 1px solid CONTROLS_BASE_INPUT_FOCUS_BORDER_COLOR;*/
+  /*outline: none;*/
+
+    border-bottom-color: #2785fc;
+  transition:border ease-in-out 0.15s;
+  -moz-transition:border ease-in-out 0.15s;
+  -webkit-transition:border ease-in-out 0.15s;
+}
+
+/* IE 10 automatically adds a clear button at the end of text boxes (an “X”
+ * mark) displayed when the textbox is focused and has content. Clicking on the
+ * “X” mark will clear the entered text. Most Google designers are not going to
+ * consider IE10 for every UI that involves an input field, and most of the
+ * time, it will be undesirable. Disabling it results in the least surprises all
+ * around.
+ */
+.controls-textinput::-ms-clear {
+  display: none;
+}

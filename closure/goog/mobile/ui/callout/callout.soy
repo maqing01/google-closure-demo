@@ -1,0 +1,33 @@
+{namespace wireless.soy.callout autoescape="contextual"}
+
+/**
+ * @param contentsHtml Markup for the main contents of the callout.
+ * @param? showPointer Whether or not to show a triangle pointing to the anchor
+ *     element.
+ * @param? contentClassesHtml CSS classes to apply to the callout's contents.
+ *     All callouts will always have the class CSS_WUI_CALLOUT_CONTENTS in
+ *     addition to any classes specified through this parameter.
+ * @param? clickAway Controls whether clicking off the callout hides it or not
+ *     using the optional hide callback provided to the constructor.
+ */
+{template .callout}
+  <div class="{css CSS_WUI_CALLOUT_MARKER}">
+    {if $clickAway}
+      {call wireless.soy.button.plainButton}
+        {param controlType: wireless.ui.callout.ControlType.CLICKAWAY_CALLOUT /}
+        {param buttonClassesHtml}
+          {css CSS_WUI_OVERLAY} {css CSS_WUI_NO_TAP_HIGHLIGHT}
+        {/param}
+      {/call}
+    {/if}
+    <div class="{css CSS_WUI_CALLOUT_CONTENTS}{if $contentClassesHtml} {$contentClassesHtml|noAutoescape}{/if}">
+      {$contentsHtml |noAutoescape}
+    </div>
+    {if $showPointer}
+      <div class="{css CSS_WUI_CALLOUT_OUTER_POINTER}">
+        <div class="{css CSS_WUI_CALLOUT_INNER_POINTER}">
+        </div>
+      </div>
+    {/if}
+  </div>
+{/template}

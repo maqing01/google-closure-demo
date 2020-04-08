@@ -1,0 +1,12 @@
+{
+  "name": "google-closure-demo",
+  "version": "1.0.0",
+  "description": "closure-library",
+  "main": "my-deps.js",
+  "scripts": {
+    "closure-deps": "python closure/bin/calcdeps.py -p closure -o deps > closure/goog/deps.js",
+    "user-deps": "python closure/bin/calcdeps.py --dep closure -o deps -p src/js > src/my-deps.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

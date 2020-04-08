@@ -1,0 +1,28 @@
+//syntax = "proto2";
+//
+//option java_package = "com.google.apps.office.diagnostics.impressions.proto.impressiondetails";
+//option java_multiple_files = true;
+//option (jspb.js_namespace) = "office.diagnostics.impressions.proto.impressiondetails";
+//option (logs_proto.file_not_used_for_logging_except_enums) = true;
+//
+//import "java/com/google/apps/jspb/jspb.proto";
+//import "logs/proto/logs_annotations/logs_annotations.proto";
+//
+//package office.diagnostics.impressions.impressiondetails;
+
+// Possible density levels for the UI.
+// Next enum value: 5
+enum DensityLevel {
+  // If one is not specified explicitly, the default value for enum fields is
+  // the first one. So, do not move this below another value without first
+  // updating all proto fields of this type.
+  UNDEFINED_DENSITY_LEVEL = 0;
+
+  // Indicates that the product should pick the correct density.
+  AUTO = 1;
+
+  // Density levels are ordered for size with space left for new levels.
+  COMFORTABLE = 200;
+  COZY = 300;
+  COMPACT = 400;
+}

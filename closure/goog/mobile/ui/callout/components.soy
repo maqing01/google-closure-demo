@@ -1,0 +1,142 @@
+// Copyright 2010 Google Inc. All Rights Reserved.
+// Author: Dominic Leung (dominicl@google.com)
+//         Ryan Dixon (rjdixon@google.com)
+
+{namespace wireless.soy.callout.components autoescape="contextual"}
+
+/**
+ * Renders a section for use inside a callout.
+ * See wireless.woy.callout.bottomSection for a description of this
+ *     template's parameters.
+ */
+{template .section}
+  <div class="{css CSS_WUI_CALLOUT_SECTION_DIVIDER}">
+    {call .bottomSection data="all" /}
+  </div>
+{/template}
+
+/**
+ * Deprecated non-strict template.
+ * Renders the bottom section (without a divider) for use inside a callout.
+ * @param sectionHtml Markup for the section.
+ */
+{template .bottomSection}
+  {call .bottomSectionStrict data="all"}
+    {param sectionHtml }
+      {if window.isNonnull($sectionHtml)}{$sectionHtml|noAutoescape}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders the bottom section (without a divider) for use inside a callout.
+ * @param? label Label to be displayed at the top of the section.
+ * @param sectionHtml Markup for the section.
+ */
+{template .bottomSectionStrict autoescape="contextual"}
+    <div class="{css CSS_WUI_CALLOUT_SECTION}">
+      {if $label}
+        <div class="{css CSS_WUI_CALLOUT_HEADING}">
+          {$label}
+        </div>
+      {/if}
+      {$sectionHtml}
+  </div>
+{/template}
+
+/**
+ * Renders a button for use in a callout button group.
+ * See wireless.soy.button.plainButton for a description of this template's
+ *     parameters.
+ * @param? buttonClassesHtml Classes to apply to the button.
+ */
+{template .button}
+  <li>
+    {call wireless.soy.button.base.plainButton data="all"}
+      {param buttonClassesHtml}
+        {css CSS_WUI_CALLOUT_BUTTON}
+        {if $buttonClassesHtml} {$buttonClassesHtml |noAutoescape}{/if}
+      {/param}
+      {param maxWidth: '100%' /}
+    {/call}
+  </li>
+{/template}
+
+/**
+ * Renders the top button for use in a callout button group.
+ * @param? buttonClassesHtml Classes to add to CSS_WUI_CALLOUT_BUTTON_TOP for
+ *     button.
+ * See wireless.soy.button.plainButton for a description of this template's
+ *     parameters.
+ */
+{template .topButton}
+  {call .button data="all"}
+    {param buttonClassesHtml}
+      {css CSS_WUI_CALLOUT_BUTTON_TOP}
+      {if $buttonClassesHtml} {$buttonClassesHtml |noAutoescape}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders the top button for use in a callout button group.
+ * @param? buttonClassesHtml Classes to add to CSS_WUI_CALLOUT_BUTTON_BOTTOM for
+ * See wireless.soy.button.plainButton for a description of this template's
+ *     parameters.
+ */
+{template .bottomButton}
+  {call .button data="all"}
+    {param buttonClassesHtml}
+      {css CSS_WUI_CALLOUT_BUTTON_BOTTOM}
+      {if $buttonClassesHtml} {$buttonClassesHtml |noAutoescape}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a button for use in a callout button group when there is only one
+ * button.
+ * See wireless.soy.button.plainButton for a description of this template's
+ * parameters.
+ * @param? buttonClassesHtml Classes to add to CSS_WUI_CALLOUT_BUTTON_BOTTOM for
+ *     button.
+ */
+{template .singleButton}
+  {call .button data="all"}
+    {param buttonClassesHtml}
+      {css CSS_WUI_CALLOUT_BUTTON_TOP} {css CSS_WUI_CALLOUT_BUTTON_BOTTOM}
+      {if $buttonClassesHtml} {$buttonClassesHtml |noAutoescape}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a button group to be used on a callout.
+ * @param buttonsHtml The markup of all buttons for the button group. Should
+ *     consist of a combination of the {top|bottom}Button templates.
+ */
+{template .buttonGroup}
+  <ul class="{css CSS_WUI_CALLOUT_BUTTON_GROUP}">
+    {$buttonsHtml |noAutoescape}
+  </ul>
+{/template}
+
+/**
+ * Renders a link component for a callout.
+ * @param href The URL of the link.
+ * @param label The label to be displayed for the link.
+ * @param? newWindow Whether or not to open a new window.
+ * @param? onClick Optional JavaScript to run on click.
+ */
+{template .link autoescape="contextual"}
+  <div class="{css CSS_WUI_CALLOUT_LINK_CONTAINER}">
+    <a class="{css CSS_WUI_CALLOUT_LINK}" href="{$href}"
+    {if $newWindow}
+      target="_blank"
+    {/if}
+    {if $onClick}
+      onclick="{$onClick}"
+    {/if}
+    >{$label}</a>
+  </div>
+{/template}

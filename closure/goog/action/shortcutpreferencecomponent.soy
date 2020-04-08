@@ -1,0 +1,59 @@
+// Copyright 2012 Google Inc.
+// All Rights Reserved.
+// Author: Andrew Taylor (andrewlt@google.com)
+// Portions ported from Gmail
+
+/**
+ * @param containerId Id of the banner's container
+ * @param textId Id of the banner's text
+ * @param linkId Id of the "enable/disable" link
+ * @param enabled Whether shortcuts are currently enabled
+ */
+{template apps.action.shortcutPrefComponentTemplate}
+  <div id="{$containerId}"
+      class="{css CSS_SHORTCUTS_HELP_POPUP_PREF_CONTAINER}{sp}
+      {if $enabled}
+        {css CSS_SHORTCUTS_HELP_POPUP_PREF_ENABLED}
+      {/if}">
+    <div class="{css CSS_SHORTCUTS_HELP_POPUP_PREF_CONTENT}">
+      <span id="{$textId}">
+        {call apps.action.prefTextTemplate data="all" /}
+      </span>{sp}
+      <span id="{$linkId}" role="link"
+          class="{css CSS_SHORTCUTS_HELP_POPUP_PREF_LINK}"
+          tabindex="0">
+        {call apps.action.prefLinkTemplate data="all" /}
+      </span>
+    </div>
+  </div>
+{/template}
+
+/**
+ * @param enabled Whether shortcuts are currently enabled.
+ */
+{template apps.action.prefTextTemplate}
+  {if $enabled}
+    {msg desc="Message indicating keyboard shortcuts are currently enabled"}
+      Keyboard shortcuts are enabled.
+    {/msg}
+  {else}
+    {msg desc="Message indicating keyboard shortcuts are currently disabled"}
+      Keyboard shortcuts are disabled.
+    {/msg}
+  {/if}
+{/template}
+
+/**
+ * @param enabled Whether shortcuts are currently enabled.
+ */
+{template apps.action.prefLinkTemplate}
+  {if $enabled}
+    {msg desc="Message for link that disables keyboard shortcuts"}
+      Disable
+    {/msg}
+  {else}
+    {msg desc="Message for link that enables keyboard shortcuts"}
+      Enable
+    {/msg}
+  {/if}
+{/template}

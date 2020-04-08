@@ -1,0 +1,58 @@
+@if (!DISABLE_KENNEDY) {
+
+@def CONTROLS_SUBMENU_ARROW_PADDING_RIGHT         0;
+@def CONTROLS_SUBMENU_ARROW_PADDING_TOP           3px;
+@def CONTROLS_SUBMENU_ARROW_TEXT_ALIGN            right;
+@def CONTROLS_SUBMENU_ARROW_COLOR                 CONTROLS_BASE_MENU_TEXT_COLOR;
+@def CONTROLS_SUBMENU_ARROW_RIGHT                 10px;
+@def CONTROLS_SUBMENU_ARROW_OPACITY               .5;
+@def CONTROLS_SUBMENU_ARROW_OPACITY_HOVER         1.0;
+@def CONTROLS_SUBMENU_ARROW_FILTER                alpha(opacity=50);
+@def CONTROLS_SUBMENU_ARROW_FILTER_HOVER          alpha(opacity=100);
+@def CONTROLS_SUBMENU_ARROW_SIZE                  70%;
+@def CONTROLS_SUBMENU_ARROW_HOVER_BORDER_COLOR    #999;
+@def CONTROLS_SUBMENU_ARROW_DISABLED_TEXT_COLOR   inherit;
+/*  Move this to base.gss? */
+@def CONTROLS_SUBMENU_ARROW_TRANSITION  all 0.218s;
+
+
+/* State: resting. */
+.goog-submenu-arrow {
+  @mixin transition(CONTROLS_SUBMENU_ARROW_TRANSITION);
+  /* Arrow sizing */
+  font-size: CONTROLS_SUBMENU_ARROW_SIZE;
+
+  /* Arrow positioning */
+  left: auto;
+
+  right: CONTROLS_SUBMENU_ARROW_RIGHT;
+  padding-top: CONTROLS_SUBMENU_ARROW_PADDING_TOP;
+  padding-right: CONTROLS_SUBMENU_ARROW_PADDING_RIGHT;
+  position: absolute;
+  text-align: CONTROLS_SUBMENU_ARROW_TEXT_ALIGN;
+
+  /* Arrow color */
+  opacity: CONTROLS_SUBMENU_ARROW_OPACITY;
+  filter: CONTROLS_SUBMENU_ARROW_FILTER;
+}
+
+/* State: hover. */
+.goog-menuitem-highlight .goog-submenu-arrow,
+.goog-menuitem-hover .goog-submenu-arrow {
+  @mixin transition(none);
+
+  border-left-color: CONTROLS_SUBMENU_ARROW_HOVER_BORDER_COLOR;
+
+  /* filter:opacity interacts badly with alpha-channel PNGs on IE8 */
+  opacity: CONTROLS_SUBMENU_ARROW_OPACITY_HOVER;
+}
+
+/* State: disabled. */
+.goog-menuitem-disabled .goog-submenu-arrow {
+  color: CONTROLS_SUBMENU_ARROW_DISABLED_TEXT_COLOR;
+
+  /* filter:opacity interacts badly with alpha-channel PNGs on IE8 */
+  opacity: 1.0;
+}
+
+}  /* if (!DISABLE_KENNEDY) */

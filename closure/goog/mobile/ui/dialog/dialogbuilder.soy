@@ -1,0 +1,42 @@
+
+// Author: scottkirkwood@google.com (Scott Kirkwood)
+
+{namespace wireless.soy.dialog.dialogbuilder autoescape="contextual"}
+
+/**
+ * Renders a modal dialog used to show a message with optional buttons.
+ * Buttons will appear at the bottom, entered in the dialog.
+ * @param? contentsHtml HTML body contents.
+ * @param? title The dialog title.
+ * @param? buttonList List of wireless.ui.dialog.DialogBuilder.Button values.
+ * @param? contentClass Content class to use instead of the default.
+ */
+{template .simpleDialog autoescape="contextual"}
+  {call wireless.soy.dialog.dialog}
+    {param toolbarHtml}
+      {call wireless.soy.dialog.toolbar}
+        {param centerHtml}
+          {$title}
+        {/param}
+      {/call}
+    {/param}
+    {param contentsHtml}
+      <div class="{if $contentClass}{$contentClass}
+          {else}{css CSS_WUI_DIALOG_BUILDER_CONTENTS}{/if}">
+        {$contentsHtml |noAutoescape}
+      </div>
+      <div class="{css CSS_WUI_DIALOG_BUILDER_BOTTOM}">
+        {foreach $button in $buttonList}
+          {call wireless.soy.dialog.toolbarButton}
+            {param buttonClassesHtml}
+              {css CSS_WUI_DIALOG_BUILDER_BUTTON}
+            {/param}
+            {param labelHtml: $button.text /}
+            {param controlType: $button.controlType /}
+            {param extraEventArgument: $button.index /}
+          {/call}
+        {/foreach}
+      </div>
+    {/param}
+  {/call}
+{/template}

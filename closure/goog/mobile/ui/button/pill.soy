@@ -1,0 +1,177 @@
+// Copyright 2010 Google Inc. All Rights Reserved.
+// Author: nthomas@google.com (Neil Thomas)
+
+{namespace wireless.soy.button.pill autoescape="contextual"}
+
+/**
+ * Deprecated non-strict template.
+ * Renders the leftmost button in a pill button group. See
+ * wireless.soy.button.pillButton and wireless.soy.button.base.plainButtonStrict
+ * for a description of this template's parameters.
+ * @param? imageClassesHtml
+ * @param? labelHtml
+ * @param? contentsHtml
+ * @param? buttonClassesHtml
+ * @param? borderImageClassesHtml
+ * @param? labelClassesHtml
+ * @param? extraEventArgument
+ */
+{template .leftButton autoescape="contextual"}
+  {call .leftButtonStrict data="all"}
+    {param imageClasses }
+      {if window.isNonnull($imageClassesHtml)}{$imageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelHtml }
+      {if window.isNonnull($labelHtml)}{$labelHtml|noAutoescape}{/if}
+    {/param}
+    {param contentsHtml }
+      {if window.isNonnull($contentsHtml)}{$contentsHtml|noAutoescape}{/if}
+    {/param}
+    {param buttonClasses }
+      {if window.isNonnull($buttonClassesHtml)}{$buttonClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param borderImageClasses }
+      {if window.isNonnull($borderImageClassesHtml)}{$borderImageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelClasses }
+      {if window.isNonnull($labelClassesHtml)}{$labelClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param extraEventArgument }
+      {if window.isNonnull($extraEventArgument)}{$extraEventArgument|noAutoescape}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders the leftmost button in a pill button group. See
+ * wireless.soy.button.pillButton for a description of this template's
+ * parameters.
+ * @param? notSticky True if button should not remain pressed when activated.
+ */
+{template .leftButtonStrict}
+  {call wireless.soy.button.pillButtonStrict data="all"}
+    {param pillButtonClasses }
+      {css CSS_WUI_BUTTON_PILL_LEFT}{sp}
+      {if not $notSticky}{css CSS_WUI_BUTTON_PILL_LEFT_MARKER}{/if}
+    {/param}
+    {param pillBorderImageClasses }
+      {css CSS_WUI_IMG_PILL_LEFT}
+    {/param}
+    {param isSlave: $notSticky /}
+  {/call}
+{/template}
+
+/**
+ * Deprecated non-strict template.
+ * Renders the middle button in a pill button group. See
+ * wireless.soy.button.pillButton and wireless.soy.button.base.plainButtonStrict
+ * for a description of this template's parameters.
+ * @param? imageClassesHtml
+ * @param? labelHtml
+ * @param? contentsHtml
+ * @param? buttonClassesHtml
+ * @param? borderImageClassesHtml
+ * @param? labelClassesHtml
+ * @param? extraEventArgument
+ */
+{template .middleButton autoescape="contextual"}
+  {call .middleButtonStrict data="all"}
+    {param imageClasses }
+      {if window.isNonnull($imageClassesHtml)}{$imageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelHtml }
+      {if window.isNonnull($labelHtml)}{$labelHtml|noAutoescape}{/if}
+    {/param}
+    {param contentsHtml }
+      {if window.isNonnull($contentsHtml)}{$contentsHtml|noAutoescape}{/if}
+    {/param}
+    {param buttonClasses }
+      {if window.isNonnull($buttonClassesHtml)}{$buttonClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param borderImageClasses }
+      {if window.isNonnull($borderImageClassesHtml)}{$borderImageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelClasses }
+      {if window.isNonnull($labelClassesHtml)}{$labelClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param extraEventArgument }
+      {if window.isNonnull($extraEventArgument)}{$extraEventArgument|noAutoescape}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a middle button in a pill button group. See
+ * wireless.soy.button.pillButton for a description of this template's
+ * parameters.
+ * @param? notSticky True if button should not remain pressed when activated.
+ */
+{template .middleButtonStrict}
+  {call wireless.soy.button.pillButtonStrict data="all"}
+    {param pillButtonClasses }
+      {css CSS_WUI_BUTTON_PILL_MIDDLE}
+    {/param}
+    {param pillBorderImageClasses }
+      {css CSS_WUI_IMG_PILL_MIDDLE}
+    {/param}
+    {param isSlave: $notSticky /}
+  {/call}
+{/template}
+
+/**
+ * Deprecated non-strict template.
+ * Renders the rightmost button in a pill button group. See
+ * wireless.soy.button.pillButton and wireless.soy.button.base.plainButtonStrict
+ * for a description of this template's parameters.
+ * @param? imageClassesHtml
+ * @param? labelHtml
+ * @param? contentsHtml
+ * @param? buttonClassesHtml
+ * @param? borderImageClassesHtml
+ * @param? labelClassesHtml
+ * @param? extraEventArgument
+ */
+{template .rightButton autoescape="contextual"}
+  {call .rightButtonStrict data="all"}
+    {param imageClasses }
+      {if window.isNonnull($imageClassesHtml)}{$imageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelHtml }
+      {if window.isNonnull($labelHtml)}{$labelHtml|noAutoescape}{/if}
+    {/param}
+    {param contentsHtml }
+      {if window.isNonnull($contentsHtml)}{$contentsHtml|noAutoescape}{/if}
+    {/param}
+    {param buttonClasses }
+      {if window.isNonnull($buttonClassesHtml)}{$buttonClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param borderImageClasses }
+      {if window.isNonnull($borderImageClassesHtml)}{$borderImageClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param labelClasses }
+      {if window.isNonnull($labelClassesHtml)}{$labelClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param extraEventArgument }
+      {if window.isNonnull($extraEventArgument)}{$extraEventArgument|noAutoescape}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders the rightmost button in a pill button group. See
+ * wireless.soy.button.pillButton for a description of this template's
+ * parameters.
+ * @param? notSticky True if button should not remain pressed when activated.
+ */
+{template .rightButtonStrict}
+  {call wireless.soy.button.pillButtonStrict data="all"}
+    {param pillButtonClasses }
+      {css CSS_WUI_BUTTON_PILL_RIGHT}
+      {if not $notSticky}{sp}{css CSS_WUI_BUTTON_PILL_RIGHT_MARKER}{/if}
+    {/param}
+    {param pillBorderImageClasses }
+      {css CSS_WUI_IMG_PILL_RIGHT}
+    {/param}
+    {param isSlave: $notSticky /}
+  {/call}
+{/template}

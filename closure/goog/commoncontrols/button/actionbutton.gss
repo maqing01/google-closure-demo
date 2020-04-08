@@ -1,0 +1,42 @@
+.controls-button-action {
+  @mixin box_shadow(CONTROLS_BUTTON_ACTION_BOX_SHADOW);
+  @mixin linear_gradient(
+      CONTROLS_BUTTON_ACTION_GRADIENT, CONTROLS_BUTTON_ACTION_BG_COLOR);
+  /**/
+  border: 1px solid CONTROLS_BUTTON_ACTION_BORDER_COLOR;
+  color: CONTROLS_BUTTON_ACTION_TEXT_COLOR;
+}
+
+/*!* Keep styles in order -- hover, focus, active *!*/
+
+.controls-button-action.controls-button-hover {
+  @mixin box_shadow(CONTROLS_BUTTON_ACTION_HOVER_BOX_SHADOW);
+  @mixin linear_gradient(
+      CONTROLS_BUTTON_ACTION_HOVER_GRADIENT, CONTROLS_BUTTON_ACTION_HOVER_BG_COLOR);
+  /**/
+  border: 1px solid CONTROLS_BUTTON_ACTION_HOVER_BORDER_COLOR;
+  border-bottom-color: CONTROLS_BUTTON_ACTION_HOVER_BOTTOM_BORDER_COLOR;
+}
+/**/
+.controls-button-action:focus {
+  @mixin controls_button_focus(CONTROLS_BUTTON_ACTION_FOCUS_OUTLINE_IE8_FALLBACK);
+}
+/**/
+/* This class is applied to clear the above :focus style. */
+.controls-button-action.controls-button-clear-outline {
+  @mixin box_shadow(none);
+  outline: CONTROLS_BUTTON_ACTION_CLEAR_OUTLINE;
+}
+/**/
+.controls-button-action:active {
+  @mixin box_shadow(CONTROLS_BUTTON_ACTION_ACTIVE_BOX_SHADOW);
+  background: CONTROLS_BUTTON_ACTION_ACTIVE_BG_COLOR;
+  border: 1px solid CONTROLS_BUTTON_ACTION_ACTIVE_BORDER_COLOR;
+  border-top: 1px solid CONTROLS_BUTTON_ACTION_ACTIVE_TOP_BORDER_COLOR;
+}
+/**/
+.controls-button-action.controls-button-disabled {
+  background: CONTROLS_BUTTON_ACTION_BG_COLOR;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+}

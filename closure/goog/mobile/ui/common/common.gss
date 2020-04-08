@@ -1,0 +1,60 @@
+.CSS_WUI_ELLIPSIS {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 41px;
+  line-height: 41px;
+  text-align: left;
+  font-weight: bold;
+  display: inline;
+}
+
+.CSS_WUI_NO_TAP_HIGHLIGHT {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+/**
+ * This should be considered deprecated. It uses webkit-box which is an
+ * implementation of a previous version of the boxflex spec. No other
+ * browsers are ever going to implement this. Please find other ways to
+ * vertically center your elements until the new spec is implemented.
+ */
+.CSS_WUI_CENTER_BOX {
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-sizing: border-box;
+}
+
+.CSS_WUI_HORIZONTAL_BOX {
+  display: -webkit-box;
+}
+
+.CSS_WUI_OVERLAY {
+  left: 0;
+  min-height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  /* Overlays go above all application content. */
+  z-index: 997;
+}
+
+/**
+ * Use this class to hardware accelerate DOM and CSS changes on an element to
+ * avoid flicker. When you need to apply this class to several sibling elements
+ * you should add the class to the direct parent instead. See the following doc
+ * for more information.
+ */
+.CSS_WUI_HARDWARE_ACCELERATED {
+  -webkit-transform: translate3d(0,0,0);
+}
+
+.CSS_WUI_BOX_FLEX {
+  -webkit-box-flex: 1;
+}
+
+.CSS_WUI_INLINE_BLOCK {
+  display: inline-block;
+}

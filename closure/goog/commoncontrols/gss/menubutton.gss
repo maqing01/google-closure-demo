@@ -1,0 +1,158 @@
+@def CONTROLS_MENU_BUTTON_MARGIN                   0 2px;
+@def CONTROLS_MENU_BUTTON_PADDING                  0 18px 0 6px;
+@def CONTROLS_MENU_BUTTON_LINE_HEIGHT              27px;
+@def CONTROLS_MENU_BUTTON_MIN_WIDTH                46px;
+
+@def CONTROLS_MENU_BUTTON_DROPDOWN_HALFWIDTH       4px;
+@def CONTROLS_MENU_BUTTON_DROPDOWN_HEIGHT          4px;
+@def CONTROLS_MENU_BUTTON_DROPDOWN_COLOR           #777;
+@def CONTROLS_MENU_BUTTON_DROPDOWN_HOVER_COLOR     #595959;
+@def CONTROLS_MENU_BUTTON_DROPDOWN_POSITION_RIGHT  5px;
+@def CONTROLS_MENU_BUTTON_DROPDOWN_POSITION_TOP    12px;
+
+.goog-flat-menu-button {
+  @mixin border_radius(CONTROLS_BUTTON_COMMON_BORDER_RADIUS);
+  /*@mixin linear_gradient(*/
+      /*CONTROLS_BUTTON_STANDARD_GRADIENT, CONTROLS_BUTTON_STANDARD_BG_COLOR);*/
+
+  border: none;
+  border-bottom: 1px solid CONTROLS_BUTTON_STANDARD_BORDER_COLOR;
+
+  /*color: CONTROLS_BUTTON_STANDARD_TEXT_COLOR;*/
+  cursor: default;
+  font-size: CONTROLS_BUTTON_COMMON_FONT_SIZE;
+  font-weight: bold;
+  line-height: CONTROLS_MENU_BUTTON_LINE_HEIGHT;
+  list-style: none;
+  margin: CONTROLS_MENU_BUTTON_MARGIN;
+  min-width: CONTROLS_MENU_BUTTON_MIN_WIDTH;
+  outline: none;
+  padding: CONTROLS_MENU_BUTTON_PADDING;
+  text-align: center;
+  text-decoration: none;
+}
+
+.goog-flat-menu-button-disabled {
+  background-color: CONTROLS_BUTTON_STANDARD_DISABLED_BG_COLOR;
+  border-color: CONTROLS_BUTTON_STANDARD_DISABLED_BORDER_COLOR;
+  color: CONTROLS_BUTTON_STANDARD_DISABLED_TEXT_COLOR;
+}
+
+.goog-flat-menu-button.goog-flat-menu-button-hover {
+  /*@mixin linear_gradient(*/
+      /*CONTROLS_BUTTON_STANDARD_HOVER_GRADIENT, CONTROLS_BUTTON_STANDARD_HOVER_BG_COLOR);*/
+  /*@mixin box_shadow(CONTROLS_BUTTON_COMMON_HOVER_BOX_SHADOW);*/
+  /**/
+  /*border-color: CONTROLS_BUTTON_STANDARD_HOVER_BORDER_COLOR;*/
+  /*color: CONTROLS_BUTTON_STANDARD_HOVER_TEXT_COLOR;*/
+}
+
+.goog-flat-menu-button.goog-flat-menu-button-focused {
+  /*border-color: CONTROLS_BUTTON_STANDARD_FOCUS_BORDER_COLOR;*/
+}
+
+.goog-flat-menu-button.goog-flat-menu-button-open,
+.goog-flat-menu-button.goog-flat-menu-button-active {
+  /*@mixin box_shadow(CONTROLS_BUTTON_STANDARD_CHECKED_BOX_SHADOW);*/
+  /*@mixin linear_gradient(*/
+      /*CONTROLS_BUTTON_STANDARD_CHECKED_GRADIENT,*/
+      /*CONTROLS_BUTTON_STANDARD_CHECKED_BG_COLOR);*/
+  /**/
+  /*border: 1px solid CONTROLS_BUTTON_STANDARD_CHECKED_BORDER_COLOR;*/
+  /*color: CONTROLS_BUTTON_STANDARD_SELECTED_TEXT_COLOR;*/
+  /*z-index: 2;*/
+}
+
+.goog-flat-menu-button-caption {
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.goog-flat-menu-button-dropdown {
+  border-color: CONTROLS_MENU_BUTTON_DROPDOWN_COLOR transparent;
+  border-style: solid;
+  border-width: CONTROLS_MENU_BUTTON_DROPDOWN_HEIGHT
+                CONTROLS_MENU_BUTTON_DROPDOWN_HALFWIDTH
+                0
+                CONTROLS_MENU_BUTTON_DROPDOWN_HALFWIDTH;
+  height: 0;
+  width: 0;
+  position: absolute;
+  right: CONTROLS_MENU_BUTTON_DROPDOWN_POSITION_RIGHT;
+  top: CONTROLS_MENU_BUTTON_DROPDOWN_POSITION_TOP;
+}
+
+.goog-flat-menu-button .goog-flat-menu-button-img {
+  margin-top: -3px;
+  /* filter:opacity interacts badly with alpha-channel PNGs on IE8 */
+  opacity: CONTROLS_BUTTON_STANDARD_ICON_OPACITY;
+  vertical-align: middle;
+}
+
+.goog-flat-menu-button-active .goog-flat-menu-button-img,
+.goog-flat-menu-button-open .goog-flat-menu-button-img,
+.goog-flat-menu-button-selected .goog-flat-menu-button-img,
+.goog-flat-menu-button-hover .goog-flat-menu-button-img {
+  /* filter:opacity interacts badly with alpha-channel PNGs on IE8 */
+  opacity: CONTROLS_BUTTON_STANDARD_ICON_HOVER_OPACITY;
+}
+
+.goog-flat-menu-button-active .goog-flat-menu-button-dropdown,
+.goog-flat-menu-button-open .goog-flat-menu-button-dropdown,
+.goog-flat-menu-button-selected .goog-flat-menu-button-dropdown,
+.goog-flat-menu-button-hover .goog-flat-menu-button-dropdown {
+  border-color: CONTROLS_MENU_BUTTON_DROPDOWN_HOVER_COLOR transparent;
+}
+
+/* Properties for collapsing menubuttons against other buttons */
+
+/*
+ * To create the collapsed button, we actually overlap the collapsed buttons
+ * by 1px, causing the left border of the right button to overlap on top
+ * of the left button. In the following 3 rules, we add z-indices such
+ * that the correct border is visible.
+ */
+.goog-flat-menu-button-left, .goog-flat-menu-button-right {
+  z-index: 1;
+}
+
+
+.goog-flat-menu-button-left.goog-flat-menu-button-disabled {
+  z-index: 0;
+}
+
+.goog-flat-menu-button-right:focus,
+.goog-flat-menu-button-hover.goog-flat-menu-button-collapse-right {
+  z-index: 2;
+}
+
+.goog-flat-menu-button-left:focus,
+.goog-flat-menu-button-hover.goog-flat-menu-button-collapse-left {
+  z-index: 2;
+}
+
+.goog-flat-menu-button-collapse-left {
+  /* Causes border to overlap with neighboring button to form a 1px border. */
+  margin-left: -1px;
+
+  -moz-border-radius-bottomleft: 0;
+  -moz-border-radius-topleft: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -webkit-border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  min-width: 0;
+  padding-left: 0;
+  vertical-align: top;
+}
+
+.goog-flat-menu-button-collapse-right {
+  margin-right: 0px;
+
+  -moz-border-radius-topright: 0;
+  -moz-border-radius-bottomright: 0;
+  -webkit-border-top-right-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}

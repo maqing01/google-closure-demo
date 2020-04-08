@@ -1,0 +1,24 @@
+
+// Author: chrishenry@google.com (Chris Henry)
+//
+// Soy template for controls.Star component. Can be used independently from
+// controls.Star.
+
+{namespace controls.templates.star}
+
+
+/**
+ * Renders the star. Requires the associated star.gss to render correctly.
+ * @param checked {boolean} Whether the star is lit or not.
+ */
+{template .main}
+<div class="{css controls-star}
+            {if $checked}{sp}{css controls-star-checked}{/if}"
+     role="button"
+     aria-label="
+     {msg desc="Star an item button (such as GMail conversation, Maps place)"}
+       Toggle star
+     {/msg}"
+     aria-checked="{if $checked}true{else}false{/if}">
+</div>
+{/template}

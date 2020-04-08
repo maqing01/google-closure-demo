@@ -1,0 +1,47 @@
+@def CONTROLS_COLORPALETTE_CHECKMARK_IMAGE
+     url(/static/yiqixie/images/checkmark-black.png);
+@def CONTROLS_COLORPALETTE_HIGHLIGHT_CELL_BORDER_COLOR #000;
+@def CONTROLS_COLORPALETTE_SELECTED_CELL_BORDER_COLOR  #000;
+@def CONTROLS_COLORWELL_BORDER_COLOR                   #d9d9d9;
+
+.controls-colormenu.goog-menu {
+  padding: 0;
+}
+
+.controls-palette {
+  cursor: default;
+  outline: none;
+}
+
+.controls-palette-table {
+  empty-cells: show;
+  margin: 8px;
+}
+
+.controls-palette-cell {
+  border: 1px solid transparent;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+}
+
+.controls-palette-cell-hover {
+  border: 1px solid CONTROLS_COLORPALETTE_HIGHLIGHT_CELL_BORDER_COLOR;
+}
+
+.controls-palette-cell-selected {
+  outline: 1px solid CONTROLS_COLORPALETTE_SELECTED_CELL_BORDER_COLOR;
+}
+
+.controls-palette-colorswatch {
+  height: 16px;
+  width: 16px;
+}
+
+.controls-palette-cell-selected > .controls-palette-colorswatch {
+  background: CONTROLS_COLORPALETTE_CHECKMARK_IMAGE no-repeat 50% 50%;
+}
+
+.controls-colorwell {
+  border: 1px solid CONTROLS_COLORWELL_BORDER_COLOR;
+}

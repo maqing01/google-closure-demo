@@ -1,0 +1,10 @@
+.goog-link-button {
+  position: relative;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.goog-link-button-disabled {
+  text-decoration: none;
+  cursor: default;
+}

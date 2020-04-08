@@ -1,0 +1,90 @@
+/*
+ * Note: These templates are meant to override templates in the default
+ * namespace. Because Soy V2 doesn't allow overrides, new overrides need to be
+ * added to iphone_overrides.js.
+ */
+
+{namespace wireless.soy.toolbar.iphone autoescape="contextual"}
+
+/**
+ * Deprecated non-strict template.
+ * Renders a toolbar. See wireless.soy.toolber.toolbarImplStrict for parameter descriptions.
+ * @param? leftHtml
+ * @param? centerHtml
+ * @param? rightHtml
+ * @param? toolbarClassesHtml
+ * @param? backgroundClassesHtml
+ * @param? centerClassesHtml
+ * @param? shadowClassesHtml
+ * @param? extraContentHtml
+ */
+{template .toolbar}
+  {call .toolbarStrict data="all"}
+    {param leftHtml }
+      {if window.isNonnull($leftHtml)}{$leftHtml|noAutoescape}{/if}
+    {/param}
+    {param centerHtml }
+      {if window.isNonnull($centerHtml)}{$centerHtml|noAutoescape}{/if}
+    {/param}
+    {param rightHtml }
+      {if window.isNonnull($rightHtml)}{$rightHtml|noAutoescape}{/if}
+    {/param}
+    {param toolbarClasses }
+      {if window.isNonnull($toolbarClassesHtml)}{$toolbarClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param backgroundClasses }
+      {if window.isNonnull($backgroundClassesHtml)}{$backgroundClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param centerClasses }
+      {if window.isNonnull($centerClassesHtml)}{$centerClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param shadowClasses }
+      {if window.isNonnull($shadowClassesHtml)}{$shadowClassesHtml|noAutoescape}{/if}
+    {/param}
+    {param extraContentHtml }
+      {if window.isNonnull($extraContentHtml)}{$extraContentHtml|noAutoescape}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a toolbar that is styled like an iPhone toolbar. Parameters
+ * are the same as for the wireless.soy.toolbar.toolbar template.
+ * @param? toolbarClasses
+ * @param? backgroundClasses
+ */
+{template .toolbarStrict autoescape="contextual"}
+  {call wireless.soy.toolbar.toolbarImplStrict data="all"}
+    {param toolbarClasses }
+      {if $toolbarClasses}{$toolbarClasses} {/if}
+      {css CSS_WUI_IPHONE_TOOLBAR}
+    {/param}
+    {param backgroundClasses }
+      {if $backgroundClasses}
+        {$backgroundClasses}
+      {else}
+        {css CSS_WUI_IMG_IPHONE_TOOLBAR} {css CSS_WUI_IPHONE_TOOLBAR_BACKGROUND}
+      {/if}
+    {/param}
+    {param shadowClasses }
+      {css CSS_WUI_IPHONE_TOOLBAR_SHADOW}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a toolbar that is styled like an iPhone tab bar. Parameters
+ * are the same as for the wireless.soy.toolbar.toolbar template.
+ * @param? toolbarClassesHtml
+ */
+{template .tabBar}
+  {call wireless.soy.toolbar.toolbarImpl data="all"}
+    {param toolbarClassesHtml}
+      {if $toolbarClassesHtml}{$toolbarClassesHtml} {/if}
+      {css CSS_WUI_IPHONE_TAB_BAR}
+    {/param}
+    {param shadowClassesHtml}
+      {css CSS_WUI_IPHONE_TAB_BAR_SHADOW}
+    {/param}
+  {/call}
+{/template}

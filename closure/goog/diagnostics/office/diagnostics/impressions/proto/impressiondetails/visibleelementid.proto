@@ -1,0 +1,30 @@
+
+//syntax = "proto2";
+//
+//option java_package = "com.google.apps.office.diagnostics.impressions.proto.impressiondetails";
+//option java_multiple_files = true;
+//option (jspb.js_namespace) = "office.diagnostics.impressions.proto.impressiondetails";
+//option (logs_proto.file_not_used_for_logging_except_enums) = true;
+//
+//import "java/com/google/apps/jspb/jspb.proto";
+//import "logs/proto/logs_annotations/logs_annotations.proto";
+//
+//package office.diagnostics.impressions.impressiondetails;
+
+// Identifier for major UI components.
+// Next enum value: 8
+enum VisibleElementId {
+  // Optional fields default to the enum's first value, so this makes the
+  // default explicitly unknown instead of defaulting to some arbitrary value.
+  UNDEFINED_COMPONENT = 0;
+
+  COMMON_PRODUCT_LOGO = 1;
+
+  // Drive layout components
+  DRIVE_ACTIVITY_PANE = 2;
+  DRIVE_DETAILS_PANE = 3;
+  DRIVE_MAIN_PANE = 4;
+  DRIVE_NAVIGATION_PANE = 5;
+  DRIVE_SEARCH_BAR = 7;
+  DRIVE_TOOLBAR = 6;
+}

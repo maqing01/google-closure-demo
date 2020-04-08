@@ -1,0 +1,249 @@
+@def CONTROLS_TOOLBAR_BUTTON_ACTIVE_BG_COLOR       #f6f6f6;
+@def CONTROLS_TOOLBAR_BUTTON_ACTIVE_BOX_SHADOW
+    CONTROLS_BUTTON_STANDARD_ACTIVE_BOX_SHADOW;
+@def CONTROLS_TOOLBAR_BUTTON_ACTIVE_GRADIENT       top,#f6f6f6,#f1f1f1;
+@def CONTROLS_TOOLBAR_BUTTON_BORDER_COLOR          transparent;
+@def CONTROLS_TOOLBAR_BUTTON_BORDER_RADIUS         2px;
+@def CONTROLS_TOOLBAR_BUTTON_BORDER_STYLE          solid;
+@def CONTROLS_TOOLBAR_BUTTON_BORDER_WIDTH          1px;
+@def CONTROLS_TOOLBAR_BUTTON_CHECKED_BOX_SHADOW
+    CONTROLS_BUTTON_STANDARD_CHECKED_BOX_SHADOW;
+@def CONTROLS_TOOLBAR_BUTTON_CURSOR                CONTROLS_BUTTON_COMMON_CURSOR;
+@def CONTROLS_TOOLBAR_BUTTON_DISABLED_FILTER       alpha(opacity=30);
+@def CONTROLS_TOOLBAR_BUTTON_DISABLED_OPACITY      0.3;
+@def CONTROLS_TOOLBAR_BUTTON_DISABLED_TEXT_COLOR   CONTROLS_BASE_PRIMARY_TEXT_COLOR;
+@def CONTROLS_TOOLBAR_BUTTON_FONT_SIZE             CONTROLS_BUTTON_COMMON_FONT_SIZE;
+@def CONTROLS_TOOLBAR_BUTTON_FONT_WEIGHT           CONTROLS_BUTTON_COMMON_FONT_WEIGHT;
+@def CONTROLS_TOOLBAR_BUTTON_HEIGHT                24px;
+@def CONTROLS_TOOLBAR_BUTTON_HORIZONTAL_PADDING    3px;
+@def CONTROLS_TOOLBAR_BUTTON_HOVER_BG_COLOR        CONTROLS_BUTTON_STANDARD_HOVER_BG_COLOR;
+@def CONTROLS_TOOLBAR_BUTTON_HOVER_BORDER_COLOR    CONTROLS_BUTTON_STANDARD_HOVER_BORDER_COLOR;
+@def CONTROLS_TOOLBAR_BUTTON_HOVER_BOX_SHADOW
+    CONTROLS_BUTTON_COMMON_HOVER_BOX_SHADOW;
+@def CONTROLS_TOOLBAR_BUTTON_HOVER_GRADIENT        CONTROLS_BUTTON_STANDARD_HOVER_GRADIENT;
+@def CONTROLS_TOOLBAR_BUTTON_HOVER_TEXT_COLOR      CONTROLS_BASE_PRIMARY_TEXT_COLOR;
+@def CONTROLS_TOOLBAR_BUTTON_LINE_HEIGHT           CONTROLS_TOOLBAR_BUTTON_HEIGHT;
+@def CONTROLS_TOOLBAR_BUTTON_SELECTED_BG_COLOR     #eee;
+@def CONTROLS_TOOLBAR_BUTTON_SELECTED_BORDER_COLOR CONTROLS_BUTTON_STANDARD_SELECTED_BORDER_COLOR;
+@def CONTROLS_TOOLBAR_BUTTON_SELECTED_GRADIENT     top,#eee,#e0e0e0;
+@def CONTROLS_TOOLBAR_BUTTON_TEXT_COLOR            CONTROLS_BUTTON_STANDARD_TEXT_COLOR;
+@def CONTROLS_TOOLBAR_BUTTON_TEXT_DECORATION       none;
+@def CONTROLS_TOOLBAR_BUTTON_TRANSITION            CONTROLS_BUTTON_COMMON_TRANSITION;
+@def CONTROLS_TOOLBAR_SEPARATOR_COLOR              #e0e0e0;
+@def CONTROLS_TOOLBAR_SEPARATOR_HEIGHT             40px;
+
+
+/*
+ * Styles used by goog.ui.ToolbarButtonRenderer and menu button.
+ */
+.goog-toolbar-button,
+.goog-toolbar-menu-button {
+  @mixin border_radius(CONTROLS_TOOLBAR_BUTTON_BORDER_RADIUS);
+  @mixin user_select(none);
+
+  background: 0;
+
+  /* Borders */
+  border-color: CONTROLS_TOOLBAR_BUTTON_BORDER_COLOR;
+  border-style: CONTROLS_TOOLBAR_BUTTON_BORDER_STYLE;
+  border-width: CONTROLS_TOOLBAR_BUTTON_BORDER_WIDTH;
+  outline: none;
+  padding: 0 0px;
+
+  /* Sizes */
+  /*height: CONTROLS_TOOLBAR_BUTTON_HEIGHT;*/
+
+  /* Text info */
+  color: CONTROLS_TOOLBAR_BUTTON_TEXT_COLOR;
+  /*line-height: CONTROLS_TOOLBAR_BUTTON_LINE_HEIGHT;*/
+  list-style: none;
+  /*font-size: CONTROLS_TOOLBAR_BUTTON_FONT_SIZE;*/
+  /*font-weight: CONTROLS_TOOLBAR_BUTTON_FONT_WEIGHT;*/
+  text-decoration: CONTROLS_TOOLBAR_BUTTON_TEXT_DECORATION;
+  vertical-align: middle;
+
+  /* Cursors and pointers */
+  cursor: CONTROLS_TOOLBAR_BUTTON_CURSOR;
+
+  margin: 1px 1px 0;
+}
+
+/*
+ *  Create a ControlsToolbarButtonRenderer that does not need to
+ * generate this extra dom.
+ */
+.goog-toolbar-button-outer-box,
+.goog-toolbar-button-inner-box
+.goog-toolbar-menu-button-outer-box,
+.goog-toolbar-menu-button-inner-box {
+  border: 0;
+  /*vertical-align: top;*/
+  /*padding: 0 4px;*/
+}
+
+.goog-toolbar-button-outer-box,
+.goog-toolbar-menu-button-outer-box {
+  margin: 0;
+  padding: 0;
+}
+
+.goog-toolbar-button-inner-box,
+.goog-toolbar-menu-button-inner-box {
+  /*padding: 0 CONTROLS_TOOLBAR_BUTTON_HORIZONTAL_PADDING;*/
+}
+
+.goog-toolbar-button-hover,
+.goog-toolbar-button-active,
+.goog-toolbar-button-checked,
+.goog-toolbar-button-selected {
+  /*color: CONTROLS_TOOLBAR_BUTTON_HOVER_TEXT_COLOR;*/
+  /*padding: 0;*/
+  /*color: #e6685b;*/
+}
+
+.goog-toolbar-button-hover,
+.goog-toolbar-menu-button-hover {
+  /*border-color: CONTROLS_TOOLBAR_BUTTON_HOVER_BORDER_COLOR !important;*/
+  /*color: CONTROLS_TOOLBAR_BUTTON_HOVER_TEXT_COLOR;*/
+}
+
+.goog-toolbar-menu-button-open {
+  color: CONTROLS_TOOLBAR_BUTTON_HOVER_TEXT_COLOR;
+}
+
+.goog-toolbar-button-hover,
+.goog-toolbar-menu-button-hover {
+  /*@mixin box_shadow(CONTROLS_TOOLBAR_BUTTON_HOVER_BOX_SHADOW);*/
+  /*@mixin linear_gradient(*/
+      /*CONTROLS_TOOLBAR_BUTTON_HOVER_GRADIENT, CONTROLS_TOOLBAR_BUTTON_HOVER_BG_COLOR);*/
+}
+
+/* Active styles. */
+.goog-toolbar-button-active,
+.goog-toolbar-menu-button-active {
+  /*@mixin box_shadow(CONTROLS_TOOLBAR_BUTTON_ACTIVE_BOX_SHADOW);*/
+  /*@mixin linear_gradient(*/
+      /*CONTROLS_TOOLBAR_BUTTON_ACTIVE_GRADIENT, CONTROLS_TOOLBAR_BUTTON_ACTIVE_BG_COLOR);*/
+
+  /*border-color: CONTROLS_TOOLBAR_BUTTON_HOVER_BORDER_COLOR;*/
+}
+
+/* Selected styles. */
+.goog-toolbar-button-selected,
+.goog-toolbar-button-checked,
+.goog-toolbar-menu-button-open {
+}
+
+.goog-toolbar-button-disabled,
+.goog-toolbar-menu-button-disabled {
+  opacity: 0.3;
+}
+
+/* Pill (collapsed border) styles. */
+.goog-toolbar-button-collapse-right,
+.goog-toolbar-button-collapse-right .goog-toolbar-button-outer-box,
+.goog-toolbar-button-collapse-right .goog-toolbar-button-inner-box {
+  margin-right: 0;
+}
+
+.goog-toolbar-button-collapse-left,
+.goog-toolbar-button-collapse-left .goog-toolbar-button-outer-box,
+.goog-toolbar-button-collapse-left .goog-toolbar-button-inner-box {
+  margin-left: 0;
+}
+
+/* Dropdown style */
+.goog-toolbar-menu-button-dropdown {
+  background: CONTROLS_TOOLBAR_BUTTON_SMALL_DISCLOSURE_ARROW center no-repeat;
+
+  /* Icon positioning */
+  float: right;
+  margin: 0px 2px 0 3px;
+  padding: 0;
+
+  /* Icon appearance */
+  /* filter:opacity interacts badly with alpha-channel PNGs on IE8 */
+  opacity: .8;
+
+  vertical-align: middle;
+
+  width: 7px;
+  /*height: 7px;*/
+
+  /* NOTE: The below IE hacks were incorporated directly from the Kennedy spec
+     implementation, and the toolbar breaks in IE without them. */
+/*  ie hacks*/
+  *float:none;
+  *position:relative;
+  *top:-3px;
+}
+
+/*
+ * Styles used by goog.ui.ToolbarSeparatorRenderer.
+ */
+.goog-toolbar-separator {
+  border-left: 1px solid CONTROLS_TOOLBAR_SEPARATOR_COLOR;
+  height: CONTROLS_TOOLBAR_SEPARATOR_HEIGHT;
+  /*line-height: normal;*/
+  list-style: none;
+  margin: 0px CONTROLS_TOOLBAR_BUTTON_HORIZONTAL_PADDING 0;
+  outline: none;
+  overflow: hidden;
+  padding: 0;
+  text-decoration: none;
+  vertical-align: middle;
+  width: 0;
+}
+
+.goog-toolbar-separator-hidden {
+  border: none !important;
+  margin: 0 !important;
+}
+
+#ContextToolbar .goog-toolbar-separator {
+  height: 42px;
+}
+
+/*
+ * Additional styling for toolbar select dropdowns, which have a different
+ * image glyph.
+ */
+.goog-toolbar-select .goog-toolbar-menu-button-dropdown {
+  /*  Point this to gstatic once the icon lives there. */
+  background: CONTROLS_TOOLBAR_BUTTON_SMALL_DISCLOSURE_ARROW center no-repeat;
+  /*height: 21px;*/
+  /*margin-top: 17px;*/
+  width: 7px;
+
+  /* Override rotations from the menu button dropdown rules. */
+  -webkit-transform: none;
+  -moz-transform: none;
+  transform: none;
+  filter: none;
+}
+
+.goog-toolbar-menu-button-caption {
+  /*padding: 0;*/
+  /*margin: 0 3px;*/
+  /*font-size: 14px;*/
+  /*width: 4em;*/
+  /*text-align: center;*/
+  /*height: 30px;*/
+  /*vertical-align: middle;*/
+  /*line-height: 30px*/
+
+  /*font-size: 12px;*/
+  /*line-height: 1.25;*/
+  /*display: inline-block;*/
+  /*font-weight: bold;*/
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+#tc_fs .goog-toolbar-menu-button-caption,
+#headings .goog-toolbar-menu-button-caption,
+#vff .goog-toolbar-menu-button-caption {
+  width: 60px;
+}

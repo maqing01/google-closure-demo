@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>google closure demo</title>
+        <script src="closure/goog/base.js"></script>
+        <script src="src/my-deps.js"></script>
+    </head>
+    <body>
+        <script>
+            goog.require('goog.array');
+            goog.require('hello');
+        </script>
+        <script>
+            goog.array.forEach(
+                ['a', 'b', 'c'],
+                function (val) {
+                    console.log(this[val]);
+                },
+                { a: 1, b: 2, c: 3 }
+            );
+            hello.sayHi();
+            hello.testDisPose();
+            hello.testInherits();
+        </script>
+    </body>
+</html>

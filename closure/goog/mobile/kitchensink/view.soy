@@ -1,0 +1,244 @@
+
+// Author: rjfioravanti@google.com (Ryan Fioravanti)
+
+{namespace kitchensink.soy autoescape="contextual"}
+
+{template .buttonView}
+  <div class="{css CSS_KITCHEN_VIEW}">
+    <b>Fast Buttons</b>
+    <p>Regular HTML buttons are quite slow in mobile browsers because click
+    events dont get fired right away after you touch the screen.
+    <br>
+    <br>
+    <p>Compare for yourself!
+    <br>
+    <br>
+    <button onclick="_x(event, '{kitchensink.ControlType.BUTTON_TEST}')">
+      Click me
+    </button>
+    <br>
+    <br>
+    {call wireless.soy.button.button}
+      {param labelHtml: 'Click me' /}
+      {param dontStretch: true /}
+      {param controlType: kitchensink.ControlType.BUTTON_TEST /}
+    {/call}
+    <br>
+    <br>
+    <div id="button_click_output"></div>
+    <br>
+    <br>
+    <b>Button Types</b>
+    <br>
+    <br>
+    {call wireless.soy.button.button}
+      {param labelHtml: 'Button' /}
+      {param dontStretch: true /}
+    {/call}
+    <br>
+    <br>
+    {call wireless.soy.button.buttonWithoutBorderImage}
+      {param labelHtml: 'Borderless' /}
+      {param dontStretch: true /}
+    {/call}
+    <br>
+    <br>
+    {call wireless.soy.button.arrow.arrowButton}
+      {param labelHtml: 'Arrow' /}
+      {param dontStretch: true /}
+    {/call}
+    <br>
+    <br>
+    {call wireless.soy.button.pill.leftButton}
+      {param labelHtml: 'Left' /}
+      {param dontStretch: true /}
+    {/call}
+    {call wireless.soy.button.pill.middleButton}
+      {param labelHtml: 'Middle' /}
+      {param dontStretch: true /}
+    {/call}
+    {call wireless.soy.button.pill.rightButton}
+      {param labelHtml: 'Right' /}
+      {param dontStretch: true /}
+    {/call}
+
+  </div>
+{/template}
+
+{template .listview}
+  <div class="{css CSS_KITCHEN_LIST}">
+    {foreach $label in $labels}
+      <div class="{css CSS_KITCHEN_LIST_ITEM}"
+           onclick="_x(event, '{$controlType|id}', '{index($label)}')">
+        <div class="{css CSS_KITCHEN_IMG_LIST_ARROW}"></div>
+        {$label}
+      </div>
+    {/foreach}
+  </div>
+{/template}
+
+{template .domView}
+  <div class="{css CSS_KITCHEN_VIEW}">
+    <p><b>Mutations</b>
+    <p>createElement(opt_type, opt_html, opt_classes)
+    <p>insertSiblingAfter(newNode, refNode)
+    <p>insertSiblingBefore(newNode, refNode)
+    <p>installStyles(code)
+    <p>replaceNode(newNode, oldNode)
+    <p>setOuterHtml(node, value)
+    <p>setText(node, value)
+    <p>toggleClass(node, useFirst, firstClass, opt_secondClass)
+
+    <br>
+    <br>
+    <p><b>Traversing</b>
+    <p>contains(parent, descendant)
+    <p>findFirstAncestorWithProperty(node, propertyName, opt_regExp)
+    <p>findFirstAncestorWithClass(node, className)
+    <p>findLastAncestorWithClass(node, className)
+    <p>getAsElement(node)
+    <p>getElementsByClassName(searchClass, node)
+    <p>getFirstElementByClassName(searchClass, node)
+
+    <br>
+    <br>
+    <p><b>Utilities</b>
+    <p>calculateAbsoluteOffsetLeft(node, opt_offsetParent)
+    <p>calculateAbsoluteOffsetRight(node, opt_offsetParent)
+    <p>calculateAbsoluteOffsetTop(node, opt_offsetParent)
+    <p>forceRepaint(node)
+    <p>getText(node)
+    <p>hasClass(node, className)
+    <p>isElement(node)
+  </div>
+{/template}
+
+{template .dialogView}
+  <div class="{css CSS_KITCHEN_VIEW}">
+    {call wireless.soy.button.button}
+      {param labelHtml: 'Basic dialog' /}
+      {param dontStretch: true /}
+      {param controlType: kitchensink.ControlType.SHOW_DIALOG /}
+    {/call}
+    <br>
+    <br>
+    {call wireless.soy.button.button}
+      {param labelHtml: 'Selection dialog' /}
+      {param dontStretch: true /}
+      {param controlType: kitchensink.ControlType.SHOW_SELECTION_DIALOG /}
+    {/call}
+    <br>
+    <br>
+    {call wireless.soy.button.button}
+      {param labelHtml: 'Date picker dialog' /}
+      {param dontStretch: true /}
+      {param controlType: kitchensink.ControlType.SHOW_DATEPICKER_DIALOG /}
+    {/call}
+  </div>
+{/template}
+
+{template .floatyBarView}
+  <div id="floatyEl">Hey look at me I'm floating!</div>
+{/template}
+
+{template .indexedListView}
+  <div id="indexedListFrame">
+    <div id="indexedListInner">
+      {foreach $letter in $letters}
+        <div class="{css CSS_KITCHEN_INDEXEDLIST_HEADER}">{$letter}</div>
+        {foreach $name in $names}
+          {if $letter == $name.charAt(0)}
+            <div class="{css CSS_KITCHEN_INDEXEDLIST_ROW}">{$name}</div>
+          {/if}
+        {/foreach}
+      {/foreach}
+    </div>
+  </div>
+{/template}
+
+{template .pullToRefreshView}
+  <div id="ptrFrame">
+    <div id="ptrInner">
+      <div id="ptrEl"></div>
+    </div>
+  </div>
+{/template}
+
+{template .tabBarView}
+  <div id="tabbarFrame">
+    <div id="tabbarInner">
+      {call wireless.soy.button.tabs.tabBar}
+        {param tabsHtml}
+          {call wireless.soy.button.tabs.tab}
+            {param labelHtml}
+              Left
+            {/param}
+            {param controlType: kitchensink.ControlType.TAB_CLICK /}
+            {param extraEventArgument: 0 /}
+            {param isActive: true /}
+          {/call}
+          {call wireless.soy.button.tabs.tab}
+            {param labelHtml}
+              Middle
+            {/param}
+            {param controlType: kitchensink.ControlType.TAB_CLICK /}
+            {param extraEventArgument: 1 /}
+          {/call}
+          {call wireless.soy.button.tabs.tab}
+            {param labelHtml}
+              Right
+            {/param}
+            {param controlType: kitchensink.ControlType.TAB_CLICK /}
+            {param extraEventArgument: 2 /}
+          {/call}
+        {/param}
+      {/call}
+
+      <div id="tab-pane-0">
+        Left div
+      </div>
+      <div id="tab-pane-1" style="display:none">
+        Middle div
+      </div>
+      <div id="tab-pane-2" style="display:none">
+        Right div
+      </div>
+    </div>
+  </div>
+{/template}
+
+{template .fastListView}
+  <div id="fastlistFrame">
+    <br>
+    <b>Fast List</b>
+    <br>
+    <br>
+    <div id="fastlistEl" class="{css CSS_KITCHEN_LIST}">
+      <div class="{css CSS_WUI_FAST_LIST_ITEM} {css CSS_KITCHEN_LIST_ITEM}"
+          onclick="_x(event, '{kitchensink.ControlType.FASTLIST_ITEM_CLICK}', 1)">
+        Item 1
+      </div>
+      <div class="{css CSS_WUI_FAST_LIST_ITEM} {css CSS_KITCHEN_LIST_ITEM}"
+          onclick="_x(event, '{kitchensink.ControlType.FASTLIST_ITEM_CLICK}', 2)">
+        Item 2
+      </div>
+      <div class="{css CSS_WUI_FAST_LIST_ITEM} {css CSS_KITCHEN_LIST_ITEM}"
+          onclick="_x(event, '{kitchensink.ControlType.FASTLIST_ITEM_CLICK}', 3)">
+        Item 3
+      </div>
+    </div>
+    <br>
+    <br>
+    <div id="fastlistOutput">Output</div>
+    <br>
+    <br>
+    <b>Fast Radio List</b>
+    <br>
+    <br>
+    <div id="fastradiolistEl" class="{css CSS_KITCHEN_LIST}">
+      <div class="{css CSS_WUI_FAST_LIST_ITEM} {css CSS_KITCHEN_LIST_ITEM}">Radio Item 1</div>
+      <div class="{css CSS_WUI_FAST_LIST_ITEM} {css CSS_KITCHEN_LIST_ITEM}">Radio Item 2</div>
+      <div class="{css CSS_WUI_FAST_LIST_ITEM} {css CSS_KITCHEN_LIST_ITEM}">Radio Item 3</div>
+    </div>
+  </div>
+{/template}

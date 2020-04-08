@@ -1,0 +1,15 @@
+@def CONTROLS_TOOLBAR_BACKGROUND_COLOR           white;
+@def CONTROLS_TOOLBAR_BORDER_TOP                 1px solid #e0e0e0;
+@def CONTROLS_TOOLBAR_BORDER_BOTTOM              #e0e0e0 1px solid;
+@def CONTROLS_TOOLBAR_PADDING                    8px 0 4px 0;
+
+
+.goog-toolbar {
+  background: CONTROLS_TOOLBAR_BACKGROUND_COLOR;
+  border-top: CONTROLS_TOOLBAR_BORDER_TOP;
+  /*border-bottom: CONTROLS_TOOLBAR_BORDER_BOTTOM;*/
+  outline: 0;
+  padding: CONTROLS_TOOLBAR_PADDING;
+  position: relative;
+  zoom: 1; /* The toolbar element must have layout on IE. */
+}

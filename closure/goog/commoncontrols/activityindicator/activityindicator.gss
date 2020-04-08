@@ -1,0 +1,84 @@
+/**
+ * Copyright 2011 Google Inc, All Rights Reserved
+ *
+ * Styles for controls.StatusIndicator.
+ *
+ * @author nnaze@google.com (Nathan Naze)
+ */
+
+
+
+
+/* Note that these size definitions match the definitions in
+   activityindicator.js */
+@def CONTROLS_ACTIVITY_INDICATOR_SIZE 19px;
+@def CONTROLS_ACTIVITY_INDICATOR_SMALL_SIZE 16px;
+
+.controls-activityIndicator {
+  display: inline-block;
+  position: relative;
+
+  /* @noflip */ direction: ltr;
+}
+
+.controls-activityIndicator,
+.controls-activityIndicator-icon,
+.controls-activityIndicator-circle,
+.controls-activityIndicator-circle-transition {
+  height: CONTROLS_ACTIVITY_INDICATOR_SIZE;
+  width: CONTROLS_ACTIVITY_INDICATOR_SIZE;
+}
+
+.controls-activityIndicator-small.controls-activityIndicator,
+.controls-activityIndicator-small .controls-activityIndicator-icon,
+.controls-activityIndicator-small .controls-activityIndicator-circle,
+.controls-activityIndicator-small .controls-activityIndicator-circle-transition {
+  height: CONTROLS_ACTIVITY_INDICATOR_SMALL_SIZE;
+  width: CONTROLS_ACTIVITY_INDICATOR_SMALL_SIZE;
+}
+
+.controls-activityIndicator-icon {
+  background: url(//not-connected/ui/v1/activityindicator/offline.png)
+      center no-repeat;
+}
+
+.controls-activityIndicator-small .controls-activityIndicator-icon {
+  background: url(//not-connected/ui/v1/activityindicator/offline_16.png)
+      center no-repeat;
+}
+
+.controls-activityIndicator-icon {
+  @mixin transition(opacity .218s linear .44s);
+
+  top: 0;
+  /* @noflip */ left: 0;
+
+  position: absolute;
+
+  opacity: 0;
+}
+
+.controls-activityIndicator-circle {
+  @mixin border_radius(50%);
+
+  top: 0;
+  /* @noflip */ left: 0;
+  position: absolute;
+}
+
+.controls-activityIndicator-mask {
+  overflow: hidden;
+  position: absolute;
+}
+
+.controls-activityIndicator-circle-transition {
+  position: relative;
+}
+
+.controls-activityIndicator-transition {
+  @mixin transition(all .22s ease-in);
+}
+
+.controls-activityIndicator-transition-second {
+  @mixin transition(all .22s ease-out .22s);
+}

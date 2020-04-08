@@ -1,0 +1,87 @@
+// Copyright 2010 Google Inc. All Rights Reserved.
+// Author: nthomas@google.com (Neil Thomas)
+
+{namespace wireless.soy.dialog.selectionlist autoescape="contextual"}
+
+/**
+ * Renders a modal dialog used to select items from a list.
+ * @param? headerHtml HTML contents for the header.
+ * @param listHtml HTML contents for the list of items to select from.
+ * @param doneButtonLabel Label for the done button.
+ * @param isMultiSelect True if the dialog allows multiple selections.
+ * @param? title The dialog title.
+ */
+{template .dialog}
+  {call wireless.soy.dialog.dialog}
+    {param toolbarHtml}
+      {call wireless.soy.dialog.toolbar}
+        {param leftHtml}
+          {call wireless.soy.dialog.toolbarButton}
+            {param imageClassesHtml}
+              {css CSS_WUI_IMG_ICON_STOP_WHITE}
+            {/param}
+            {param buttonClassesHtml}
+              {css CSS_WUI_BUTTON_X}
+            {/param}
+            {param controlType: wireless.ui.dialog.selectionlist.ControlType.CANCEL /}
+          {/call}
+        {/param}
+        {param centerHtml}
+          {if $title}
+            {$title}
+          {/if}
+        {/param}
+        {param rightHtml}
+          {if $isMultiSelect}
+            {call wireless.soy.dialog.toolbarButton}
+              {param labelHtml: $doneButtonLabel /}
+              {param controlType: wireless.ui.dialog.selectionlist.ControlType.DONE /}
+            {/call}
+          {/if}
+        {/param}
+      {/call}
+    {/param}
+    {param contentsHtml}
+      {if $headerHtml}
+        <div>
+          {$headerHtml |noAutoescape}
+        </div>
+      {/if}
+      {$listHtml |noAutoescape}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders the item list.
+ * @param items A list of items that can be selected.
+ * @param isMultiSelect True if the dialog allows multiple selections.
+ * @param emptyListHtml HTML to render if the list is empty.
+ */
+{template .list}
+  {foreach $item in $items}
+    <div class="{css CSS_WUI_SELECTIONLIST_ROW}{if $item.isHighlighted} {css CSS_WUI_SELECTIONLIST_HIGHLIGHT}{/if}">
+      {if $isMultiSelect}
+        {call wireless.soy.button.checkbox.checkbox}
+          {param initialState: $item.checkboxState /}
+          {param controlType: wireless.ui.dialog.selectionlist.ControlType.CHECKBOX_CHANGED /}
+          {param extraEventArgument: $item.id /}
+          {param buttonClassesHtml}
+            {css CSS_WUI_SELECTIONLIST_CHECKBOX}
+          {/param}
+        {/call}
+      {/if}
+      {call wireless.soy.button.base.plainButton}
+        {param labelHtml: $item.text /}
+        {param controlType: wireless.ui.dialog.selectionlist.ControlType.SELECT /}
+        {param extraEventArgument: $item.id /}
+        {param maxWidth: '100%' /}
+        {param buttonClassesHtml}
+          {css CSS_WUI_SELECTIONLIST_ITEM}
+        {/param}
+      {/call}
+    </div>
+  {ifempty}
+    {$emptyListHtml |noAutoescape}
+  {/foreach}
+{/template}

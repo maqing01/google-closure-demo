@@ -1,0 +1,94 @@
+
+// Author: jparachoniak@google.com (Jason Parachoniak)
+// Author: rjfioravanti@google.com (Ryan Fioravanti)
+
+{namespace wireless.soy.dialog.datepicker autoescape="contextual"}
+
+/**
+ * Renders a modal dialog used to select a date from a Gregorian calendar.
+ * @param {wireless.MonthWidget.LocaleHook} localhook The localization data for
+ * the calendar.
+ */
+{template .dialog}
+  {call wireless.soy.dialog.dialog}
+    {param toolbarHtml}
+      {call wireless.soy.toolbar.toolbar}
+        {param leftHtml}
+          {call wireless.soy.button.button}
+            {param imageClassesHtml}
+              {css CSS_WUI_IMG_ICON_STOP}
+            {/param}
+            {param buttonClassesHtml}
+              {css CSS_WUI_BUTTON_X}
+            {/param}
+            {param ariaLabel}
+              {msg desc="Accessibility label for the button that closes the date picker without making changes."}
+                Cancel.
+              {/msg}
+            {/param}
+            {param controlType: wireless.ui.dialog.DatePicker.ControlType.CANCEL /}
+          {/call}
+        {/param}
+        {param rightHtml}
+          {call wireless.soy.button.pill.leftButton}
+            {param controlType: wireless.ui.dialog.DatePicker.ControlType.PREV_MONTH /}
+            {param imageClassesHtml}
+              {css CSS_WUI_IMG_ICON_PREV}
+            {/param}
+            {param buttonClassesHtml}
+              {css CSS_WUI_DATEPICKER_BUTTON}
+            {/param}
+            {param notSticky: true /}
+            {param ariaLabel}
+              {msg desc="Accessibility label for the button that shows the previous month in the calendar."}
+                Previous month.
+              {/msg}
+            {/param}
+          {/call}
+          {call wireless.soy.button.pill.rightButton}
+            {param controlType: wireless.ui.dialog.DatePicker.ControlType.NEXT_MONTH /}
+            {param imageClassesHtml}
+              {css CSS_WUI_IMG_ICON_NEXT}
+            {/param}
+            {param buttonClassesHtml}
+              {css CSS_WUI_DATEPICKER_BUTTON}
+            {/param}
+            {param notSticky: true /}
+            {param ariaLabel}
+              {msg desc="Accessibility label for the button that shows the next month in the calendar."}
+                Next month.
+              {/msg}
+            {/param}
+          {/call}
+        {/param}
+        {param toolbarClassesHtml}
+          {css CSS_TB_OUTER} {css CSS_TB_TOP}
+        {/param}
+        {param shadowBottom: false /}
+      {/call}
+    {/param}
+    {param contentsHtml}
+      {call .month data="all" /}
+    {/param}
+    {param extraContainerCssClasses}
+      {css CSS_WUI_DATEPICKER_CONTAINER}{if $extraCssClasses} {$extraCssClasses}{/if}
+    {/param}
+  {/call}
+{/template}
+
+/**
+ * Renders a month.
+ * @param {Array.<string>} weekdayTitles The 7 strings of weekday titles.
+ * @param {number} firstDayOfWeek The day of the week to show in left-most column.
+ */
+{template .month}
+  <table class='{css CSS_WUI_DATEPICKER_MONTH_TABLE}'>
+    <tr>
+      {for $i in range(1, 8)}
+        <td class='{css CSS_WUI_DATEPICKER_MONTH_HEAD}'>
+          {$weekdayTitles[($i + $firstDayOfWeek) % 7] |noescape}
+        </td>
+      {/for}
+    </tr>
+  </table>
+{/template}

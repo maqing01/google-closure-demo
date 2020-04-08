@@ -1,0 +1,41 @@
+/**
+ * Copyright 2011 Google Inc. All Rights Reserved.
+ *
+ * @author chrishenry@google.com (Chris Henry)
+ */
+
+
+
+
+@if (!DISABLE_KENNEDY) {
+
+@def CONTROLS_PROMO_BUBBLE_BG_COLOR        #f9edbe;
+@def CONTROLS_PROMO_BUBBLE_BORDER_COLOR    #f0c36d;
+@def CONTROLS_PROMO_BUBBLE_BORDER          1px solid CONTROLS_PROMO_BUBBLE_BORDER_COLOR;
+
+.controls-bubble.controls-bubble-promo {
+  background-color: CONTROLS_PROMO_BUBBLE_BG_COLOR;
+  border: CONTROLS_PROMO_BUBBLE_BORDER;
+}
+
+.controls-bubble-promo .controls-bubble-arrowdown .controls-bubble-arrowimplbefore,
+.controls-bubble-promo .controls-bubble-arrowup .controls-bubble-arrowimplbefore {
+  border-color: CONTROLS_PROMO_BUBBLE_BORDER_COLOR transparent;
+}
+
+.controls-bubble-promo .controls-bubble-arrowdown .controls-bubble-arrowimplafter,
+.controls-bubble-promo .controls-bubble-arrowup .controls-bubble-arrowimplafter {
+  border-color: CONTROLS_PROMO_BUBBLE_BG_COLOR transparent;
+}
+
+.controls-bubble-promo .controls-bubble-arrowleft .controls-bubble-arrowimplbefore,
+.controls-bubble-promo .controls-bubble-arrowright .controls-bubble-arrowimplbefore {
+  border-color: transparent CONTROLS_PROMO_BUBBLE_BORDER_COLOR;
+}
+
+.controls-bubble-promo .controls-bubble-arrowleft .controls-bubble-arrowimplafter,
+.controls-bubble-promo .controls-bubble-arrowright .controls-bubble-arrowimplafter {
+  border-color: transparent CONTROLS_PROMO_BUBBLE_BG_COLOR;
+}
+
+}  /* if (!DISABLE_KENNEDY) */
