@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>google closure demo</title>
+        <script src="../closure/goog/base.js"></script>
+    </head>
+    <body>
+        <script>
+            goog.require('goog.i18n.DateTimeFormat');
+            goog.require('goog.i18n.DateTimeFormat.Format');
+        </script>
+        <script>
+            const date = new goog.i18n.DateTimeFormat(goog.i18n.DateTimeFormat.Format.LONG_DATE);
+            console.log(date.format(new Date()));
+        </script>
+    </body>
+</html>
